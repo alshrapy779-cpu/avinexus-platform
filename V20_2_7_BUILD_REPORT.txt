@@ -1,0 +1,13 @@
+V20.2.7 PRODUCTION BUILD REPORT
+================================
+Checked UTC: 2026-09-20T22:43:23Z
+Exit code: 127
+
+
+> smart-poultry-platform@20.2.7 build
+> vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs
+
+sh: 1: vite: not found
+
+Result: NOT CERTIFIED in this execution environment.
+Reason: local project dependencies are not installed; the build command cannot find Vite. This is an environment/dependency limitation, not reported as a passing build.

@@ -1,0 +1,25 @@
+V20.2.1 PRESERVATION AUDIT
+============================
+Baseline: V20.2 - Enterprise Web Platform Completion
+Contract: Preserve all prior V8-V20.2 functionality unless explicitly approved for retirement.
+
+Result: PASS
+
+Baseline V20.2 files tracked: 286
+Missing baseline files: 0
+Missing baseline API routes: 0
+Missing baseline TypeScript exports: 0
+Unexpected modified baseline files: 0
+
+Intentionally modified V20.2 baseline files:
+- package.json
+- server.ts
+- src/App.tsx
+- src/components/v20/EnterpriseWebWorkspaceV20_2.tsx
+- src/config/appVersion.ts
+- src/data/enterpriseV11Data.ts
+- src/types.ts
+
+New V20.2.1 implementation is additive. Legacy V20.2 header-based endpoints remain during migration so the secure V20.2.1 auth layer can be adopted without silently breaking prior clients. This compatibility decision is temporary and is explicitly marked PARTIAL until legacy routes are migrated and regression-tested.
+
+The existing V20.2 -> V20.1 preservation test was also rerun and remained PASS (273 V20.1 baseline files; no missing files/routes/exports).

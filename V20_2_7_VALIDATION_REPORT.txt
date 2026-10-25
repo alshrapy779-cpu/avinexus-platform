@@ -1,0 +1,39 @@
+V20.2.7 VALIDATION REPORT
+=========================
+Release: V20.2.7 — Windows Completion & Enterprise Control Closure
+Result: PASS at application/domain validation level
+
+Validated controls
+------------------
+- Accounting period date integrity.
+- No duplicate accounting-period keys per business unit/code.
+- No duplicate offline idempotency keys.
+- No duplicate three-way-match document numbers.
+- Physical cycle-count quantity cannot be negative.
+- Least-cost formulation ingredient percentages normalize to the accepted tolerance around 100%.
+- All posted enterprise journals examined by the V20.2.7 validator remain balanced.
+- Veterinary leave-coverage records reference preserved veterinary assignments.
+- Medication lot dispenses reference valid medication orders and inventory movements.
+- Posted cycle-count adjustments reference valid inventory movements.
+- Managed-business contract renewals reference the newly versioned contract.
+- Factory QC records for production batches reference existing batches.
+- Payslip snapshots reference existing payroll lines.
+- Scheduled report executions reference existing V20.2.6 report schedules.
+
+Semantic scenario result
+------------------------
+validation_issues = 0
+
+Security-specific semantic checks
+---------------------------------
+- Refresh-token rotation: PASS.
+- Reuse of revoked/rotated refresh token: BLOCKED / PASS.
+- Raw refresh token is not persisted as the session record key; server stores hash-based token reference.
+
+Source checks
+-------------
+See V20_2_7_SOURCE_CHECK_REPORT.txt. Domain, server and client/App source-level TypeScript checks pass using temporary external dependency stubs where installed package typings are unavailable.
+
+Production build
+----------------
+See V20_2_7_BUILD_REPORT.txt. Production build is NOT CERTIFIED in this environment because project-local Vite/node_modules are unavailable. This limitation is not counted as a passing production build and remains part of V20.2.8 hardening.

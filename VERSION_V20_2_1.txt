@@ -1,0 +1,4 @@
+V20.2.1 – Core Enterprise Foundation
+Baseline: V20.2 – Enterprise Web Platform Completion
+Release status: DEVELOPMENT BASELINE / PARTIAL UNDER STRICT DoD
+Preservation contract: V8–V20.2

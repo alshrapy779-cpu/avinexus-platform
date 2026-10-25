@@ -1,0 +1,41 @@
+V20.2.3 PRESERVATION AUDIT
+===========================
+Baseline: V20.2.2 — Veterinary & Field Operations
+Baseline file count: 314
+Current unique API routes: 201
+Baseline unique API routes: 175
+Net new unique routes: 26
+Baseline TS/TSX exports: 828
+
+Missing baseline files: 0
+Missing baseline API routes: 0
+Missing baseline TS/TSX exports: 0
+Unexpected modified baseline files: 0
+
+Expected/allowed modified baseline integration files (8):
+- MASTER_ROADMAP_V20.md
+- package.json
+- server.ts
+- src/App.tsx
+- src/components/v20/EnterpriseWebWorkspaceV20_2.tsx
+- src/config/appVersion.ts
+- src/data/enterpriseV11Data.ts
+- src/types.ts
+
+Major new V20.2.3 files include:
+- VERSION_V20_2_3.txt
+- src/modules/v20/MultiBusinessEnterpriseV20_2_3.ts
+- src/components/v20/MultiBusinessOperationsV20_2_3.tsx
+- scripts/v20.2.3/semantic-test.cjs
+- scripts/v20.2.3/preservation-check.mjs
+- docs/v20.2.3/PRESERVATION_BASELINE_V20_2_2.json
+- MASTER_REQUIREMENTS_V20_2_3.md
+- MASTER_ROADMAP_V20_2_3.md
+- V20_2_3_REQUIREMENTS_STATUS.md
+- V20_2_3_IMPLEMENTATION_SUMMARY_AR.md
+- V20_2_3_END_TO_END_TEST_REPORT.txt
+- V20_2_3_VALIDATION_REPORT.txt
+- V20_2_3_PRESERVATION_AUDIT.txt
+
+RESULT: PASS
+The automated baseline comparison confirms that no V20.2.2 baseline file, route or exported TS/TSX symbol covered by the baseline disappeared and no non-allowed baseline file was modified.

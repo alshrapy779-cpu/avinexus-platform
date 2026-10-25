@@ -1,0 +1,6 @@
+AviNexus Poultry Enterprise / أفي نيكسس لإدارة الدواجن
+V20.2.9 Windows R8 — Factory Completion & Closure
+Product Owner: فارع الفارعي
+Reference platform: Windows/Web
+Android: deferred
+Scope rule: no new major department until existing Windows platform is visibly accepted end-to-end.

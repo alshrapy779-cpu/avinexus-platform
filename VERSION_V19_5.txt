@@ -1,0 +1,11 @@
+Smart Poultry Platform
+Release: V19.5 Operational Completion
+Package version: 1.9.5
+Android versionCode: 195
+Android versionName: 1.9.5
+
+Upgrade policy:
+- Additive upgrade over V19.4 / V19.3 / V18.
+- Previous capabilities are preserved; V19.5 adds an operational integration layer.
+- Human veterinarian approval remains authoritative for medical decisions.
+- Sensitive financial/administrative operations remain permission and approval gated.

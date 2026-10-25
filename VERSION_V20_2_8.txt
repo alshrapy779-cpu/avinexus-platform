@@ -1,0 +1,6 @@
+Smart Poultry Platform
+Version: 20.2.8
+Release: Department Isolation & Data Restoration
+Baseline: V20.2.7
+Platform priority: Windows/Web
+Android: deferred until Windows completion gate is satisfied

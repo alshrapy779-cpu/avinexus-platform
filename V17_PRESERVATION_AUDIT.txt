@@ -1,0 +1,14 @@
+V16 files: 151
+V17 current files: 156
+Missing from V16: 0
+New files before this audit: 5
+
+Missing:
+
+
+New:
+VERSION_V17.txt
+src/components/admin/SalesSettlementRoutingV17Tab.tsx
+src/components/farmer/CustomerTradingV17.tsx
+src/services/printDocumentsV17.ts
+src/services/transactionalRoutingV17.ts

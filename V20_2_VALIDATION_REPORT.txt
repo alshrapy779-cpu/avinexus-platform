@@ -1,0 +1,116 @@
+V20.2 VALIDATION REPORT
+=======================
+Release: V20.2 – Enterprise Web Platform Completion
+Baseline: V20.1 – Architecture & Flock Ledger
+Validation date: 2026-09-18
+
+CERTIFICATION STATUS
+--------------------
+Overall strict status: PARTIAL / NOT YET PRODUCTION-CERTIFIED
+Reason: source/core validation and semantic tests pass, but dependency installation did not complete in the execution environment, so a dependency-backed Vite/Express production build and browser/API integration suite cannot be certified in this report.
+
+1. V20.1 PRESERVATION
+---------------------
+Command: node scripts/v20.2/preservation-check.mjs
+Result: PASS
+- Baseline files missing: 0
+- Baseline API routes missing: 0
+- Baseline TypeScript exports missing: 0
+- V20.2 is additive over V20.1.
+
+2. ENTERPRISE CORE TYPESCRIPT CHECK
+-----------------------------------
+Checked with global TypeScript compiler against:
+- EnterpriseWebPlatformV20_2.ts
+- EnterprisePoultryCoreV20.ts
+- ManagedPoultryOperationsV19_7.ts
+- PlatformCoreV19_5.ts
+- EnterpriseCoreV19_6.ts
+Result: PASS
+
+3. V20.2 DESKTOP WORKSPACE TYPESCRIPT CHECK
+-------------------------------------------
+EnterpriseWebWorkspaceV20_2.tsx was type-checked with minimal temporary declarations for unavailable external React/lucide packages.
+Result: PASS
+Scope: validates the V20.2 workspace source and its local domain dependencies; this is not a replacement for a real Vite build.
+
+4. SERVER TYPESCRIPT CHECK
+--------------------------
+server.ts was type-checked with minimal temporary declarations for unavailable external npm packages (express, vite, @google/genai, React-only transitive components).
+Result: PASS
+Scope: validates source-level TypeScript compatibility of the V20.2 server changes and local imported modules; this is not a dependency-backed runtime test.
+
+5. V20.2 SEMANTIC TEST
+----------------------
+Command: node scripts/v20.2/semantic-test.cjs
+Result: PASS
+Verified:
+- Cost center creation.
+- Daily expense creation and approval.
+- Approved expense creates a balanced journal.
+- Debit = 1,250 SAR; Credit = 1,250 SAR in the test scenario.
+- Unbalanced journal is rejected.
+- Trial balance is produced from posted journals.
+- Balance-sheet accounting check = 0 in the test scenario.
+- Tomorrow veterinary plan creates 8 executable tasks in the test scenario.
+- Evidence-required task cannot become completed without evidence; it moves to evidence_missing.
+- Employee + employment contract + payroll calculation executes.
+- Payroll test: gross 2,300 SAR; net 2,050 SAR; payer split totals 2,050 SAR.
+- Final report snapshot is created.
+- Explicit PRODUCTION environment override is honored.
+- validateEnterpriseWebStateV202 returns 0 issues for the semantic scenario.
+
+6. ENVIRONMENT ISOLATION
+------------------------
+Implemented:
+- DEMO / DEVELOPMENT / STAGING / PRODUCTION enum.
+- Environment-specific server JSON state file: runtime-data/enterprise-<environment>.json.
+- DEVELOPMENT can migrate from the legacy enterprise-v11.json if the new development file does not exist.
+- PRODUCTION never falls back to the legacy development state.
+- First PRODUCTION state uses a scrubbed business-data baseline and an explicit bootstrap system-owner configured by environment variables.
+- V20.2 validation prohibits production_demo_data_allowed=true.
+Assessment: PARTIAL under strict DoD because client/offline fallback and all historical UI seed paths still need a dedicated production integration test.
+
+7. ACCOUNTING SAFETY
+--------------------
+Implemented and tested:
+- Posted journals must be balanced.
+- Original transaction currency and amount are retained.
+- Exchange rate, rate date and source are retained on financial source records.
+- V20.2 settings prohibit historical FX revaluation as a design rule.
+- Expense approval can auto-journal to the V20.2 ledger.
+Assessment: PASS for the implemented V20.2 journal path; overall Financial Command Center remains PARTIAL because reconciliation, full treasury/AP/AR lifecycle, period close/reopen and every operational auto-journal mapping are not complete.
+
+8. NPM / PRODUCTION BUILD
+-------------------------
+Attempt: npm install --ignore-scripts --no-audit --no-fund
+Result: TIMEOUT in the execution environment before node_modules/package-lock were created.
+Therefore:
+- npm run build: NOT CERTIFIED in this report.
+- Browser end-to-end suite: NOT RUN.
+- Live Express API integration suite: NOT RUN.
+This limitation is explicitly reflected as PARTIAL in V20_2_REQUIREMENTS_STATUS.md.
+
+9. RELEASE DECISION
+-------------------
+V20.2 may be used as the next development baseline because preservation and the implemented enterprise core semantics pass.
+It must NOT be represented as 100% production-complete under the project's strict Definition of Done until all PARTIAL rows are closed and a dependency-backed build/integration test passes.
+
+10. ROLE-SCOPED V20.2 READ APIs
+-------------------------------
+Hardened after review:
+- `/api/v20.2/state` full enterprise state is limited to executive/sector/finance roles (system_owner remains the middleware super-role).
+- `/api/v20.2/tasks` returns all tasks only to elevated management; non-elevated users require `X-User-Id` and receive only assigned-user or assigned-role tasks.
+- `/api/v20.2/doctor-workspace` is separated from full state and requires the veterinary/executive role gate plus user identity for non-executives.
+- `/api/v20.2/owner-workspace/:farmId` checks active V20.2 user scopes before allowing a farmer to read a farm workspace.
+Assessment: PARTIAL security. These checks reduce data exposure but `X-User-Role` / `X-User-Id` are not cryptographically authenticated identities. A real authentication/session/JWT layer remains required before production.
+
+11. UPGRADE / ROLLBACK PACKAGE LOGIC
+------------------------------------
+The upgrade manifest was applied in a temporary-file simulation against an exact copy of the uploaded V20.1 baseline.
+Result:
+- Preflight baseline hashes: PASS for 11 modified baseline files.
+- Upgrade payload equivalence to the V20.2 project: PASS.
+- Rollback equivalence for modified files: PASS.
+- Removal of V20.2-only files on rollback: PASS.
+PowerShell itself is not installed in the execution container, so the `.ps1` scripts were not executed by a PowerShell runtime here. Their file-manifest logic was independently simulated and their contents were statically reviewed.

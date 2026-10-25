@@ -1,0 +1,9 @@
+Smart Poultry Platform
+Version: V20.2.9 — Factory Functional R2
+Baseline: V20.2.9 Windows 90% Field Completion
+Factory Blueprint: 15/15 frozen
+Factory Navigation: 15/15 dedicated workspaces
+Factory Functional Expansion: R2
+Preservation: PASS
+Semantic Verification: PASS
+Production Bundle Build: NOT CERTIFIED IN THIS CONTAINER (vite dependency unavailable)

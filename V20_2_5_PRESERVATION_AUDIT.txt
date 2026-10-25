@@ -1,0 +1,48 @@
+V20.2.5 PRESERVATION AUDIT
+===========================
+Baseline: V20.2.4 – Feed Factory, Procurement & Inventory Expansion
+Result: PASS
+
+{
+  "baseline": "V20.2.4",
+  "baseline_files": 346,
+  "baseline_routes": 220,
+  "baseline_exports": 1000,
+  "current_routes": 241,
+  "missing_files": [],
+  "missing_routes": [],
+  "missing_exports": [],
+  "modified_baseline_files": [
+    "MASTER_ROADMAP_V20.md",
+    "README.md",
+    "package.json",
+    "server.ts",
+    "src/App.tsx",
+    "src/components/v20/EnterpriseWebWorkspaceV20_2.tsx",
+    "src/config/appVersion.ts",
+    "src/data/enterpriseV11Data.ts",
+    "src/types.ts"
+  ],
+  "unexpected_modified_baseline_files": [],
+  "allowed_modified_baseline_files": [
+    "server.ts",
+    "src/types.ts",
+    "src/data/enterpriseV11Data.ts",
+    "src/App.tsx",
+    "src/components/v20/EnterpriseWebWorkspaceV20_2.tsx",
+    "package.json",
+    "src/config/appVersion.ts",
+    "README.md",
+    "MASTER_ROADMAP_V20.md"
+  ],
+  "passed": true,
+  "checked_at": "2026-09-19T19:57:15.709Z"
+}
+
+Interpretation
+--------------
+- All 346 baseline files remain present.
+- All 220 baseline API routes remain present.
+- All 1000 captured TypeScript exports remain present.
+- Baseline changes are limited to the explicitly allowed integration files.
+- V20.2.5 adds 21 unique API routes, bringing the current unique route count to 241.

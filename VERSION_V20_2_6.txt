@@ -1,0 +1,5 @@
+Smart Poultry Platform
+Version: 20.2.6
+Release: Executive Intelligence, Reports & Business Control
+Platform priority: Windows/Web
+Android status: Deferred until Windows/Web completion and production hardening

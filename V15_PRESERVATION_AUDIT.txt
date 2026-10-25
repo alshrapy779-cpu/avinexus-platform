@@ -1,0 +1,15 @@
+V14 files: 131
+V15 files before inventory/hash files: 142
+Missing V14 files: 0
+New V15 files: 11
+V15_FEATURE_AUDIT_AR.md
+VERSION_V15.txt
+android/app/src/main/java/com/smartpoultry/yemen/PoultryAppUpdatePlugin.java
+android/app/src/main/java/com/smartpoultry/yemen/PoultryHardwarePlugin.java
+src/components/admin/EnterpriseERPEnhancementsV15Tab.tsx
+src/components/farmer/BiosecurityChecklistV15Modal.tsx
+src/services/dataExchangeV15.ts
+src/services/feedFormulationV15.ts
+src/services/hardwareV15.ts
+src/services/offlineDatabaseV15.ts
+src/services/predictiveAnalyticsV15.ts

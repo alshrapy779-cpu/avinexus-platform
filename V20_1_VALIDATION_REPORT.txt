@@ -1,0 +1,42 @@
+V20.1 VALIDATION REPORT
+=======================
+Package version: 2.0.1
+Release label: V20.1 Architecture & Flock Ledger
+
+STATIC / STRUCTURAL
+- TS/TSX parsed: 108 files; syntax errors: 0
+- Relative imports checked: 109 files; missing: 0
+- JSON checked: 9 files; invalid: 0
+- V20 core typecheck: PASS
+- enterpriseV11Data typecheck: PASS
+- Preservation contract: PASS
+
+SEMANTIC FLOCK TEST
+- Result: PASS
+- Initial accepted: 1000
+- Farm mortality cumulative: 30
+- Farm mortality %: 3
+- Theoretical current: 920
+- Recorded current: 920
+- Population discrepancy: 0
+- Daily closure gate: closed
+- Population ledger events exercised: 8
+- Reconciliation workflow: PASS
+
+MASTER REQUIREMENTS REGISTRY
+- Total requirements: 237
+- Status counts: {'implemented': 44, 'planned': 63, 'documented': 4, 'partial': 17, 'existing': 107, 'planned_external': 2}
+- Pack counts: {'ARCH': 13, 'FLOCK': 41, 'VET': 20, 'MARKET': 27, 'SUPPLY': 15, 'FIN': 26, 'PROC': 21, 'CHAT': 19, 'GOV': 17, 'REPORTS': 21, 'UX': 17}
+- IMPORTANT: V20.1 does NOT claim all 237 requirements are implemented.
+
+PRODUCTION BUILD
+- npm install was attempted in this environment but did not complete within the connection/time limit and node_modules was not produced.
+- Therefore full Vite/esbuild production build is NOT certified in this environment.
+- Run npm install && npm run build on the deployment machine before production approval.
+
+UPGRADE / ROLLBACK PACK
+- Linux apply_upgrade.sh test on a fresh V19.7 copy: PASS
+- Applied project matched V20.1 working tree (excluding runtime timestamp in preservation report): PASS
+- Preservation check after apply: PASS
+- rollback_upgrade.sh restored V19.7 exactly: 0 missing, 0 extra, 0 hash differences
+- PowerShell scripts generated with equivalent version/hash/backup checks; not executed in this Linux validation environment.

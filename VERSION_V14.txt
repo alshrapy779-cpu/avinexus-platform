@@ -1,0 +1,4 @@
+Smart Poultry Platform V14
+Field Doctor Workspace + Diagnostic Decision Support + Tele-consultation + Production Cloud Control
+Build date: 2026-09-15
+Preserves all V13 project files and features.

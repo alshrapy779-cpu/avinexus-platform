@@ -1,0 +1,7 @@
+Smart Poultry Platform
+Version: 20.2.7
+Name: Windows Completion & Enterprise Control Closure
+Baseline: 20.2.6
+Platform priority: Windows/Web first
+Android: Deferred until V20.2.8 Production Hardening is complete
+Release status: Functionally implemented / Not production-hardened

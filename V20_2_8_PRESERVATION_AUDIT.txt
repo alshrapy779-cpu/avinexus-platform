@@ -1,0 +1,44 @@
+V20.2.8 PRESERVATION AUDIT
+============================
+Baseline: V20.2.7 full package
+Contract: Preserve all V8–V20.2.7 files/routes/features; V20.2.8 is additive.
+
+Baseline files: 397
+Current files (including this audit): 406
+Missing baseline files: 0
+Modified baseline files: 7
+New V20.2.8 files excluding this audit: 8
+
+Result: PASS
+
+MISSING BASELINE FILES:
+NONE
+
+MODIFIED BASELINE FILES (intentional corrective integration):
+package.json
+src/App.tsx
+src/components/farmer/FarmerApp.tsx
+src/components/home/HomeDashboard.tsx
+src/components/v20/EnterpriseWebWorkspaceV20_2.tsx
+src/config/appVersion.ts
+src/modules/v20/MultiBusinessEnterpriseV20_2_3.ts
+
+NEW V20.2.8 FILES:
+V20_2_8_IMPLEMENTATION_SUMMARY_AR.md
+V20_2_8_REQUIREMENTS_STATUS.md
+V20_2_8_SOURCE_CHECK_REPORT.txt
+VERSION_V20_2_8.txt
+docs/v20.2.8/PRESERVATION_BASELINE_V20_2_7.json
+scripts/v20.2.8/preservation-check.mjs
+scripts/v20.2.8/semantic-test.cjs
+src/components/v20/DepartmentControlCenterV20_2_8.tsx
+
+V17 CORE CHECK:
+src/components/admin/SalesSettlementRoutingV17Tab.tsx: YES
+src/components/farmer/CustomerTradingV17.tsx: YES
+src/services/transactionalRoutingV17.ts: YES
+src/services/printDocumentsV17.ts: YES
+
+Corrective semantic test: PASS (23 checks, 0 failed)
+Morning greeting string in src/: 0 occurrences
+Unexpected baseline deletion: 0

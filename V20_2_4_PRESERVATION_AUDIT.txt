@@ -1,0 +1,33 @@
+{
+  "baseline": "V20.2.3",
+  "baseline_files": 330,
+  "baseline_routes": 201,
+  "baseline_exports": 902,
+  "current_routes": 220,
+  "missing_files": [],
+  "missing_routes": [],
+  "missing_exports": [],
+  "modified_baseline_files": [
+    "MASTER_ROADMAP_V20.md",
+    "README.md",
+    "package.json",
+    "server.ts",
+    "src/App.tsx",
+    "src/components/v20/EnterpriseWebWorkspaceV20_2.tsx",
+    "src/data/enterpriseV11Data.ts",
+    "src/types.ts"
+  ],
+  "unexpected_modified_baseline_files": [],
+  "allowed_modified_baseline_files": [
+    "server.ts",
+    "src/App.tsx",
+    "src/types.ts",
+    "src/data/enterpriseV11Data.ts",
+    "src/components/v20/EnterpriseWebWorkspaceV20_2.tsx",
+    "package.json",
+    "MASTER_ROADMAP_V20.md",
+    "README.md"
+  ],
+  "passed": true,
+  "checked_at": "2026-09-18T19:48:13.460Z"
+}

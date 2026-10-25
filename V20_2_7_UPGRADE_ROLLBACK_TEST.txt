@@ -1,0 +1,21 @@
+V20.2.7 UPGRADE / ROLLBACK TEST
+================================
+Upgrade path: V20.2.6 → V20.2.7
+Rollback target: V20.2.6
+Result: PASS
+
+Test method
+-----------
+A clean copy of the full V20.2.6 baseline was created in a temporary test directory. The V20.2.7 patch manifest and payload were then applied using the same baseline-hash, copy and post-copy-hash semantics implemented by the PowerShell upgrade script. The test then removed all V20.2.7 new files, restored all modified V20.2.6 files from backup, and compared every restored baseline file SHA-256 with the original V20.2.6 baseline.
+
+Observed result
+---------------
+Preflight baseline hash validation: PASS
+Patch payload post-copy hash validation: PASS
+Upgrade apply: PASS
+Rollback exact-baseline comparison: PASS
+Baseline files verified after rollback: 377
+
+PowerShell note
+---------------
+The execution environment used for this build does not provide a Windows PowerShell runtime. Therefore the .ps1 files themselves were not executed here. Their file-operation and SHA-256 semantics were independently exercised in the Linux test harness against a clean V20.2.6 copy. The scripts remain intended for Windows deployment use after environment-specific review.

@@ -1,0 +1,72 @@
+V20.2.6 VALIDATION REPORT
+==========================
+Release: V20.2.6 – Executive Intelligence, Reports & Business Control
+Overall functional validation: PASS
+Production certification: NOT YET
+
+1. V20.2.6 semantic End-to-End test
+-----------------------------------
+PASS
+- Executive Command Center derived from source records.
+- AR aging: PASS.
+- AP aging: PASS.
+- Inventory intelligence: PASS.
+- Profitability: PASS.
+- Exception refresh/lifecycle: PASS.
+- Data-quality scan: PASS.
+- Reconciliation: PASS.
+- Report snapshot: PASS.
+- Report schedule definition: PASS.
+- Drill-down: PASS.
+- V20.2.6 state validation issues: 0.
+
+2. Regression tests
+-------------------
+V20.2.1: PASS
+V20.2.2: PASS
+V20.2.3: PASS
+V20.2.4: PASS
+V20.2.5: PASS
+V20.2.6: PASS
+
+During repeated regression execution an inherited millisecond-based workforce assignment serial collision was reproduced once. V20.2.6 includes a narrowly scoped monotonic serial-generation fix. V20.2.5 semantic regression was then repeated 8 consecutive times: PASS x8.
+
+3. Targeted TypeScript checks
+-----------------------------
+PASS: ExecutiveIntelligenceBusinessControlV20_2_6.ts
+PASS: ExecutiveIntelligenceBusinessControlV20_2_6.tsx (with temporary external React/Lucide declaration stubs because dependencies are not installed)
+PASS: server.ts V20.2.6 integration (with temporary external package declaration stubs)
+PASS: WorkforcePayrollManagedBusinessV20_2_5.ts after serial-collision fix
+
+A recursive compile starting from the full Enterprise workspace is not used as production certification in this environment: dependencies/types are absent and inherited V20.2.5 UI typing/stub issues remain. Final full-project compile belongs to the dependency-backed production build.
+
+4. Preservation
+---------------
+PASS
+Baseline files: 362
+Baseline routes: 241
+Baseline exports: 1000
+Current unique routes: 260
+Missing files/routes/exports: 0/0/0
+Unexpected modified baseline files: 0
+
+5. Production build attempt
+---------------------------
+Command: npm run build
+Result: NOT VERIFIED / BLOCKED BY LOCAL DEPENDENCIES
+Observed error: sh: 1: vite: not found
+Reason: node_modules / local Vite installation is absent in the execution environment.
+
+No claim is made that a dependency-backed production Vite/esbuild build is certified. This remains a V20.2.8 Production Hardening gate.
+
+6. Known remaining control gaps
+-------------------------------
+- Full farm/flock event-to-finance mapping for final Cost/Bird and live Cost/kg.
+- Forward treasury forecasting.
+- Full demand-driven inventory coverage forecasting.
+- Automatic background execution/delivery of scheduled reports.
+- PDF/XLSX production renderers and external delivery adapters.
+- Automatic SLA watcher/escalation delivery.
+- Bank reconciliation and formal period close/reopen.
+- Advanced cross-office trends/benchmarking.
+- Remaining V20.2.1–V20.2.5 PARTIAL items scheduled for V20.2.7.

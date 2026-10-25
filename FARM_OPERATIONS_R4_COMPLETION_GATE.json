@@ -1,0 +1,21 @@
+{
+  "release": "V20.2.9-FARM-R4",
+  "baseline": "V20.2.9-FACTORY-PRODUCTION-R3",
+  "farm_feature_domain_completion_percent": 100,
+  "farm_sections": 12,
+  "farm_registered_screens": 177,
+  "minimum_screen_floor": 82,
+  "automated_checks": 309,
+  "automated_failures": 0,
+  "factory_r3_baseline_files": 436,
+  "factory_r3_missing_files": 0,
+  "factory_r3_unexpected_changed_files": 0,
+  "intentional_additive_integration_files": 6,
+  "inventory_owner": "SECTION_7",
+  "accounting_owner": "SECTION_12",
+  "report_execution_owner": "SECTION_14",
+  "governance_owner": "SECTION_15",
+  "android_deferred_until_windows_closure": true,
+  "production_bundle_certified_in_current_environment": false,
+  "production_bundle_note": "Dependencies were not available; npm install did not complete in the execution environment."
+}

@@ -1,0 +1,24 @@
+{
+  "release": "V20.2.9 Windows R7 Customer / Office / Partner Consolidation",
+  "platform_name": "AviNexus Poultry Enterprise",
+  "platform_name_ar": "أفي نيكسس لإدارة الدواجن",
+  "product_owner": "فارع الفارعي",
+  "reference_platform": "Windows/Web",
+  "android_status": "deferred",
+  "source_implementation": "pass",
+  "retained_automated_checks": {"passed": 411, "failed": 0},
+  "r6_preservation": {"baseline_files": 486, "missing": 0, "unexpected_changes": 0},
+  "canonical_governorates": 22,
+  "customer_journeys": 5,
+  "production_bundle_certified_in_current_environment": false,
+  "production_freeze_allowed": false,
+  "remaining_gate": [
+    "target Windows dependency installation",
+    "npm run verify:customer-office-partner-r7",
+    "Vite/esbuild production build",
+    "successful Windows start",
+    "visible role-by-role end-to-end acceptance",
+    "persistence after restart",
+    "printing/document acceptance"
+  ]
+}

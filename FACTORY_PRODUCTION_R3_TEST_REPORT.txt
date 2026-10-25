@@ -1,0 +1,13 @@
+Smart Poultry Platform V20.2.9 — Factory Production Expansion R3
+
+V20.2.9 Semantic:             45/45 PASS
+Preservation:                  406 baseline files; 0 missing; 0 unexpected changed
+Factory 15-Section Semantic:   58/58 PASS
+Factory Full Screen Registry:  24/24 PASS
+Factory Production R3:         95/95 PASS
+Internal Factory Screens:      189 unique screens
+
+Production build in this container: NOT CERTIFIED
+Reason: vite executable unavailable because node_modules is not installed.
+Required local final check: npm install && npm run build
+TypeScript compiler check: project-wide tsc cannot complete because npm dependencies/types are not installed in this container. Factory-related diagnostics observed are only missing react/lucide-react/react-jsx-runtime modules; no additional factory-local TypeScript diagnostic was emitted before dependency resolution failure.

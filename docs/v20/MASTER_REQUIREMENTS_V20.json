@@ -1,0 +1,4557 @@
+{
+  "version": "20.1",
+  "baseline": "V19.7",
+  "generated_at": "2026-09-18",
+  "policy": "No requirement is Done unless its status and evidence are explicitly recorded. New work must not delete preserved V8-V19.7 behavior.",
+  "packs": [
+    {
+      "id": "ARCH",
+      "count": 13
+    },
+    {
+      "id": "FLOCK",
+      "count": 41
+    },
+    {
+      "id": "VET",
+      "count": 20
+    },
+    {
+      "id": "MARKET",
+      "count": 27
+    },
+    {
+      "id": "SUPPLY",
+      "count": 15
+    },
+    {
+      "id": "FIN",
+      "count": 26
+    },
+    {
+      "id": "PROC",
+      "count": 21
+    },
+    {
+      "id": "CHAT",
+      "count": 19
+    },
+    {
+      "id": "GOV",
+      "count": 17
+    },
+    {
+      "id": "REPORTS",
+      "count": 21
+    },
+    {
+      "id": "UX",
+      "count": 17
+    }
+  ],
+  "requirements": [
+    {
+      "id": "REQ-ARCH-001",
+      "pack": "ARCH",
+      "title": "Master requirements registry with stable IDs",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-ARCH-002",
+      "pack": "ARCH",
+      "title": "Preservation baseline for V19.7 files/routes/exports",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-ARCH-003",
+      "pack": "ARCH",
+      "title": "Patch-pack manifest and overlay upgrade mechanism",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-ARCH-004",
+      "pack": "ARCH",
+      "title": "Rollback script and backup before patch",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-ARCH-005",
+      "pack": "ARCH",
+      "title": "Central application version constant",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-ARCH-006",
+      "pack": "ARCH",
+      "title": "No-delete compatibility policy for V8-V19.7",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-ARCH-007",
+      "pack": "ARCH",
+      "title": "Definition of Done checklist per requirement",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-ARCH-008",
+      "pack": "ARCH",
+      "title": "Demo/Development/Staging/Production environment separation",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-ARCH-009",
+      "pack": "ARCH",
+      "title": "Brand settings centralization for name/logo/tagline",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-ARCH-010",
+      "pack": "ARCH",
+      "title": "Desktop/Web and Android role distribution",
+      "status": "documented",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-ARCH-011",
+      "pack": "ARCH",
+      "title": "Real-time API sync contract between field and office",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-ARCH-012",
+      "pack": "ARCH",
+      "title": "Offline-first field cache and conflict model",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-ARCH-013",
+      "pack": "ARCH",
+      "title": "System health dashboard for API/database/realtime/AI/backups/providers",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FLOCK-001",
+      "pack": "FLOCK",
+      "title": "Flock Master Record",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-002",
+      "pack": "FLOCK",
+      "title": "Population accounting equation and reconciliation",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-003",
+      "pack": "FLOCK",
+      "title": "Arrival mortality separated from farm mortality",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-004",
+      "pack": "FLOCK",
+      "title": "Daily farm mortality and cumulative mortality rates",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-005",
+      "pack": "FLOCK",
+      "title": "Livability percentage",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-006",
+      "pack": "FLOCK",
+      "title": "3-day and 7-day mortality trends",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FLOCK-007",
+      "pack": "FLOCK",
+      "title": "Flock Population Ledger",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-008",
+      "pack": "FLOCK",
+      "title": "No silent historical population edits",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-009",
+      "pack": "FLOCK",
+      "title": "Reconciliation correction approval workflow",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-010",
+      "pack": "FLOCK",
+      "title": "Weight sampling raw observations",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FLOCK-011",
+      "pack": "FLOCK",
+      "title": "Average/median/min/max weight",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-012",
+      "pack": "FLOCK",
+      "title": "CV% calculation",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-013",
+      "pack": "FLOCK",
+      "title": "Uniformity calculation",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-014",
+      "pack": "FLOCK",
+      "title": "ADG/daily gain",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-015",
+      "pack": "FLOCK",
+      "title": "Breed-standard weight variance",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FLOCK-016",
+      "pack": "FLOCK",
+      "title": "Sampling locations and fasted/fed condition",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-017",
+      "pack": "FLOCK",
+      "title": "Intelligent sample size/location scheduling",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FLOCK-018",
+      "pack": "FLOCK",
+      "title": "Feed opening/received/used/closing ledger",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-019",
+      "pack": "FLOCK",
+      "title": "Cumulative feed consumption",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-020",
+      "pack": "FLOCK",
+      "title": "Feed per bird per day",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-021",
+      "pack": "FLOCK",
+      "title": "Feed days remaining forecast",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-022",
+      "pack": "FLOCK",
+      "title": "FCR formula identification and inputs",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-023",
+      "pack": "FLOCK",
+      "title": "Water daily/cumulative metrics",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-024",
+      "pack": "FLOCK",
+      "title": "Water per bird and water:feed ratio",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-025",
+      "pack": "FLOCK",
+      "title": "Environment min/max/average temperature",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-026",
+      "pack": "FLOCK",
+      "title": "Humidity metrics",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-027",
+      "pack": "FLOCK",
+      "title": "Ventilation/lighting/heater/fan periodic readings",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FLOCK-028",
+      "pack": "FLOCK",
+      "title": "Medication timeline",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FLOCK-029",
+      "pack": "FLOCK",
+      "title": "Vaccination timeline",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FLOCK-030",
+      "pack": "FLOCK",
+      "title": "Farm on-hand stock separated from supplier availability",
+      "status": "documented",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FLOCK-031",
+      "pack": "FLOCK",
+      "title": "Daily Flock Closing gate",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-032",
+      "pack": "FLOCK",
+      "title": "Daily data completeness score",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-033",
+      "pack": "FLOCK",
+      "title": "AI logic validation before close",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-034",
+      "pack": "FLOCK",
+      "title": "Veterinary review before final daily close",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-035",
+      "pack": "FLOCK",
+      "title": "Weekly Performance Report",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-036",
+      "pack": "FLOCK",
+      "title": "Owner Daily Dashboard core KPIs",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-037",
+      "pack": "FLOCK",
+      "title": "Executive Farm Dashboard core KPIs",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-038",
+      "pack": "FLOCK",
+      "title": "Exception-based farm table",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FLOCK-039",
+      "pack": "FLOCK",
+      "title": "End-of-Cycle Report foundation",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-040",
+      "pack": "FLOCK",
+      "title": "Reports Center snapshots",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-FLOCK-041",
+      "pack": "FLOCK",
+      "title": "Fixed flock summary strip on flock screens",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-VET-001",
+      "pack": "VET",
+      "title": "Verified Veterinary Network",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-002",
+      "pack": "VET",
+      "title": "Worker boundary: records data but cannot approve treatment",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-003",
+      "pack": "VET",
+      "title": "Veterinary Decision Support Engine",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-004",
+      "pack": "VET",
+      "title": "AI proposal -> vet review -> approval -> worker task",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-005",
+      "pack": "VET",
+      "title": "Clinical case timeline",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-006",
+      "pack": "VET",
+      "title": "Differential diagnosis terminology instead of definitive AI diagnosis",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-007",
+      "pack": "VET",
+      "title": "Evidence quality gate for necropsy/droppings images",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-008",
+      "pack": "VET",
+      "title": "Laboratory chain of custody",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-009",
+      "pack": "VET",
+      "title": "Clinical diagnosis vs laboratory-confirmed state machine",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-010",
+      "pack": "VET",
+      "title": "Antibiotic stewardship",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-011",
+      "pack": "VET",
+      "title": "Withdrawal period gate",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-012",
+      "pack": "VET",
+      "title": "Healthy Poultry certification gate",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-013",
+      "pack": "VET",
+      "title": "Biosecurity score and gaps list",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-014",
+      "pack": "VET",
+      "title": "Biosecurity visit check-in",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-015",
+      "pack": "VET",
+      "title": "Disease risk radar as warning signal, not diagnosis",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-016",
+      "pack": "VET",
+      "title": "On-call veterinarian emergency escalation",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-017",
+      "pack": "VET",
+      "title": "Veterinary treatment alternatives approval gate",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-018",
+      "pack": "VET",
+      "title": "Farm operating protocol versioning",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-019",
+      "pack": "VET",
+      "title": "Daily veterinary report",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-VET-020",
+      "pack": "VET",
+      "title": "AI daily analysis report with confidence and missing data",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-001",
+      "pack": "MARKET",
+      "title": "Marketplace Customer separated from Managed Farm Customer",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-002",
+      "pack": "MARKET",
+      "title": "Guest checkout",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-003",
+      "pack": "MARKET",
+      "title": "Progressive conversion to Managed Customer",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-004",
+      "pack": "MARKET",
+      "title": "Service packages",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-005",
+      "pack": "MARKET",
+      "title": "Supplier Availability instead of platform-owned stock",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-006",
+      "pack": "MARKET",
+      "title": "Daily supplier availability attestation",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-007",
+      "pack": "MARKET",
+      "title": "Stale offer protection",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-008",
+      "pack": "MARKET",
+      "title": "Request availability before purchase when unconfirmed",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-009",
+      "pack": "MARKET",
+      "title": "Nearest branch routing",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-010",
+      "pack": "MARKET",
+      "title": "Supplier response SLA and failover",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-011",
+      "pack": "MARKET",
+      "title": "Cold-chain-aware routing",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-012",
+      "pack": "MARKET",
+      "title": "Alternative engine for non-medical goods",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-013",
+      "pack": "MARKET",
+      "title": "Scientific alternative matching for medicines/vaccines",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-014",
+      "pack": "MARKET",
+      "title": "Veterinary gate for therapeutic alternatives",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-015",
+      "pack": "MARKET",
+      "title": "Emergency wait-time decision and inter-governorate route",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-016",
+      "pack": "MARKET",
+      "title": "Customer 360 identity/location/farm/flock/clinical/commercial",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-017",
+      "pack": "MARKET",
+      "title": "Smart customer profiling",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-018",
+      "pack": "MARKET",
+      "title": "Supplier response performance scoring",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-019",
+      "pack": "MARKET",
+      "title": "No competitor data leakage between suppliers",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-020",
+      "pack": "MARKET",
+      "title": "Broker commission model",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-021",
+      "pack": "MARKET",
+      "title": "No fake availability / no Buy Now until supplier confirmation",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-022",
+      "pack": "MARKET",
+      "title": "Marketplace full audit trail",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-023",
+      "pack": "MARKET",
+      "title": "Subscription + transaction hybrid",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-024",
+      "pack": "MARKET",
+      "title": "Loyalty and retention",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-025",
+      "pack": "MARKET",
+      "title": "Smart reorder reminders without automatic medical reordering",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-026",
+      "pack": "MARKET",
+      "title": "Referral tracking",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-MARKET-027",
+      "pack": "MARKET",
+      "title": "Consent and privacy minimization",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-001",
+      "pack": "SUPPLY",
+      "title": "Company as parent entity",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-002",
+      "pack": "SUPPLY",
+      "title": "Company legal profile",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-003",
+      "pack": "SUPPLY",
+      "title": "Multi-activity company categories",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-004",
+      "pack": "SUPPLY",
+      "title": "Contract -> branch -> warehouse -> product/offer hierarchy",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-005",
+      "pack": "SUPPLY",
+      "title": "Supplier 360 drill-down",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-006",
+      "pack": "SUPPLY",
+      "title": "Master Product Catalog separated from Supplier Offers",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-007",
+      "pack": "SUPPLY",
+      "title": "Scientific master data controlled by veterinary/scientific role",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-008",
+      "pack": "SUPPLY",
+      "title": "Supplier offer price history",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-009",
+      "pack": "SUPPLY",
+      "title": "SAR/YER Old/YER New price support",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-010",
+      "pack": "SUPPLY",
+      "title": "Hatchery module",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-011",
+      "pack": "SUPPLY",
+      "title": "Chick Health Passport",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-012",
+      "pack": "SUPPLY",
+      "title": "Cold chain breach recording",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-013",
+      "pack": "SUPPLY",
+      "title": "Batch/Lot and expiry tracking",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-014",
+      "pack": "SUPPLY",
+      "title": "QR/barcode receiving scan",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-SUPPLY-015",
+      "pack": "SUPPLY",
+      "title": "Supplier/hatchery quality scoring",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-001",
+      "pack": "FIN",
+      "title": "Independent Financial Command Center",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-002",
+      "pack": "FIN",
+      "title": "Chart of Accounts",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-003",
+      "pack": "FIN",
+      "title": "Double-entry accounting",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-004",
+      "pack": "FIN",
+      "title": "Treasury cash/bank/exchange accounts",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-005",
+      "pack": "FIN",
+      "title": "Receivables",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-006",
+      "pack": "FIN",
+      "title": "Payables",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-007",
+      "pack": "FIN",
+      "title": "Credit limits and due dates",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-008",
+      "pack": "FIN",
+      "title": "Multi-currency original transaction preservation",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-009",
+      "pack": "FIN",
+      "title": "FX rates with historical effective date",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-010",
+      "pack": "FIN",
+      "title": "Realized/unrealized FX gain/loss foundation",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-011",
+      "pack": "FIN",
+      "title": "Farm/flock cost centers",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-012",
+      "pack": "FIN",
+      "title": "Cost per bird",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-013",
+      "pack": "FIN",
+      "title": "Cost per kg live weight",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-014",
+      "pack": "FIN",
+      "title": "Payroll for platform staff",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-015",
+      "pack": "FIN",
+      "title": "Worker/vet salary allocated to farm cost center",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-016",
+      "pack": "FIN",
+      "title": "Advances/bonuses/deductions/gratuities",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-017",
+      "pack": "FIN",
+      "title": "Daily expenses",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-018",
+      "pack": "FIN",
+      "title": "Commission engine",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-019",
+      "pack": "FIN",
+      "title": "Cash closing",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-020",
+      "pack": "FIN",
+      "title": "Bank/exchange reconciliation",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-021",
+      "pack": "FIN",
+      "title": "Period closing and controlled reopening",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-022",
+      "pack": "FIN",
+      "title": "No hard delete for posted financial documents",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-023",
+      "pack": "FIN",
+      "title": "Event-driven auto-journaling from field events",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-024",
+      "pack": "FIN",
+      "title": "Biological asset valuation / IAS 41 optional policy module",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-025",
+      "pack": "FIN",
+      "title": "Veterinary-financial forecasting and break-even",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-FIN-026",
+      "pack": "FIN",
+      "title": "Multi-currency reconciliation center",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-001",
+      "pack": "PROC",
+      "title": "Doctor requirement -> finance review -> supplier verification",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-002",
+      "pack": "PROC",
+      "title": "Owner approval for cost-bearing requests",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-003",
+      "pack": "PROC",
+      "title": "Purchase Order",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-004",
+      "pack": "PROC",
+      "title": "Supplier confirmation",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-005",
+      "pack": "PROC",
+      "title": "Goods Receipt / GRN",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-006",
+      "pack": "PROC",
+      "title": "Three-Way Match: PO + GRN + Supplier Invoice",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-007",
+      "pack": "PROC",
+      "title": "Delivery ETA tracking",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-008",
+      "pack": "PROC",
+      "title": "Delay reason tracking",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-009",
+      "pack": "PROC",
+      "title": "Worker receipt evidence/photos",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-010",
+      "pack": "PROC",
+      "title": "Procurement requirement report",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-011",
+      "pack": "PROC",
+      "title": "Marketing readiness",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-012",
+      "pack": "PROC",
+      "title": "Owner sale approval",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-013",
+      "pack": "PROC",
+      "title": "Vehicle and driver data",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-014",
+      "pack": "PROC",
+      "title": "Vehicle disinfection before loading",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-015",
+      "pack": "PROC",
+      "title": "Loading quantity/weight/time",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-016",
+      "pack": "PROC",
+      "title": "POD at destination",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-017",
+      "pack": "PROC",
+      "title": "Transport mortality",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-018",
+      "pack": "PROC",
+      "title": "Partial/cumulative sales ledger",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-019",
+      "pack": "PROC",
+      "title": "Final settlement",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-020",
+      "pack": "PROC",
+      "title": "Customer collections and due dates",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-PROC-021",
+      "pack": "PROC",
+      "title": "Sales & Marketing Report",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-001",
+      "pack": "CHAT",
+      "title": "Farm Operations Chat per managed farm",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-002",
+      "pack": "CHAT",
+      "title": "Veterinary Advisory Chat",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-003",
+      "pack": "CHAT",
+      "title": "Finance & Procurement Chat",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-004",
+      "pack": "CHAT",
+      "title": "Executive Control Tower Chat",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-005",
+      "pack": "CHAT",
+      "title": "Role-based group membership",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-006",
+      "pack": "CHAT",
+      "title": "Moderator rights",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-007",
+      "pack": "CHAT",
+      "title": "Auto-create groups on onboarding",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-008",
+      "pack": "CHAT",
+      "title": "Text messages",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-009",
+      "pack": "CHAT",
+      "title": "Voice-to-Data",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-010",
+      "pack": "CHAT",
+      "title": "Image/video/file messages",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-011",
+      "pack": "CHAT",
+      "title": "Sent/delivered/read states",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-012",
+      "pack": "CHAT",
+      "title": "Action cards",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-013",
+      "pack": "CHAT",
+      "title": "Pinned/reply/message filtering",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-014",
+      "pack": "CHAT",
+      "title": "Farm/flock/case context header",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-015",
+      "pack": "CHAT",
+      "title": "Voice extraction confirmation before database write",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-016",
+      "pack": "CHAT",
+      "title": "WhatsApp bidirectional relay adapter",
+      "status": "planned_external",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-017",
+      "pack": "CHAT",
+      "title": "Realtime WebSocket/Firebase/Supabase transport",
+      "status": "planned_external",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-018",
+      "pack": "CHAT",
+      "title": "Immutable operational chat archive foundation",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-CHAT-019",
+      "pack": "CHAT",
+      "title": "GPS/time evidence for live field capture",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-001",
+      "pack": "GOV",
+      "title": "Role + Department + Scope authorization",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-002",
+      "pack": "GOV",
+      "title": "Segregation of duties",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-003",
+      "pack": "GOV",
+      "title": "Unified approval inbox",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-004",
+      "pack": "GOV",
+      "title": "Who/What/Why/Farm/Flock/Time/Approval/Cost/Evidence/Audit envelope",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-005",
+      "pack": "GOV",
+      "title": "Device fingerprinting/binding",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-006",
+      "pack": "GOV",
+      "title": "GPS farm-presence verification with consent",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-007",
+      "pack": "GOV",
+      "title": "Field time evidence",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-008",
+      "pack": "GOV",
+      "title": "Append-only audit trail",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-009",
+      "pack": "GOV",
+      "title": "Hash-chain/signature tamper-evidence foundation",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-010",
+      "pack": "GOV",
+      "title": "Fraud/anomaly detection",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-011",
+      "pack": "GOV",
+      "title": "Data Quality Center",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-012",
+      "pack": "GOV",
+      "title": "Backup/restore foundation",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-013",
+      "pack": "GOV",
+      "title": "Document Center",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-014",
+      "pack": "GOV",
+      "title": "License/contract expiry monitoring",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-015",
+      "pack": "GOV",
+      "title": "Digital signatures",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-016",
+      "pack": "GOV",
+      "title": "Service SLA tracking",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-GOV-017",
+      "pack": "GOV",
+      "title": "Identity & Access Governance by account type",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-001",
+      "pack": "REPORTS",
+      "title": "Independent Reports Center",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-REPORTS-002",
+      "pack": "REPORTS",
+      "title": "Daily report",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-REPORTS-003",
+      "pack": "REPORTS",
+      "title": "Weekly report",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-REPORTS-004",
+      "pack": "REPORTS",
+      "title": "Cycle report",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-REPORTS-005",
+      "pack": "REPORTS",
+      "title": "Financial farm report",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-006",
+      "pack": "REPORTS",
+      "title": "Clinical report",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-007",
+      "pack": "REPORTS",
+      "title": "Biosecurity report",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-008",
+      "pack": "REPORTS",
+      "title": "Procurement report",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-009",
+      "pack": "REPORTS",
+      "title": "Sales report",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-010",
+      "pack": "REPORTS",
+      "title": "Audit report",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-011",
+      "pack": "REPORTS",
+      "title": "Filters by date/governorate/customer/farm/house/flock/vet/worker/company/currency",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-012",
+      "pack": "REPORTS",
+      "title": "PDF export",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-013",
+      "pack": "REPORTS",
+      "title": "Excel export",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-014",
+      "pack": "REPORTS",
+      "title": "Executive daily brief",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-015",
+      "pack": "REPORTS",
+      "title": "Dashboard KPIs across organizational levels",
+      "status": "implemented",
+      "definition_of_done": {
+        "data_model": true,
+        "backend_api": true,
+        "ui": true,
+        "validation": true,
+        "permissions": false,
+        "audit": true,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": true,
+        "preservation_check": true
+      }
+    },
+    {
+      "id": "REQ-REPORTS-016",
+      "pack": "REPORTS",
+      "title": "Loss Prevention Dashboard",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-017",
+      "pack": "REPORTS",
+      "title": "Economic loss scenarios",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-018",
+      "pack": "REPORTS",
+      "title": "Compliance Engine",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-019",
+      "pack": "REPORTS",
+      "title": "Worker performance scoring",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-020",
+      "pack": "REPORTS",
+      "title": "Vet performance scoring with non-outcome-only metrics",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-REPORTS-021",
+      "pack": "REPORTS",
+      "title": "Service quality scoring",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-001",
+      "pack": "UX",
+      "title": "Role-specific workspaces",
+      "status": "partial",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-002",
+      "pack": "UX",
+      "title": "Desktop/Web for finance/admin/marketing/logistics",
+      "status": "documented",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-003",
+      "pack": "UX",
+      "title": "Android for vets/farmers/workers",
+      "status": "documented",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-004",
+      "pack": "UX",
+      "title": "Professional sidebar/subnavigation",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-005",
+      "pack": "UX",
+      "title": "Light theme contrast hardening",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-006",
+      "pack": "UX",
+      "title": "Arabic-first terminology",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-007",
+      "pack": "UX",
+      "title": "Legacy version modules hidden under compatibility area",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-008",
+      "pack": "UX",
+      "title": "Centralized breadcrumbs",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-009",
+      "pack": "UX",
+      "title": "Enterprise data tables",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-010",
+      "pack": "UX",
+      "title": "Reduced white space and responsive density",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-011",
+      "pack": "UX",
+      "title": "Demo seed data isolated from production",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-012",
+      "pack": "UX",
+      "title": "Central brand architecture Hisana-ready",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-013",
+      "pack": "UX",
+      "title": "Trust Center",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-014",
+      "pack": "UX",
+      "title": "Farmer education in workflow",
+      "status": "existing",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-015",
+      "pack": "UX",
+      "title": "Task & Responsibility Center",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-016",
+      "pack": "UX",
+      "title": "Managed Farm onboarding wizard",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    },
+    {
+      "id": "REQ-UX-017",
+      "pack": "UX",
+      "title": "Contract governance wizard",
+      "status": "planned",
+      "definition_of_done": {
+        "data_model": false,
+        "backend_api": false,
+        "ui": false,
+        "validation": false,
+        "permissions": false,
+        "audit": false,
+        "notifications": false,
+        "reports": false,
+        "offline_behavior": false,
+        "tests": false,
+        "preservation_check": false
+      }
+    }
+  ]
+}

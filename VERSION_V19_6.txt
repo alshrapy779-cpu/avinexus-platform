@@ -1,0 +1,4 @@
+Smart Poultry Platform V19.6
+Version: 1.9.6
+Android versionCode: 196
+Focus: Preservation + Financial Command Center + Enterprise Company Hierarchy + Role Specialization

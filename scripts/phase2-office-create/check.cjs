@@ -1,0 +1,14 @@
+const fs=require('fs'),path=require('path'),assert=require('assert');
+const root=path.resolve(__dirname,'../..');
+const server=fs.readFileSync(path.join(root,'server.ts'),'utf8');
+const ui=fs.readFileSync(path.join(root,'src/components/v20/CustomerOfficePartnerNetworkR7.tsx'),'utf8');
+const api=fs.readFileSync(path.join(root,'src/services/apiService.ts'),'utf8');
+assert.match(server,/app\.post\('\/api\/r7\/master\/offices',requireAuthV2021\(\)/);
+assert.match(server,/if\(!ownerR7Or403\(res\)\)return/);
+assert.match(server,/office_code_duplicate/);
+assert.match(server,/commitR7Master\(next,authClaimsV2021\(res\)\.sub,'office_create'/);
+assert.match(api,/async createR7Office\(/);
+assert.match(ui,/apiService\.createR7Office\(/);
+assert.match(ui,/\[renameId,setRenameId\]=useState\(''\)/);
+assert.match(ui,/disabled=\{!identityLoaded\|\|identityBusy\|\|!name\.trim\(\)\}/);
+console.log('Phase2 office create static contract: 8/8 PASS (not HTTP or Windows E2E)');

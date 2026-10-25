@@ -1,0 +1,145 @@
+
+> smart-poultry-platform@20.2.9 verify:factory-windows-r8
+> npm run test:v20.2.9 && npm run test:factory100 && npm run test:factory-full-ui && npm run test:factory-production-r3 && npm run test:farm-r4 && npm run test:farm-r4:integration && npm run test:farm-windows-r5 && npm run test:farm-windows-r6 && npm run test:customer-office-partner-r7 && npm run preservation:factory-windows-r8 && npm run test:factory-windows-r8
+
+
+> smart-poultry-platform@20.2.9 test:v20.2.9
+> node scripts/v20.2.9/semantic-test.cjs
+
+Checks: 45; Failed: 0
+V20.2.9 SEMANTIC PASS
+
+> smart-poultry-platform@20.2.9 test:factory100
+> node scripts/v20.2.9-factory100/semantic-test.cjs
+
+Factory100 Checks: 58; Failed: 0
+FACTORY 15-SECTION SEMANTIC PASS
+
+> smart-poultry-platform@20.2.9 test:factory-full-ui
+> node scripts/v20.2.9-factory-full-ui/semantic-test.cjs
+
+Factory Full UI Checks: 24; Failed: 0
+FACTORY FULL SCREEN REGISTRY PASS
+
+> smart-poultry-platform@20.2.9 test:factory-production-r3
+> node scripts/v20.2.9-factory-production-r3/semantic-test.cjs
+
+Factory Production R3 Checks: 95; Failed: 0
+FACTORY PRODUCTION EXPANSION R3 SEMANTIC PASS
+
+> smart-poultry-platform@20.2.9 test:farm-r4
+> node scripts/v20.2.9-farm-operations-r4/runtime-test.cjs
+
+Farm R4 Runtime Checks: 67; Failed: 0
+FARM OPERATIONS R4 RUNTIME PASS
+
+> smart-poultry-platform@20.2.9 test:farm-r4:integration
+> node scripts/v20.2.9-farm-operations-r4/integration-check.cjs
+
+Farm R4 Integration Checks: 20; Failed: 0
+FARM OPERATIONS R4 INTEGRATION PASS
+
+> smart-poultry-platform@20.2.9 test:farm-windows-r5
+> node scripts/v20.2.9-farm-windows-r5/windows-ui-test.cjs
+
+Farm Windows R5 Checks: 30; Failed: 0
+FARM WINDOWS R5 UI/INSTALLATION PASS
+
+> smart-poultry-platform@20.2.9 test:farm-windows-r6
+> node scripts/v20.2.9-farm-windows-r6/role-workflow-test.cjs
+
+Farm Windows R6 Checks: 41; Failed: 0
+FARM WINDOWS R6 ROLE/WORKFLOW PASS
+
+> smart-poultry-platform@20.2.9 test:customer-office-partner-r7
+> node scripts/v20.2.9-customer-office-partner-r7/network-test.cjs
+
+PASS R7 state model exists
+PASS Five customer journeys
+PASS Canonical offices
+PASS Partner organization network
+PASS Branches with governorate/address/phone
+PASS Contracts have version history
+PASS Contract pricing fields
+PASS Feed mill support
+PASS Medicine/vaccine suppliers
+PASS Hatchery support
+PASS Laboratory price contracts
+PASS Regional markets
+PASS Marketing offices
+PASS Nearest branch engine
+PASS Cold chain routing
+PASS Section 7 owner rule
+PASS Section 12 owner rule
+PASS Managed contract gets office_id
+PASS R7 persisted in multi-business state
+PASS R7 UI registered
+PASS Customer 360 UI
+PASS Office 360 UI
+PASS Partner 360 UI
+PASS Contracts UI
+PASS Catalog availability UI
+PASS Regional market UI
+PASS Nearest branch UI
+PASS Procurement chain UI
+PASS AI governance UI
+PASS System identity and owner
+PASS AviNexus brand
+R7 checks 31/31
+
+> smart-poultry-platform@20.2.9 preservation:factory-windows-r8
+> node scripts/v20.2.9-factory-windows-r8/preservation-check.cjs
+
+R8 preservation: baseline=500 missing=0 unexpected=0 allowed_changed=6
+PASS R7 baseline preserved; R8 changes limited to documented Factory Windows closure integration points.
+
+> smart-poultry-platform@20.2.9 test:factory-windows-r8
+> node scripts/v20.2.9-factory-windows-r8/factory-windows-test.cjs
+
+PASS R8 Factory closure model exists
+PASS 189 factory screens preserved
+PASS R8 capabilities generated from complete registry
+PASS At least 16 factory responsibility roles
+PASS Factory manager role exists
+PASS Procurement role exists
+PASS Receiving/weighbridge role exists
+PASS Nutritionist role exists
+PASS Production planner role exists
+PASS Production operator role exists
+PASS Warehouse role exists
+PASS Dispatch role exists
+PASS Sales role exists
+PASS Accountant and treasury roles exist
+PASS HR/payroll role exists
+PASS Transport role exists
+PASS Quality role exists
+PASS Audit/governance role exists
+PASS Critical procurement chain
+PASS Critical production chain
+PASS Critical sales chain
+PASS Critical HR chain
+PASS Critical transport chain
+PASS Critical cost chain
+PASS Section 7 inventory owner preserved
+PASS Section 12 accounting owner preserved
+PASS Section 11 workforce owner preserved
+PASS Section 14 report owner preserved
+PASS Section 15 governance owner preserved
+PASS R8 role command dashboard rendered
+PASS Operational Factory inbox rendered
+PASS Critical chains rendered
+PASS Document and print center rendered
+PASS Section acceptance matrix rendered
+PASS Role responsibility matrix rendered
+PASS Screen action contract rendered
+PASS Owner workflow action exists
+PASS Screen export snapshot exists
+PASS Screen print action exists
+PASS Deep-link factoryScreen support exists
+PASS Deep-link restore exists
+PASS Deep-link cleanup exists
+PASS Visible Windows acceptance is not falsely marked complete
+PASS AviNexus brand preserved
+PASS Product owner identity preserved
+Factory Windows R8 Checks: 45; Failed: 0
+FACTORY WINDOWS R8 CLOSURE PASS

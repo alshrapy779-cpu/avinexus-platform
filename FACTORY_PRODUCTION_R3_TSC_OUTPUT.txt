@@ -1,0 +1,247 @@
+capacitor.config.ts(1,38): error TS2307: Cannot find module '@capacitor/cli' or its corresponding type declarations.
+server.ts(1,58): error TS2307: Cannot find module 'express' or its corresponding type declarations.
+server.ts(2,18): error TS2307: Cannot find module 'path' or its corresponding type declarations.
+server.ts(3,16): error TS2307: Cannot find module 'fs' or its corresponding type declarations.
+server.ts(4,50): error TS2307: Cannot find module 'vite' or its corresponding type declarations.
+server.ts(5,29): error TS2307: Cannot find module '@google/genai' or its corresponding type declarations.
+src/App.tsx(1,44): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/App.tsx(93,36): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/App.tsx(398,45): error TS2339: Property 'env' does not exist on type 'ImportMeta'.
+src/App.tsx(778,38): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/Header.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/Header.tsx(26,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/Header.tsx(64,42): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/AdminAccessControlTab.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/AdminAccessControlTab.tsx(16,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/AdminAccessControlTab.tsx(27,131): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/AdminFinancialDashboard.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/AdminFinancialDashboard.tsx(27,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/AdminFinancialDashboard.tsx(140,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/AdminIntegrationsSecurityTab.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/AdminIntegrationsSecurityTab.tsx(19,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/AdminIntegrationsSecurityTab.tsx(237,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/ClinicalProductionV14Tab.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/ClinicalProductionV14Tab.tsx(5,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/ClinicalProductionV14Tab.tsx(27,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/CommercialClinicalV12Tab.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/CommercialClinicalV12Tab.tsx(7,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/CommercialClinicalV12Tab.tsx(181,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/CompaniesPortalTab.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/CompaniesPortalTab.tsx(23,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/CompaniesPortalTab.tsx(135,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/EnterpriseCommandV18Tab.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/EnterpriseCommandV18Tab.tsx(7,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/EnterpriseCommandV18Tab.tsx(43,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/EnterpriseERPEnhancementsV15Tab.tsx(1,61): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/EnterpriseERPEnhancementsV15Tab.tsx(7,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/EnterpriseERPEnhancementsV15Tab.tsx(234,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/EnterpriseOperationsV11Tab.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/EnterpriseOperationsV11Tab.tsx(7,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/EnterpriseOperationsV11Tab.tsx(68,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/FarmManagementAutomationV13Tab.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/FarmManagementAutomationV13Tab.tsx(8,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/FarmManagementAutomationV13Tab.tsx(147,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/GovernanceAuthorityTab.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/GovernanceAuthorityTab.tsx(22,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/GovernanceAuthorityTab.tsx(104,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/LeadershipCRMFieldV16Tab.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/LeadershipCRMFieldV16Tab.tsx(7,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/LeadershipCRMFieldV16Tab.tsx(163,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/OperationalLifecycleV194Tab.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/OperationalLifecycleV194Tab.tsx(2,110): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/OperationalLifecycleV194Tab.tsx(31,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/PlatformOperationsV195Tab.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/PlatformOperationsV195Tab.tsx(7,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/PlatformOperationsV195Tab.tsx(53,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/ProductsCatalogTab.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/ProductsCatalogTab.tsx(21,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/ProductsCatalogTab.tsx(159,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/RevenueMarginEngineTab.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/RevenueMarginEngineTab.tsx(17,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/RevenueMarginEngineTab.tsx(67,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/SalesSettlementRoutingV17Tab.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/SalesSettlementRoutingV17Tab.tsx(6,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/SalesSettlementRoutingV17Tab.tsx(125,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/SmartOperationsCenter.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/SmartOperationsCenter.tsx(21,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/SmartOperationsCenter.tsx(375,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/SovereigntyOperationsV19Tab.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/SovereigntyOperationsV19Tab.tsx(7,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/SovereigntyOperationsV19Tab.tsx(21,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/v196/CompanySupplyHierarchyV196.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/v196/CompanySupplyHierarchyV196.tsx(2,109): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/v196/CompanySupplyHierarchyV196.tsx(12,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/v196/EnterpriseCommandV196Tab.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/v196/EnterpriseCommandV196Tab.tsx(2,120): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/v196/EnterpriseCommandV196Tab.tsx(15,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/admin/v196/FinancialCommandCenterV196.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/admin/v196/FinancialCommandCenterV196.tsx(2,164): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/admin/v196/FinancialCommandCenterV196.tsx(25,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/ai/AIVeterinaryGuidanceModal.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/ai/AIVeterinaryGuidanceModal.tsx(15,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/ai/AIVeterinaryGuidanceModal.tsx(318,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/auth/AccountSwitcherV195.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/auth/AccountSwitcherV195.tsx(2,52): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/auth/AccountSwitcherV195.tsx(5,191): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/auth/EnterpriseLoginV20_2_7.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/auth/EnterpriseLoginV20_2_7.tsx(2,66): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/auth/EnterpriseLoginV20_2_7.tsx(21,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/biosecurity/BiosecurityAuditModal.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/biosecurity/BiosecurityAuditModal.tsx(15,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/biosecurity/BiosecurityAuditModal.tsx(56,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/brand/PlatformLogo.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/brand/PlatformLogo.tsx(11,3): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/calculator/EconomicLossCalculator.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/calculator/EconomicLossCalculator.tsx(2,111): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/calculator/EconomicLossCalculator.tsx(47,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/chat/FieldChatWorkspaceV195.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/chat/FieldChatWorkspaceV195.tsx(2,88): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/chat/FieldChatWorkspaceV195.tsx(19,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/customer/CustomerOnboardingModal.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/customer/CustomerOnboardingModal.tsx(2,82): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/customer/CustomerOnboardingModal.tsx(33,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/customer/CustomerRegistrationAdminPanel.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/customer/CustomerRegistrationAdminPanel.tsx(2,57): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/customer/CustomerRegistrationAdminPanel.tsx(12,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/epidemiology/EpidemiologicalMapModal.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/epidemiology/EpidemiologicalMapModal.tsx(17,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/epidemiology/EpidemiologicalMapModal.tsx(60,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/farmer/AcousticRecordingModal.tsx(1,52): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/farmer/AcousticRecordingModal.tsx(2,109): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/farmer/AcousticRecordingModal.tsx(126,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/farmer/BiosecurityChecklistV15Modal.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/farmer/BiosecurityChecklistV15Modal.tsx(2,69): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/farmer/BiosecurityChecklistV15Modal.tsx(30,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/farmer/CustomerIntelligenceV18.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/farmer/CustomerIntelligenceV18.tsx(2,153): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/farmer/CustomerIntelligenceV18.tsx(33,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/farmer/CustomerTradingV17.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/farmer/CustomerTradingV17.tsx(2,106): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/farmer/CustomerTradingV17.tsx(52,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/farmer/DiseaseBiosecurityAtlasModal.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/farmer/DiseaseBiosecurityAtlasModal.tsx(2,74): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/farmer/DiseaseBiosecurityAtlasModal.tsx(44,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/farmer/FarmerAcademyModal.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/farmer/FarmerAcademyModal.tsx(2,101): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/farmer/FarmerAcademyModal.tsx(73,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/farmer/FarmerApp.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/farmer/FarmerApp.tsx(29,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/farmer/FarmerApp.tsx(212,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/farmer/ManagedFarmClientPortalV13.tsx(1,32): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/farmer/ManagedFarmClientPortalV13.tsx(2,128): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/farmer/ManagedFarmClientPortalV13.tsx(22,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/farmer/NecropsyWizardModal.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/farmer/NecropsyWizardModal.tsx(2,113): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/farmer/NecropsyWizardModal.tsx(166,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/home/HomeDashboard.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/home/HomeDashboard.tsx(2,201): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/home/HomeDashboard.tsx(22,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/home/WelcomeExperience.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/home/WelcomeExperience.tsx(2,70): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/home/WelcomeExperience.tsx(15,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/managed/ManagedOperationsWorkspaceV197.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/managed/ManagedOperationsWorkspaceV197.tsx(6,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/managed/ManagedOperationsWorkspaceV197.tsx(59,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/marketplace/MarketplaceView.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/marketplace/MarketplaceView.tsx(34,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/marketplace/MarketplaceView.tsx(374,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/marketplace/v197/BrokerMarketplaceV197.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/marketplace/v197/BrokerMarketplaceV197.tsx(2,173): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/marketplace/v197/BrokerMarketplaceV197.tsx(42,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/marketplace/v197/BrokerMarketplaceV197.tsx(54,177): error TS2322: Type '{ key: any; r: any; state: any; onChange: any; currentUserRole: any; currentUserName: any; canVet: boolean; onOpenVet: any; }' is not assignable to type '{ r: MarketplaceAvailabilityRequestV197; state: ManagedOperationsStateV197; onChange: (x: ManagedOperationsStateV197) => void; currentUserRole: PlatformRoleV195; currentUserName: string; canVet: boolean; onOpenVet?: () => void; }'.
+  Property 'key' does not exist on type '{ r: MarketplaceAvailabilityRequestV197; state: ManagedOperationsStateV197; onChange: (x: ManagedOperationsStateV197) => void; currentUserRole: PlatformRoleV195; currentUserName: string; canVet: boolean; onOpenVet?: () => void; }'.
+src/components/marketplace/v197/BrokerMarketplaceV197.tsx(85,554): error TS2322: Type '{ key: string; a: AvailabilityAttestationV197; state: ManagedOperationsStateV197; onChange: (x: ManagedOperationsStateV197) => void; actor: string; }' is not assignable to type '{ a: any; state: ManagedOperationsStateV197; onChange: (x: ManagedOperationsStateV197) => void; actor: string; }'.
+  Property 'key' does not exist on type '{ a: any; state: ManagedOperationsStateV197; onChange: (x: ManagedOperationsStateV197) => void; actor: string; }'.
+src/components/navigation/NavigationTrail.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/navigation/NavigationTrail.tsx(2,56): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/navigation/NavigationTrail.tsx(19,3): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/operations/CustomerOperationsPanel.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/operations/CustomerOperationsPanel.tsx(15,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/operations/CustomerOperationsPanel.tsx(190,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/passport/DigitalPassportView.tsx(1,44): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/passport/DigitalPassportView.tsx(20,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/passport/DigitalPassportView.tsx(21,20): error TS2307: Cannot find module 'qrcode' or its corresponding type declarations.
+src/components/passport/DigitalPassportView.tsx(80,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/passport/PublicVerificationModal.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/passport/PublicVerificationModal.tsx(15,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/passport/PublicVerificationModal.tsx(37,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/reports/CycleSummaryModal.tsx(1,41): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/reports/CycleSummaryModal.tsx(20,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/reports/CycleSummaryModal.tsx(21,25): error TS2307: Cannot find module 'html2canvas' or its corresponding type declarations.
+src/components/reports/CycleSummaryModal.tsx(22,19): error TS2307: Cannot find module 'jspdf' or its corresponding type declarations.
+src/components/reports/CycleSummaryModal.tsx(180,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/settings/AppSettingsDrawer.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/settings/AppSettingsDrawer.tsx(2,94): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/settings/AppSettingsDrawer.tsx(48,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/srs/DetailedSRSViewer.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/srs/DetailedSRSViewer.tsx(29,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/srs/DetailedSRSViewer.tsx(324,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/v20/CompletionGateV20_2_9.tsx(1,38): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/v20/CompletionGateV20_2_9.tsx(28,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/v20/DepartmentControlCenterV20_2_8.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/v20/DepartmentControlCenterV20_2_8.tsx(62,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/v20/EnterpriseWebWorkspaceV20_2.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/v20/EnterpriseWebWorkspaceV20_2.tsx(2,269): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/v20/EnterpriseWebWorkspaceV20_2.tsx(69,64): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/v20/ExecutiveIntelligenceBusinessControlV20_2_6.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/v20/ExecutiveIntelligenceBusinessControlV20_2_6.tsx(2,151): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/v20/ExecutiveIntelligenceBusinessControlV20_2_6.tsx(26,50): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/v20/FeedFactoryCompletionV20_2_9.tsx(1,38): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/v20/FeedFactoryCompletionV20_2_9.tsx(2,174): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/v20/FeedFactoryCompletionV20_2_9.tsx(34,47): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/v20/FeedFactoryOperationsV20_2_4.tsx(1,38): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/v20/FeedFactoryOperationsV20_2_4.tsx(2,123): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/v20/FeedFactoryOperationsV20_2_4.tsx(24,9): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/v20/FlockAccountingWorkspaceV20.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/v20/FlockAccountingWorkspaceV20.tsx(2,147): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/v20/FlockAccountingWorkspaceV20.tsx(63,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/v20/MultiBusinessOperationsV20_2_3.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/v20/MultiBusinessOperationsV20_2_3.tsx(2,171): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/v20/MultiBusinessOperationsV20_2_3.tsx(40,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/v20/VeterinaryFieldOperationsV20_2_2.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/v20/VeterinaryFieldOperationsV20_2_2.tsx(2,147): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/v20/VeterinaryFieldOperationsV20_2_2.tsx(86,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/v20/WindowsCompletionControlClosureV20_2_7.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/v20/WindowsCompletionControlClosureV20_2_7.tsx(2,148): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/v20/WindowsCompletionControlClosureV20_2_7.tsx(18,105): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/v20/WorkforcePayrollOperationsV20_2_5.tsx(1,38): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/v20/WorkforcePayrollOperationsV20_2_5.tsx(2,136): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/v20/WorkforcePayrollOperationsV20_2_5.tsx(18,70): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/vaccination/VaccineProtocolView.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/vaccination/VaccineProtocolView.tsx(19,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/vaccination/VaccineProtocolView.tsx(60,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/vet/DecisionRoomModal.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/vet/DecisionRoomModal.tsx(16,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/vet/DecisionRoomModal.tsx(17,20): error TS2307: Cannot find module 'qrcode' or its corresponding type declarations.
+src/components/vet/DecisionRoomModal.tsx(196,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/vet/FieldDoctorWorkspaceV14.tsx(1,42): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/vet/FieldDoctorWorkspaceV14.tsx(5,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/vet/FieldDoctorWorkspaceV14.tsx(223,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/vet/VetDashboard.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/vet/VetDashboard.tsx(26,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/vet/VetDashboard.tsx(91,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/vet/VetLabWorkflowV18.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/vet/VetLabWorkflowV18.tsx(2,86): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/vet/VetLabWorkflowV18.tsx(13,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/components/workers/WorkerManagementView.tsx(1,33): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/components/workers/WorkerManagementView.tsx(18,8): error TS2307: Cannot find module 'lucide-react' or its corresponding type declarations.
+src/components/workers/WorkerManagementView.tsx(123,5): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/main.tsx(1,26): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/main.tsx(2,26): error TS2307: Cannot find module 'react-dom/client' or its corresponding type declarations.
+src/main.tsx(7,3): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/modules/admin/MasterControlCenter.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/modules/admin/MasterControlCenter.tsx(8,86): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/modules/ai/DigitalTwinSimulator.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/modules/ai/DigitalTwinSimulator.tsx(20,93): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/modules/chat/AIChatCoordinator.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/modules/chat/AIChatCoordinator.tsx(14,122): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/modules/marketplace/HealthyPoultryLabel.tsx(1,19): error TS2307: Cannot find module 'react' or its corresponding type declarations.
+src/modules/marketplace/HealthyPoultryLabel.tsx(18,10): error TS2875: This JSX tag requires the module path 'react/jsx-runtime' to exist, but none could be found. Make sure you have types for the appropriate package installed.
+src/services/apiService.ts(8,35): error TS2339: Property 'env' does not exist on type 'ImportMeta'.
+src/services/dataExchangeV15.ts(1,23): error TS2307: Cannot find module 'xlsx' or its corresponding type declarations.
+src/services/hardwareV15.ts(1,32): error TS2307: Cannot find module '@capacitor/core' or its corresponding type declarations.
+vite.config.ts(1,25): error TS2307: Cannot find module '@tailwindcss/vite' or its corresponding type declarations.
+vite.config.ts(2,19): error TS2307: Cannot find module '@vitejs/plugin-react' or its corresponding type declarations.
+vite.config.ts(3,18): error TS2307: Cannot find module 'path' or its corresponding type declarations.
+vite.config.ts(4,28): error TS2307: Cannot find module 'vite' or its corresponding type declarations.
+vite.config.ts(11,27): error TS2304: Cannot find name '__dirname'.

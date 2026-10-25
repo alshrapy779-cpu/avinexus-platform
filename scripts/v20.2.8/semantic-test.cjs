@@ -1,0 +1,14 @@
+const fs=require('fs'),path=require('path'); const root=path.resolve(__dirname,'../..');
+const read=p=>fs.readFileSync(path.join(root,p),'utf8'); const checks=[]; const ok=(name,cond)=>{checks.push([name,!!cond]);if(!cond)console.error('FAIL',name)};
+const home=read('src/components/home/HomeDashboard.tsx'); const dept=read('src/components/v20/DepartmentControlCenterV20_2_8.tsx'); const ws=read('src/components/v20/EnterpriseWebWorkspaceV20_2.tsx'); const farmer=read('src/components/farmer/FarmerApp.tsx'); const model=read('src/modules/v20/MultiBusinessEnterpriseV20_2_3.ts');
+ok('morning greeting removed',!home.includes('صباح الخير'));
+for(const label of ['المصنع','المكاتب','المواد','الموردون','العملاء','المبيعات','الحوالات والحركات','القبض والصرف','المحاسبة والربح','العملات وأسعار الصرف','الحسابات البنكية','التسويق','دليل الشركات والفروع','سجل التواريخ'])ok(`screen ${label}`,dept.includes(`'${label}'`));
+ok('explicit factory selector',dept.includes('اختر المصنع صراحةً'));
+ok('cost per ton',dept.includes('Cost/ton')&&dept.includes('cost_per_kg_sar*1000'));
+ok('fx approval UI',dept.includes('approveFxRateV2027')&&dept.includes('تاريخ أسعار الصرف'));
+ok('bank customer visibility fields',model.includes('customer_visible?:boolean')&&model.includes('transfer_instructions?:string'));
+ok('customer bank instructions visible',farmer.includes('بيانات التحويل والدفع المعتمدة')&&farmer.includes('customer_visible'));
+ok('partner branches directory',dept.includes('الفروع والعناوين وأرقام التواصل'));
+ok('timeline dates',dept.includes('دخول مواد')&&dept.includes('قبض/دخول نقدي')&&dept.includes('تحويل مخزون')&&dept.includes("kind:'تصنيع'"));
+ok('workspace wired',ws.includes('DepartmentControlCenterV2028')&&ws.includes("department_v2028"));
+const failed=checks.filter(x=>!x[1]); console.log(`Checks: ${checks.length}; Failed: ${failed.length}`); if(failed.length)process.exit(1); console.log('V20.2.8 SEMANTIC PASS');

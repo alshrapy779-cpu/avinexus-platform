@@ -1,0 +1,72 @@
+V20.2.7 END-TO-END TEST REPORT
+================================
+Release: V20.2.7 — Windows Completion & Enterprise Control Closure
+Baseline: V20.2.6 — Executive Intelligence, Reports & Business Control
+Result: PASS
+
+Scenario coverage
+-----------------
+1. Create the V20.2.7 closure state over preserved enterprise layers.
+2. Create an enterprise credential, issue a rotating refresh session, rotate it, validate the new access token and reject reuse of the old refresh token.
+3. Create a managed office/business unit and a versioned managed-business contract.
+4. Link a farm/cost centre, medicine warehouse, treasury account and supplier.
+5. Create a separate feed-factory business unit plus raw-material and finished-goods warehouses.
+6. Purchase and receive a medicine lot into inventory.
+7. Create a veterinarian employee/contract, approve leave, retain Primary/Backup veterinary assignments and derive temporary Backup coverage.
+8. Dispense an approved medication order from the exact received inventory lot and verify stock decrement.
+9. Post configurable flock feed-cost and flock-sale financial events into balanced journals.
+10. Derive flock profitability, Cost/Bird and Cost/live-kg from the posted mapped events.
+11. Create and close an accounting period.
+12. Reconcile a bank/treasury balance.
+13. Create budget control data and an approved historical FX-rate record.
+14. Execute PO ↔ receipt ↔ purchase-invoice three-way matching.
+15. Derive supplier scorecard and create a procurement quality claim.
+16. Execute inventory cycle count, approve/post the resulting adjustment, quarantine a lot and release it through a reviewed decision.
+17. Create factory profile, nutrient data, run the least-cost formulation foundation, attach production-batch QC and create a production plan.
+18. Create payroll/payslip data, renew an employee compensation contract without overwriting history, and renew the managed-business contract.
+19. Derive veterinary and workforce KPIs from source records.
+20. Index an evidence document, create/update notification delivery, execute a report schedule, set Arabic localization preference, register device/MFA state and verify offline idempotency.
+21. Run V20.2.7 cross-domain validation.
+
+Observed result
+---------------
+refresh_rotation: true
+refresh_reuse_blocked: true
+leave_coverage_overrides: 1
+medication_lot_dispenses: 1
+flock_revenue_sar: 1000
+flock_cost_sar: 300
+flock_profit_sar: 700
+cost_per_bird_sar: 3
+cost_per_live_kg_sar: 1.5
+accounting_period_status: closed
+bank_reconciliation_status: matched
+three_way_match_status: matched
+supplier_score: 100
+cycle_count_status: posted
+quarantine_status: released
+least_cost_formula_feasible: true
+recommended_production_kg: 5500
+payslips: 1
+employee_contract_renewals: 1
+business_contract_renewals: 1
+veterinary_kpi_rows: 2
+workforce_kpi_rows: 1
+documents_indexed: 1
+report_executions: 1
+offline_command_status: completed
+validation_issues: 0
+
+Regression status
+-----------------
+V20.2.1 semantic test: PASS
+V20.2.2 semantic test: PASS
+V20.2.3 semantic test: PASS
+V20.2.4 semantic test: PASS
+V20.2.5 semantic test: PASS
+V20.2.6 semantic test: PASS
+V20.2.7 semantic test: PASS
+
+Conclusion
+----------
+The V20.2.7 application/control-closure loop is operational at domain/API integration level, validates with zero reported semantic integrity issues in the exercised scenario, and remains compatible with the tested previous V20.2.x layers.

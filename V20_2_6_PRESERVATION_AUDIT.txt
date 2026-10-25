@@ -1,0 +1,54 @@
+V20.2.6 PRESERVATION AUDIT
+===========================
+Baseline: V20.2.5 – Workforce, Payroll & Managed Business Operations
+Result: PASS
+
+Baseline inventory
+------------------
+Files: 362
+Unique API routes: 241
+Captured TypeScript exports: 1000
+
+Current V20.2.6 unique API routes: 260
+New unique API routes: 19
+
+Missing baseline files: 0
+Missing baseline routes: 0
+Missing baseline exports: 0
+Unexpected modified baseline files: 0
+
+Authorized integration changes
+------------------------------
+- MASTER_ROADMAP_V20.md
+- README.md
+- package.json
+- server.ts
+- src/App.tsx
+- src/components/v20/EnterpriseWebWorkspaceV20_2.tsx
+- src/config/appVersion.ts
+- src/data/enterpriseV11Data.ts
+- src/types.ts
+- src/modules/v20/WorkforcePayrollManagedBusinessV20_2_5.ts
+
+The preservation checker is self-contained through `docs/v20.2.6/PRESERVATION_BASELINE_V20_2_5.json`, so it does not require a sibling source tree.
+
+The WorkforcePayrollManagedBusinessV20_2_5.ts change is a narrowly scoped regression-stability fix: newly generated workforce serial numbers now include a monotonic sub-millisecond sequence so two records created in the same millisecond do not receive duplicate serials. Existing stored records are not rewritten.
+
+Interpretation
+--------------
+V20.2.6 remains additive over V20.2.5. All baseline files/routes/exports remain present and the modified baseline files are restricted to approved integration/version/roadmap files plus the documented serial-collision bug fix.
+
+Raw preservation checker result
+-------------------------------
+{
+  "baseline": "V20.2.5",
+  "baseline_files": 362,
+  "baseline_routes": 241,
+  "baseline_exports": 1000,
+  "current_routes": 260,
+  "missing_files": [],
+  "missing_routes": [],
+  "missing_exports": [],
+  "unexpected_modified_baseline_files": [],
+  "passed": true
+}

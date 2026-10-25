@@ -1,0 +1,6 @@
+Smart Poultry Platform
+Version: 20.2.9
+Release: Windows 90% Field-by-Field Completion
+Baseline: V20.2.8
+Platform priority: Windows/Web
+Android: deferred until Windows acceptance is complete and production hardening is validated

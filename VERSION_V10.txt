@@ -1,0 +1,5 @@
+Smart Poultry Platform V10
+Admin Integrations, Security, Audit & Operations Governance
+Date: 2026-09-15
+Base: V9 complete-all-features
+Preservation rule: no V9 source files removed.

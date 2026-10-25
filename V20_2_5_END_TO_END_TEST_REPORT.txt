@@ -1,0 +1,75 @@
+V20.2.5 END-TO-END TEST REPORT
+================================
+Release: V20.2.5 – Workforce, Payroll & Managed Business Operations
+Test result: PASS
+
+Scenario coverage
+-----------------
+1. Create a managed office/business unit, linked farm and treasury account.
+2. Create a veterinarian employee profile.
+3. Create a combination compensation contract with a 60% business-unit / 40% farm-owner payer split.
+4. Assign the veterinarian to the farm.
+5. Record attendance, field visit and overtime.
+6. Request and approve leave.
+7. Request, approve and pay an employee advance of 600 SAR.
+8. Create a feed-factory business unit and factory worker with hourly contract and assignment.
+9. Record factory attendance and allocate 200 SAR of direct labour to a manufacturing order.
+10. Create a payroll period for the veterinarian.
+11. Generate payroll, including advance recovery, overtime and visit remuneration.
+12. Approve payroll, then make partial and final payroll payments.
+13. Record a transport trip with financial cost.
+14. Register an employee document and a performance snapshot.
+15. Validate state integrity and verify all generated journals are balanced.
+
+Observed result
+---------------
+{
+  "passed": true,
+  "employee": {
+    "number": "EMP-2026-847835396",
+    "job": "veterinarian",
+    "assignments": 1,
+    "attendance": 2
+  },
+  "advance": {
+    "amount_sar": 600,
+    "recovered_sar": 200,
+    "balance_sar": 400
+  },
+  "payroll": {
+    "gross_sar": 3440,
+    "net_sar": 3240,
+    "paid_sar": 3240,
+    "status": "paid"
+  },
+  "factory": {
+    "worker": "EMP-2026-847835399",
+    "labor_cost_sar": 200
+  },
+  "transport": {
+    "trip": "TRIP-2026-847835402",
+    "total_sar": 200
+  },
+  "finance": {
+    "journal_entries": 5,
+    "all_balanced": true
+  },
+  "dashboard": {
+    "active_employees": 1,
+    "doctors": 1,
+    "payroll_outstanding_sar": 0
+  },
+  "validation_issues": 0
+}
+
+Regression status
+-----------------
+V20.2.1 semantic test: PASS
+V20.2.2 semantic test: PASS
+V20.2.3 semantic test: PASS
+V20.2.4 semantic test: PASS
+V20.2.5 semantic test: PASS
+
+Conclusion
+----------
+The workforce/payroll core loop is operational at domain/application level and remains compatible with the previous tested layers.

@@ -1,0 +1,29 @@
+V20.2.6 UPGRADE / ROLLBACK TEST
+================================
+Baseline: V20.2.5
+Target: V20.2.6
+Result: PASS
+
+Simulation
+----------
+1. Created a clean copy of the packaged V20.2.5 baseline.
+2. Verified SHA-256 preflight hashes for every baseline file modified by V20.2.6.
+3. Verified that V20.2.6 new files did not already exist.
+4. Backed up every modified baseline file.
+5. Applied the upgrade payload.
+6. Verified every upgraded/new payload file byte-for-byte by SHA-256 against the full V20.2.6 source tree.
+7. Removed V20.2.6-only files.
+8. Restored the baseline backup.
+9. Verified all modified baseline hashes returned to their original V20.2.5 values and all V20.2.6-only files were absent.
+
+Observed
+--------
+Modified baseline files: 10
+New files in the final tested payload: 15
+Preflight baseline hashes: 10
+Apply payload match: PASS
+Rollback baseline match: PASS
+
+Note
+----
+The PowerShell scripts are provided for Windows. The execution environment used for validation does not provide PowerShell, so the same file-copy/hash/backup/remove/restore semantics were exercised through an independent filesystem simulation.

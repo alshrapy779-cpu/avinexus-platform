@@ -1,0 +1,36 @@
+
+> smart-poultry-platform@20.2.9 verify:factory-production-r3
+> npm run test:v20.2.9 && npm run preservation:v20.2.9 && npm run test:factory100 && npm run test:factory-full-ui && npm run test:factory-production-r3
+
+
+> smart-poultry-platform@20.2.9 test:v20.2.9
+> node scripts/v20.2.9/semantic-test.cjs
+
+Checks: 45; Failed: 0
+V20.2.9 SEMANTIC PASS
+
+> smart-poultry-platform@20.2.9 preservation:v20.2.9
+> node scripts/v20.2.9/preservation-check.mjs
+
+Baseline files: 406
+Missing: 0
+Unexpected changed: 0
+PRESERVATION PASS
+
+> smart-poultry-platform@20.2.9 test:factory100
+> node scripts/v20.2.9-factory100/semantic-test.cjs
+
+Factory100 Checks: 58; Failed: 0
+FACTORY 15-SECTION SEMANTIC PASS
+
+> smart-poultry-platform@20.2.9 test:factory-full-ui
+> node scripts/v20.2.9-factory-full-ui/semantic-test.cjs
+
+Factory Full UI Checks: 24; Failed: 0
+FACTORY FULL SCREEN REGISTRY PASS
+
+> smart-poultry-platform@20.2.9 test:factory-production-r3
+> node scripts/v20.2.9-factory-production-r3/semantic-test.cjs
+
+Factory Production R3 Checks: 95; Failed: 0
+FACTORY PRODUCTION EXPANSION R3 SEMANTIC PASS

@@ -1,0 +1,10 @@
+{
+  "baseline": "R8.1 Programming Hotfix 2 AI",
+  "base_file_count": 540,
+  "missing": [],
+  "changed": [
+    "src/components/admin/AdminFinancialDashboard.tsx"
+  ],
+  "restored_entry_points": 9,
+  "warning": "Links restore discoverability only; full transactional and Windows acceptance pending."
+}

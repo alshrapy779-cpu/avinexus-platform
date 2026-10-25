@@ -1,0 +1,6 @@
+Smart Poultry Platform
+Version: 20.2.5
+Release: Workforce, Payroll & Managed Business Operations
+Base: V20.2.4 – Feed Factory, Procurement & Inventory Expansion
+Platform priority: Windows/Web first; Android deferred.
+Release status: Functionally implemented / not production-hardened.

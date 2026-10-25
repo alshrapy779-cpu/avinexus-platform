@@ -1,0 +1,4 @@
+Smart Poultry Platform V18
+Android versionName: 1.8.0
+Android versionCode: 18
+Enterprise Intelligence / Lab / Chick Booking / Standards / Credit / Contract Farming / TeleVet

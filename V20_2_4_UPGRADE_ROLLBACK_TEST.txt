@@ -1,0 +1,10 @@
+V20.2.4 UPGRADE / ROLLBACK SIMULATION REPORT
+Baseline: V20.2.3
+Modified baseline files guarded: 8
+New V20.2.4 files: 16
+Preflight baseline SHA-256: PASS
+Payload copy verification: PASS
+Rollback baseline restoration: PASS
+Residual V20.2.4 new files after rollback: 0
+Baseline hash mismatches after rollback: 0
+Overall: PASS

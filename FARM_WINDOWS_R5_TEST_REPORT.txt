@@ -1,0 +1,21 @@
+SMART POULTRY PLATFORM — FARM WINDOWS CONTROL CENTER R5
+Final automated verification
+
+V20.2.9 semantic                         45/45 PASS
+Factory 15-section semantic              58/58 PASS
+Factory full-screen registry             24/24 PASS
+Factory Production R3 semantic           95/95 PASS
+Farm R4 runtime                           67/67 PASS
+Farm R4 integration                       20/20 PASS
+----------------------------------------------------
+Retained regression set                  309/309 PASS
+Farm Windows R5 UI/installation           30/30 PASS
+----------------------------------------------------
+Combined automated suites                339/339 PASS
+
+Factory R3 preservation: 436 baseline files, 0 missing, 0 unexpected changes.
+Farm R4 preservation under R5: 451 baseline files, 0 missing, 0 unexpected changes.
+
+Production Vite/esbuild bundle: NOT CERTIFIED IN THIS EXECUTION ENVIRONMENT.
+Reason: dependencies/node_modules could not be installed because package-registry access was unavailable/intermittent.
+The Windows installer makes successful npm dependency installation + build a mandatory acceptance gate.

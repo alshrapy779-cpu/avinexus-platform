@@ -1,0 +1,84 @@
+{
+  "generated_at": "2026-10-19T17:42:14.182Z",
+  "baseline": "R8.1 Step10",
+  "scope": "static code evidence, not runtime certification",
+  "passed": 8,
+  "total": 15,
+  "results": [
+    {
+      "name": "office workspace server route",
+      "passed": true,
+      "kind": "source_static_gate"
+    },
+    {
+      "name": "office authorized discovery route",
+      "passed": true,
+      "kind": "source_static_gate"
+    },
+    {
+      "name": "office treasury reconciliation route",
+      "passed": true,
+      "kind": "source_static_gate"
+    },
+    {
+      "name": "office farm link API",
+      "passed": true,
+      "kind": "source_static_gate"
+    },
+    {
+      "name": "all four currency codes",
+      "passed": true,
+      "kind": "source_static_gate"
+    },
+    {
+      "name": "marketing company separate party kind",
+      "passed": false,
+      "kind": "source_static_gate"
+    },
+    {
+      "name": "office list edit action",
+      "passed": false,
+      "kind": "source_static_gate"
+    },
+    {
+      "name": "partner company edit action",
+      "passed": false,
+      "kind": "source_static_gate"
+    },
+    {
+      "name": "governorate rename/versioning action",
+      "passed": false,
+      "kind": "source_static_gate"
+    },
+    {
+      "name": "contract UI create/edit actions",
+      "passed": false,
+      "kind": "source_static_gate"
+    },
+    {
+      "name": "market UI create/edit actions",
+      "passed": false,
+      "kind": "source_static_gate"
+    },
+    {
+      "name": "historical price audit model",
+      "passed": true,
+      "kind": "source_static_gate"
+    },
+    {
+      "name": "backend R7 price update endpoint",
+      "passed": true,
+      "kind": "source_static_gate"
+    },
+    {
+      "name": "server-side authorized office read",
+      "passed": true,
+      "kind": "source_static_gate"
+    },
+    {
+      "name": "Windows acceptance evidence in this script",
+      "passed": false,
+      "kind": "source_static_gate"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+Smart Poultry Platform
+Baseline: V20.2.9 Windows 90% Field Completion
+Additive release: Factory 15-Section Completion Layer
+Date: 2026-09-23
+Platform priority: Windows/Web
+Android: deferred until Windows final installation / production closure
+
+Factory Sections:
+1 Raw Materials
+2 Suppliers
+3 Purchasing & Receiving
+4 Formulas
+5 Work Orders
+6 Actual Production
+7 Inventory
+8 Factory Dispatch
+9 Customers & Sales
+10 Customer Statements
+11 HR & Payroll
+12 Treasury & Accounting
+13 Transport
+14 Reports & Analytics
+15 Settings & Governance
+
+Preservation:
+- V17/V19/V20.2.9+ functionality retained additively.
+- Legacy FeedFactoryOperationsV20_2_4 preserved and accessible.
+- Section 7 remains sole inventory owner.
+- Section 12 remains sole accounting owner.
+- Section 15 remains policy owner.
+- No hard-delete workflow introduced.
+- Material staging is reservation/allocation/internal transfer, not a second consumption issue.
+- Production cost true-up is append-only and does not overwrite prior valuation history.

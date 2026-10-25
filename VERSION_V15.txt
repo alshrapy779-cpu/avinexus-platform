@@ -1,0 +1,5 @@
+Smart Poultry Platform V15
+Enterprise ERP Scale-Up
+Version Code: 15
+Version Name: 1.5.0
+Build target: React + TypeScript + Vite + Capacitor Android

@@ -1,0 +1,5 @@
+V20.2.2 – Veterinary & Field Operations
+Baseline: V20.2.1 – Core Enterprise Foundation
+Release status: DEVELOPMENT BASELINE / PARTIAL UNDER STRICT DoD
+Preservation contract: V8–V20.2.1
+Primary target: Windows/Web before Android

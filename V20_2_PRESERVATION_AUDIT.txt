@@ -1,0 +1,77 @@
+V20.2 PRESERVATION AUDIT
+========================
+Baseline: V20.1 Architecture & Flock Ledger
+Contract: V8–V20.1 features/files/routes/exports are not removed by V20.2.
+
+Baseline file count: 273
+Current file count: 286
+Preserved baseline files: 273/273
+Missing baseline files: 0
+Modified baseline files: 11
+New V20.2 files: 13
+
+Baseline unique API routes: 114
+Current unique API routes: 131
+Missing baseline routes: 0
+New API routes: 17
+Baseline TypeScript exports: 667
+Current TypeScript exports: 720
+Missing baseline exports: 0
+
+Preservation result: PASS
+
+MISSING FILES:
+NONE
+
+MODIFIED BASELINE FILES:
+.env.example
+package.json
+server.ts
+src/App.tsx
+src/components/Header.tsx
+src/components/navigation/NavigationTrail.tsx
+src/config/appVersion.ts
+src/data/enterpriseV11Data.ts
+src/index.css
+src/modules/platform/PlatformCoreV19_5.ts
+src/types.ts
+
+NEW V20.2 FILES:
+FILE_INVENTORY_V20_2.txt
+MASTER_REQUIREMENTS_V20.md
+SHA256SUMS_V20_2.txt
+V20_2_IMPLEMENTATION_SUMMARY_AR.md
+V20_2_PRESERVATION_AUDIT.txt
+V20_2_REQUIREMENTS_STATUS.md
+V20_2_VALIDATION_REPORT.txt
+VERSION_V20_2.txt
+docs/v20.2/PRESERVATION_BASELINE_V20_1.json
+scripts/v20.2/preservation-check.mjs
+scripts/v20.2/semantic-test.cjs
+src/components/v20/EnterpriseWebWorkspaceV20_2.tsx
+src/modules/v20/EnterpriseWebPlatformV20_2.ts
+
+NEW V20.2 API ROUTES:
+/api/v20.2/command-center
+/api/v20.2/cost-centers/ensure
+/api/v20.2/cost-responsibility
+/api/v20.2/doctor-workspace
+/api/v20.2/employees
+/api/v20.2/employment-contracts
+/api/v20.2/expenses
+/api/v20.2/expenses/:id/decision
+/api/v20.2/finance/summary
+/api/v20.2/journals
+/api/v20.2/owner-workspace/:farmId
+/api/v20.2/payroll
+/api/v20.2/reports
+/api/v20.2/state
+/api/v20.2/tasks
+/api/v20.2/tasks/:id
+/api/v20.2/tomorrow-plans
+
+MISSING BASELINE API ROUTES:
+NONE
+
+MISSING BASELINE EXPORTS:
+NONE

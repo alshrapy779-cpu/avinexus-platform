@@ -1,0 +1,4 @@
+Smart Poultry Platform V20.2.4
+Feed Factory, Procurement & Inventory Expansion
+Baseline: V20.2.3 Multi-Business Enterprise Operations
+Platform target: Windows/Web first; Android remains deferred until Windows/Web production hardening is complete.

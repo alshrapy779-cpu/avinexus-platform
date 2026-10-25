@@ -1,0 +1,26 @@
+SMART POULTRY PLATFORM — FACTORY FUNCTIONAL R2 TEST REPORT
+=========================================================
+
+V20.2.9 semantic checks: 45/45 PASS
+V20.2.9 preservation baseline: 406 files
+Missing baseline files: 0
+Unexpected baseline changes: 0
+Factory functional semantic checks: 58/58 PASS
+Modified factory TS/TSX syntax parse: PASS (0 syntax diagnostics)
+
+Critical assertions include:
+- Every Factory section 1-15 is routed to a dedicated workspace.
+- Factory Profile wizard is embedded.
+- Raw material/product CRUD path exists.
+- Formula create/submit/approve path exists.
+- WO create/approve/reserve/stage path exists.
+- Actual production start/consume/complete path exists.
+- Inventory transfer path exists.
+- Internal dispatch path exists.
+- Sales S9 -> S8 -> S7 physical dispatch path exists.
+- Sales invoice -> AR is separate from physical inventory issue.
+- Customer receipt -> treasury/AR path exists.
+- Payroll contract/period/generate/approve/pay lifecycle is wired.
+- Daily expense create/approve/posting is wired.
+- Transport POD path exists.
+- Frozen report and versioned governance policy paths exist.

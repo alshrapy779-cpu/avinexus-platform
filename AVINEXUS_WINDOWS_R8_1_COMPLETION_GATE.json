@@ -1,0 +1,50 @@
+{
+  "product": "AviNexus Poultry Enterprise",
+  "release": "Windows R8.1 — Operational Readiness, Scientific AI & Full Closure",
+  "scope": "Closure of existing platform; no new major department; Android deferred",
+  "source_implementation": "PASS",
+  "preservation": {
+    "baseline": "Windows R8",
+    "baseline_files": 515,
+    "missing": 0,
+    "unexpected_changes": 0,
+    "documented_integration_changes": 12,
+    "status": "PASS"
+  },
+  "verification": {
+    "cumulative_checks_passed": 532,
+    "failed": 0,
+    "r8_1_checks_passed": 76,
+    "status": "PASS"
+  },
+  "visible_acceptance_registry": {
+    "factory_screens": 189,
+    "farm_screens": 177,
+    "farm_r6_destinations": 24,
+    "r8_1_screens": 9,
+    "total": 399,
+    "pre_marked_pass": false
+  },
+  "ownership": {
+    "inventory": "S7",
+    "accounting": "S12",
+    "payroll": "S11",
+    "reports": "S14",
+    "governance": "S15"
+  },
+  "target_windows": {
+    "dependencies_installed": false,
+    "production_build": false,
+    "startup_verified": false,
+    "visible_role_acceptance": false,
+    "screen_button_acceptance": false,
+    "weather_live_acceptance": false,
+    "persistence_after_restart": false,
+    "documents_and_printing": false,
+    "multi_day_acceptance": false,
+    "reason": "Current execution environment has no node_modules; dependency installation timed out. Complete these gates on the target Windows machine."
+  },
+  "status": "SOURCE_READY_FOR_TARGET_WINDOWS_ACCEPTANCE",
+  "production_frozen": false,
+  "next_department_allowed": false
+}

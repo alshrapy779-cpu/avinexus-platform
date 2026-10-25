@@ -1,0 +1,4 @@
+AviNexus Poultry Enterprise
+Windows/Web R8.1 — Operational Readiness, Scientific AI & Full Closure
+Cumulative overlay on V20.2.9 Windows R8 Factory Closure
+Android remains deferred until Windows production closure.

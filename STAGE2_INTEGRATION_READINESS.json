@@ -1,0 +1,100 @@
+{
+  "date": "2026-10-19",
+  "phase": "2 - integration baseline",
+  "certification": "NOT_PRODUCTION_READY",
+  "source_checks": [
+    {
+      "id": "module_office",
+      "description": "Presence of office source references",
+      "status": "FOUND_SOURCE_EVIDENCE",
+      "evidence": "server.ts textual reference; does not certify runtime"
+    },
+    {
+      "id": "module_farm",
+      "description": "Presence of farm source references",
+      "status": "FOUND_SOURCE_EVIDENCE",
+      "evidence": "server.ts textual reference; does not certify runtime"
+    },
+    {
+      "id": "module_factory",
+      "description": "Presence of factory source references",
+      "status": "FOUND_SOURCE_EVIDENCE",
+      "evidence": "server.ts textual reference; does not certify runtime"
+    },
+    {
+      "id": "module_finance",
+      "description": "Presence of finance source references",
+      "status": "FOUND_SOURCE_EVIDENCE",
+      "evidence": "server.ts textual reference; does not certify runtime"
+    },
+    {
+      "id": "module_ai",
+      "description": "Presence of ai source references",
+      "status": "FOUND_SOURCE_EVIDENCE",
+      "evidence": "server.ts textual reference; does not certify runtime"
+    },
+    {
+      "id": "module_market",
+      "description": "Presence of market source references",
+      "status": "FOUND_SOURCE_EVIDENCE",
+      "evidence": "server.ts textual reference; does not certify runtime"
+    },
+    {
+      "id": "server_auth",
+      "description": "Server authentication references",
+      "status": "FOUND_SOURCE_EVIDENCE",
+      "evidence": "server.ts textual check"
+    },
+    {
+      "id": "server_office_scope",
+      "description": "Office scope references",
+      "status": "FOUND_SOURCE_EVIDENCE",
+      "evidence": "server.ts textual check"
+    },
+    {
+      "id": "server_audit",
+      "description": "Audit trail references",
+      "status": "FOUND_SOURCE_EVIDENCE",
+      "evidence": "server.ts textual check"
+    },
+    {
+      "id": "server_currency",
+      "description": "All four currency codes",
+      "status": "FOUND_SOURCE_EVIDENCE",
+      "evidence": "server.ts literal currency codes"
+    },
+    {
+      "id": "office_360",
+      "description": "Office 360 frontend references",
+      "status": "REQUIRES_IMPLEMENTATION_OR_VERIFICATION",
+      "evidence": "filename presence only"
+    },
+    {
+      "id": "windows_verify",
+      "description": "Windows verification script",
+      "status": "FOUND_SOURCE_EVIDENCE",
+      "evidence": "script existence only"
+    },
+    {
+      "id": "stage1_gate",
+      "description": "Stage 1 gate present",
+      "status": "FOUND_SOURCE_EVIDENCE",
+      "evidence": "unresolved failures must be fixed"
+    }
+  ],
+  "summary": {
+    "checks": 13,
+    "found": 12,
+    "requires_verification": 1
+  },
+  "mandatory_e2e": [
+    "Historical V17-V20 behavior restoration",
+    "Office contract -> existing farm visibility with server isolation",
+    "Marketing company vs contracted office segregation",
+    "Price and governorate CRUD with append-only history",
+    "S7 inventory balances and S12 financial balances",
+    "Four currency posting and reconciliation",
+    "AI authorized read and controlled actions",
+    "Windows build/start/restart/persistence/print and backup restore"
+  ]
+}

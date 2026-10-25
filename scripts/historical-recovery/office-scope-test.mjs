@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+const source=fs.readFileSync(new URL('../../src/modules/v20/OfficeContractScopeRecovery.ts',import.meta.url),'utf8');
+assert.match(source,/allowed_office_ids\.includes\(access\.office_id\)/);
+assert.match(source,/c\.office_id===access\.office_id/);
+assert.match(source,/c\.status==='active'/);
+assert.match(source,/farmIds\.has\(a\.farm_id\)/);
+assert.match(source,/farmIds\.has\(d\.farm_id\)/);
+assert.doesNotMatch(source,/includes\(c\.office_name\)|localStorage|createLedger|postJournal/);
+console.log('PASS office scope source invariants (6)');

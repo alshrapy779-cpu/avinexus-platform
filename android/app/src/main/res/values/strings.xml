@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">المنصة الوطنية للدواجن الذكية</string>
+    <string name="title_activity_main">المنصة الوطنية للدواجن الذكية</string>
+    <string name="package_name">com.smartpoultry.yemen</string>
+    <string name="custom_url_scheme">com.smartpoultry.yemen</string>
+</resources>

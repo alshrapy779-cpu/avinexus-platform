@@ -1,0 +1,68 @@
+V20.2.6 END-TO-END TEST REPORT
+================================
+Release: V20.2.6 – Executive Intelligence, Reports & Business Control
+Test result: PASS
+
+Scenario coverage
+-----------------
+1. Create/use one business unit with linked farm, warehouse and treasury account.
+2. Create customer, supplier and feed product.
+3. Purchase/receive stock and create an overdue supplier invoice of 500 SAR.
+4. Create an overdue credit sale of 200 SAR.
+5. Create a critical veterinary medical case.
+6. Derive receivables and payables aging.
+7. Derive inventory value/coverage intelligence.
+8. Derive business-unit profitability.
+9. Refresh unified control exceptions.
+10. Exercise exception lifecycle acknowledgement.
+11. Run consolidated data-quality scan.
+12. Run reconciliation controls.
+13. Generate audited EXEC_SUMMARY report snapshot.
+14. Create weekly AR_AGING report schedule definition.
+15. Derive Executive Command Center metrics.
+16. Drill down to the source sales invoice.
+17. Validate V20.2.6 state integrity.
+
+Observed result
+---------------
+{
+  "passed": true,
+  "command": {
+    "business_units": 1,
+    "receivables_sar": 200,
+    "payables_sar": 500,
+    "critical_medical_cases": 1,
+    "open_exceptions": 3
+  },
+  "aging": {
+    "ar": {"current":0,"1_30":0,"31_60":200,"61_90":0,"90_plus":0,"total":200},
+    "ap": {"current":0,"1_30":0,"31_60":500,"61_90":0,"90_plus":0,"total":500}
+  },
+  "inventory": {
+    "rows": 1,
+    "value_sar": 400,
+    "low_stock": 0
+  },
+  "control": {
+    "exceptions": 3,
+    "reconciliations": 1,
+    "reconciliation_passed": true,
+    "reports": 1,
+    "schedules": 1,
+    "data_quality_findings": 0
+  },
+  "validation_issues": 0
+}
+
+Regression status
+-----------------
+V20.2.1 semantic test: PASS
+V20.2.2 semantic test: PASS
+V20.2.3 semantic test: PASS
+V20.2.4 semantic test: PASS
+V20.2.5 semantic test: PASS
+V20.2.6 semantic test: PASS
+
+Conclusion
+----------
+The executive/control layer is operational at domain/application level and derives control information from the existing enterprise source systems without replacing them.

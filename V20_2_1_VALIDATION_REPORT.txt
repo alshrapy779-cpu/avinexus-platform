@@ -1,0 +1,68 @@
+V20.2.1 VALIDATION REPORT
+============================
+Release: V20.2.1 - Core Enterprise Foundation
+Baseline: V20.2 - Enterprise Web Platform Completion
+Status: DEVELOPMENT BASELINE / PARTIAL
+
+VALIDATION RESULTS
+------------------
+PASS - V20.2.1 semantic test
+  - scope enforcement allow/deny
+  - primary veterinary conflict blocked
+  - cross-territory overlapping primary conflict blocked
+  - primary/backup coverage resolution order
+  - veterinary workload calculation
+  - veterinary handover creation
+  - multi-tier approval flow
+  - delegated approval
+  - delegation financial amount limit enforcement
+  - invalid evidence SHA-256 rejected
+  - valid evidence metadata registered
+  - master data and localization validation
+  - foundation validation issues = 0 in tested scenario
+  - password login
+  - bearer token verification
+  - password-change session invalidation
+  - logout token revocation
+  - production auth secret guard
+
+PASS - V20.2.1 preservation check
+  - V20.2 baseline files: 286
+  - missing baseline files: 0
+  - missing baseline API routes: 0
+  - missing baseline TypeScript exports: 0
+  - unexpected modified baseline files: 0
+
+PASS - Prior V20.2 semantic regression test
+  - balanced journal: PASS
+  - tomorrow-plan task generation: PASS
+  - evidence gate: PASS
+  - payroll calculation: PASS
+  - report snapshot: PASS
+  - unbalanced journal rejection: PASS
+  - balance-sheet check difference: 0
+  - V20.2 validation issues in tested scenario: 0
+
+PASS - Prior V20.2 preservation against V20.1
+  - V20.1 baseline files: 273
+  - missing files/routes/exports: 0
+
+PASS - Source-level TypeScript checks with lightweight dependency stubs
+  - server.ts including V20.2.1 auth/foundation integration
+  - EnterpriseWebWorkspaceV20_2.tsx including Foundation workspace
+
+CURRENT SOURCE INVENTORY
+------------------------
+Unique server API routes: 157
+V20.2.1 API routes: 26
+Unique TypeScript exports under src: 780
+
+NOT CERTIFIED
+-------------
+A real dependency-backed production build has NOT been certified in this environment. The result above must not be interpreted as npm-install/build certification. Full production hardening remains scheduled for V20.2.7, with intermediate build checks to be repeated whenever dependencies are available.
+
+PASS - V20.2 -> V20.2.1 upgrade/rollback simulation
+  - intentionally modified baseline files: 7
+  - additive V20.2.1 files: 15
+  - apply payload byte-for-byte match: PASS
+  - rollback restores original V20.2 bytes and removes additive files: PASS

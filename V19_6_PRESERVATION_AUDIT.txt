@@ -1,0 +1,13 @@
+Smart Poultry Platform V19.6 — Preservation Audit
+Generated: 2026-09-17T18:48:25.245318+00:00
+
+Current file count: 245
+V19.5 preserved: 234/234; missing=0
+V19.4 preserved: 223/223; missing=0
+V18 core preserved: 169/169; missing=0
+
+Missing V19.5 files: NONE
+Missing V19.4 files: NONE
+Missing V18 files: NONE
+
+V19.6 modifies integration files but does not intentionally remove any previous source file.

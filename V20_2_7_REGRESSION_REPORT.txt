@@ -1,0 +1,11 @@
+V20.2.7 REGRESSION REPORT
+=========================
+V20.2.1: PASS
+V20.2.2: PASS
+V20.2.3: PASS
+V20.2.4: PASS
+V20.2.5: PASS
+V20.2.6: PASS
+V20.2.7: PASS
+
+All semantic suites above were executed from the final V20.2.7 working tree after the security, server, client, veterinary, finance, procurement, inventory, factory, HR and contract-renewal integrations were applied.

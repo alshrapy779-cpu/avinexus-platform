@@ -1,0 +1,46 @@
+Smart Poultry Platform V19.5 Preservation Audit
+Generated: 2026-09-17T02:29:14.613737
+
+V19.4 baseline files: 223
+V19.4 files missing in V19.5: 0
+V19.4 files unchanged: 208
+V19.4 files modified/integrated: 15
+New files added before final audit artifacts: 7
+
+V18 baseline files: 169
+V18 files missing in V19.5: 0
+
+MISSING FROM V19.4:
+NONE
+
+MISSING FROM V18:
+NONE
+
+MODIFIED V19.4 FILES:
+.env.example
+README.md
+android/app/build.gradle
+package.json
+server.ts
+src/App.tsx
+src/components/Header.tsx
+src/components/admin/AdminFinancialDashboard.tsx
+src/components/admin/SovereigntyOperationsV19Tab.tsx
+src/components/home/HomeDashboard.tsx
+src/components/home/WelcomeExperience.tsx
+src/components/navigation/NavigationTrail.tsx
+src/data/enterpriseV11Data.ts
+src/index.css
+src/types.ts
+
+NEW V19.5 FILES (before final audit artifacts):
+V19_5_OPERATIONAL_COMPLETION_AR.md
+V19_5_REQUIREMENTS_STATUS_AR.md
+VERSION_V19_5.txt
+src/components/admin/PlatformOperationsV195Tab.tsx
+src/components/auth/AccountSwitcherV195.tsx
+src/components/chat/FieldChatWorkspaceV195.tsx
+src/modules/platform/PlatformCoreV19_5.ts
+
+Final working-tree file count after audit/inventory/checksum artifacts: 234
+Preservation rule: no V19.4 or V18 baseline file was removed.

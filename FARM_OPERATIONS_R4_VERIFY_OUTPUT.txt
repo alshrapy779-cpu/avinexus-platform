@@ -1,0 +1,55 @@
+
+> smart-poultry-platform@20.2.9 verify:farm-r4
+> npm run test:v20.2.9 && npm run test:factory100 && npm run test:factory-full-ui && npm run test:factory-production-r3 && npm run preservation:farm-r4 && npm run test:farm-r4 && npm run test:farm-r4:integration
+
+
+> smart-poultry-platform@20.2.9 test:v20.2.9
+> node scripts/v20.2.9/semantic-test.cjs
+
+Checks: 45; Failed: 0
+V20.2.9 SEMANTIC PASS
+
+> smart-poultry-platform@20.2.9 test:factory100
+> node scripts/v20.2.9-factory100/semantic-test.cjs
+
+Factory100 Checks: 58; Failed: 0
+FACTORY 15-SECTION SEMANTIC PASS
+
+> smart-poultry-platform@20.2.9 test:factory-full-ui
+> node scripts/v20.2.9-factory-full-ui/semantic-test.cjs
+
+Factory Full UI Checks: 24; Failed: 0
+FACTORY FULL SCREEN REGISTRY PASS
+
+> smart-poultry-platform@20.2.9 test:factory-production-r3
+> node scripts/v20.2.9-factory-production-r3/semantic-test.cjs
+
+Factory Production R3 Checks: 95; Failed: 0
+FACTORY PRODUCTION EXPANSION R3 SEMANTIC PASS
+
+> smart-poultry-platform@20.2.9 preservation:farm-r4
+> node scripts/v20.2.9-farm-operations-r4/preservation-check.mjs
+
+Factory R3 baseline files: 436
+Missing: 0
+Unexpected changed: 0
+Intentional additive integration changes: 6
+package.json
+src/App.tsx
+src/data/enterpriseV11Data.ts
+src/types.ts
+src/components/v20/EnterpriseWebWorkspaceV20_2.tsx
+server.ts
+FARM R4 PRESERVATION PASS — no Factory R3 file deleted or unexpectedly changed
+
+> smart-poultry-platform@20.2.9 test:farm-r4
+> node scripts/v20.2.9-farm-operations-r4/runtime-test.cjs
+
+Farm R4 Runtime Checks: 67; Failed: 0
+FARM OPERATIONS R4 RUNTIME PASS
+
+> smart-poultry-platform@20.2.9 test:farm-r4:integration
+> node scripts/v20.2.9-farm-operations-r4/integration-check.cjs
+
+Farm R4 Integration Checks: 20; Failed: 0
+FARM OPERATIONS R4 INTEGRATION PASS

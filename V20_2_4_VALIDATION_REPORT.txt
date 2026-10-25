@@ -1,0 +1,58 @@
+V20.2.4 VALIDATION REPORT
+Generated UTC: 2026-09-18T19:46:07Z
+
+[1] Full type-check of V20.2.4 domain module
+PASS: domain module type-check
+
+[2] Syntax/transpile check of integration surface (noCheck because npm dependencies are unavailable)
+PASS: integration syntax/transpile
+
+[3] Semantic test
+{
+  "passed": true,
+  "procurement": {
+    "requisition": "PR-2026-760774089",
+    "quote_awarded": true
+  },
+  "formula": {
+    "code": "FINISHER-A",
+    "version": 1,
+    "protein": 21.2,
+    "energy": 2867.5,
+    "calcium": 1.123
+  },
+  "manufacturing": {
+    "order": "MO-2026-760774090",
+    "input_kg": 1000,
+    "output_kg": 970,
+    "yield_pct": 97,
+    "loss_kg": 30,
+    "bags": 19,
+    "cost_per_kg_sar": 1.8763,
+    "cost_per_bag_sar": 93.81
+  },
+  "dispatch": {
+    "quantity_kg": 500,
+    "accepted_kg": 495,
+    "damaged_kg": 2,
+    "shortage_kg": 3,
+    "status": "partially_received"
+  },
+  "farm": {
+    "consumed_kg": 100,
+    "remaining_office_kg": 395
+  },
+  "finance": {
+    "journal_entries": 5,
+    "all_balanced": true
+  },
+  "dashboard": {
+    "production_kg": 970,
+    "finished_goods_kg": 470,
+    "open_exceptions": 2
+  },
+  "validation_issues": 0
+}
+
+[4] Environment production-build status
+NOT EXECUTED: node_modules is absent, therefore Vite/npm production build cannot be certified in this environment.

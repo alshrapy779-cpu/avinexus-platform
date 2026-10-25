@@ -1,0 +1,4 @@
+Smart Poultry Platform V17
+Version Name: 1.7.0
+Version Code: 17
+Focus: Sequential poultry marketing, escrow settlements, supplier failover, report routing, lease escrow.

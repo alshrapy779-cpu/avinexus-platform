@@ -1,0 +1,43 @@
+Smart Poultry Platform
+Release: V20.2.9 Farm Operations Complete R4
+Baseline: V20.2.9 Factory Production R3
+Release status: FARM OPERATIONS FEATURE/DOMAIN GATE CLOSED 100%
+Factory baseline: PRESERVED
+Android: DEFERRED until Windows/Web production closure, per project contract
+
+Farm release scope:
+- 12 Farm sections
+- 177 registered Farm screens
+- Farm ownership and effective-dated staff/doctor assignments
+- Farm/house/flock/cycle continuity using existing managed operations as the hierarchy source
+- Canonical bird population event ledger
+- Mortality/culling reconciliation
+- Feed/water/environment canonical records
+- Append-only sensor readings
+- Biosecurity, water quality, feed quality
+- Clinical cases, consultant escalation, withdrawal restrictions
+- Medication/vaccination execution -> Section 7 integration events
+- Lab facility/sample/chain-of-custody/reviewer/versioned amendments
+- Encrypted shared media evidence contracts
+- Durable offline queue, idempotency, clock drift, field-specific conflict handling
+- Farm alerts and tasks
+- Farm expense claims -> Section 12 integration events
+- Market price, break-even, margin and benchmarking
+- Versioned farm reference data
+- Section 14 report ownership and Section 15 governance ownership
+- Windows/Web UI workspace
+- Server persistence/reload normalization and dedicated Farm R4 state/status API
+
+Verification summary:
+- V20.2.9 semantic: 45/45 PASS
+- Factory 15-section: 58/58 PASS
+- Factory full screen registry: 24/24 PASS
+- Factory Production R3: 95/95 PASS
+- Farm R4 runtime: 67/67 PASS
+- Farm R4 integration: 20/20 PASS
+- Total automated checks: 309/309 PASS
+- Factory R3 preservation: 0 missing, 0 unexpected changed
+- Farm/changed-file syntax diagnostics: 0
+
+Build certification note:
+The production Vite/esbuild bundle was not certified in this execution environment because npm dependency installation could not complete and node_modules is absent. This is an environment/dependency certification item; the Farm R4 source, runtime/domain, UI/server wiring and preservation gates are closed and passing.

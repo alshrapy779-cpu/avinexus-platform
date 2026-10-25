@@ -1,0 +1,17 @@
+V20.2.5 UPGRADE / ROLLBACK TEST
+================================
+Baseline: V20.2.4
+Target: V20.2.5
+Result: PASS (file/hash simulation)
+
+The execution environment does not contain PowerShell, so the .ps1 scripts themselves could not be launched here. The same file operations and hash guards were simulated against a fresh extraction of the original V20.2.4 ZIP.
+
+Checks
+------
+[PASS] All 9 baseline files to be modified matched their recorded SHA-256 values before apply.
+[PASS] No V20.2.5 new-file collision existed on the clean baseline.
+[PASS] Upgrade payload copied successfully and target file bytes matched the payload.
+[PASS] Rollback restored all modified baseline files to their original SHA-256 values.
+[PASS] All 16 V20.2.5-only files were removed by rollback simulation.
+
+The included PowerShell scripts implement the same baseline-hash preflight, backup, apply, marker and rollback model used in previous releases.

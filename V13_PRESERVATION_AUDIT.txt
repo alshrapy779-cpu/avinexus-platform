@@ -1,0 +1,13 @@
+V12 files: 117
+V13 files before audit artifacts: 121
+Missing V12 files in V13: 0
+Added files: 4
+
+MISSING:
+
+
+ADDED:
+V13_FEATURE_AUDIT_AR.md
+VERSION_V13.txt
+src/components/admin/FarmManagementAutomationV13Tab.tsx
+src/components/farmer/ManagedFarmClientPortalV13.tsx

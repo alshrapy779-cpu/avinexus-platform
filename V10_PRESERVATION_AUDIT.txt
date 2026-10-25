@@ -1,0 +1,15 @@
+V10 PRESERVATION AUDIT
+V9 files: 100
+V10 files before audit file: 105
+Missing V9 files in V10: 0
+New files in V10: 5
+
+Missing list:
+
+
+New files:
+FILE_INVENTORY_V10.txt
+SHA256SUMS_V10.txt
+V10_FEATURE_UPDATE_AR.md
+VERSION_V10.txt
+src/components/admin/AdminIntegrationsSecurityTab.tsx

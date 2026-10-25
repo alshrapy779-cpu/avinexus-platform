@@ -1,0 +1,6 @@
+# Do not commit your machine-specific local.properties.
+# Windows example (escape backslashes):
+# sdk.dir=C\\:\\Users\\YOUR_USER\\AppData\\Local\\Android\\Sdk
+#
+# Linux example:
+# sdk.dir=/home/YOUR_USER/Android/Sdk

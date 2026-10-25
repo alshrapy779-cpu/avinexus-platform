@@ -1,0 +1,15 @@
+V17 files: 160
+V18 files before inventory/checksum: 166
+Missing from V17: 0
+Added in V18: 6
+
+MISSING:
+NONE
+
+ADDED:
+V18_FEATURE_AUDIT_AR.md
+VERSION_V18.txt
+src/components/admin/EnterpriseCommandV18Tab.tsx
+src/components/farmer/CustomerIntelligenceV18.tsx
+src/components/vet/VetLabWorkflowV18.tsx
+src/services/enterpriseIntelligenceV18.ts

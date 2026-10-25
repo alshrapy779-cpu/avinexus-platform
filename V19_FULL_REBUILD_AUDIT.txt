@@ -1,0 +1,22 @@
+Smart Poultry Platform V19.1 - Full Rebuild Audit
+================================================
+Base archive: smart-poultry-platform-v18-lab-chicks-governance.zip
+Base V18 file count: 169
+Preservation requirement: no V18 file removed.
+
+Correction versus first V19 package:
+- Replaced thin one-line facade modules with operational domain logic.
+- Added dedicated biosecurity, finance, hatchery, executive, offline, HR and public quality modules.
+- Rewired sovereigntyV19 service to the real domain modules.
+- Expanded server V19 API endpoints.
+- POD endpoint now uses settlement engine.
+- Added requirements traceability matrix.
+- Retained all V8-V18 components and datasets.
+
+Validation performed:
+1) All TS/TSX files transpile syntactically with TypeScript 5.8.3: PASS.
+2) Pure V19 domain modules compile with TypeScript 5.8.3: PASS.
+3) Executed smoke tests for field parser, profitability guard, transit permit and corporate investment signal: PASS.
+4) JSON parse validation: PASS.
+5) V18 preservation comparison: generated separately in V19_PRESERVATION_AUDIT.txt.
+6) Full npm/vite build: NOT EXECUTED because node_modules are not present and external package download is unavailable in this execution environment.

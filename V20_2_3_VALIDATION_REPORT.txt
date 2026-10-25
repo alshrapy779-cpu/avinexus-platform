@@ -1,0 +1,109 @@
+V20.2.3 VALIDATION REPORT
+==========================
+Release: V20.2.3 — Multi-Business Enterprise Operations
+Baseline: V20.2.2 — Veterinary & Field Operations
+Platform: Windows/Web reference platform
+
+1) NEW DOMAIN MODULE COMPILE
+----------------------------
+Command: TypeScript compile of src/modules/v20/MultiBusinessEnterpriseV20_2_3.ts with global tsc
+Result: PASS
+
+2) NEW WINDOWS UI COMPILE CHECK
+-------------------------------
+Target: src/components/v20/MultiBusinessOperationsV20_2_3.tsx
+Method: isolated TypeScript/JSX compile using temporary type stubs for external React/lucide packages because node_modules is absent.
+Result: PASS
+
+3) V20.2.1 FOUNDATION REGRESSION TEST
+-------------------------------------
+Result: PASS
+Validated: scope enforcement, primary-vet conflict prevention, backup coverage, workload, handover, multi-tier approvals, delegation limits, auth hash/token/revocation, master data, localization foundation, evidence registration and production-secret guard.
+Foundation validation issues: 0
+
+4) V20.2.2 VETERINARY REGRESSION TEST
+-------------------------------------
+Result: PASS
+Validated: worker daily closing, critical AI triage, escalation, veterinary review, medical case, consultation routing, lab chain of custody, restricted-antibiotic safety gate, withdrawal lock, tomorrow-plan task generation, evidence gate, execution review, follow-up and case closure.
+Veterinary validation issues: 0
+
+5) V20.2.3 END-TO-END SEMANTIC TEST
+----------------------------------
+Result: PASS
+Scenario exercised:
+- Create office Business Unit.
+- Create management contract.
+- Link an existing farm and assign office staff responsibility.
+- Create two office warehouses and SAR cashbox.
+- Create customer and supplier.
+- Create 50kg feed product.
+- Purchase order: 500 bags.
+- Receive 495 bags with 2 damaged + 1 rejected => 492 accepted.
+- Receiving variance exception recorded.
+- Create credit sales invoice for 10 bags.
+- Customer credit-limit exception recorded while preserving an auditable transaction.
+- Record SAR 400 customer receipt.
+- Record SAR 1,000 supplier payment.
+- Transfer 20 bags between office warehouses: request → dispatch → receive.
+- Create feed-factory Business Unit.
+- Create raw-material and finished-goods warehouses.
+- Create Factory Profile.
+- Validate 9 default raw-material definitions and 3 feed-product types.
+- Validate all generated journals are balanced.
+- Multi-business state validation issues: 0.
+
+Observed test values:
+- Business Units: 2
+- Farm links: 1
+- Customers: 1
+- Suppliers: 1
+- Warehouses: 4
+- Accepted purchased feed: 492 bags
+- Customer balance after partial receipt: SAR 600
+- Supplier balance after partial payment: SAR 40,920
+- Received stock transfer: 20 bags
+- Generated journal entries in scenario: 5
+- Generated financial documents in scenario: 4
+- Office sales: SAR 1,000
+- Factory raw-material definitions: 9
+- Feed types: 3
+
+6) PRESERVATION AUDIT
+---------------------
+Result: PASS
+V20.2.2 baseline files: 314
+Baseline unique API routes: 175
+Current unique API routes: 201
+Net new unique API routes: 26
+Baseline TS/TSX exports: 828
+Missing baseline files: 0
+Missing baseline routes: 0
+Missing baseline exports: 0
+Unexpected modified baseline files: 0
+
+7) FULL PRODUCTION BUILD
+------------------------
+Command attempted: npm run build
+Result: NOT CERTIFIED IN THIS EXECUTION ENVIRONMENT
+Reason: node_modules is absent; shell reports `vite: not found`.
+This is an environment/dependency limitation, not a claimed successful production build. A full npm install + Vite/esbuild build is still required before production release.
+
+OVERALL
+-------
+Functional increment: PASS for the implemented V20.2.3 domain/UI semantic scope.
+Preservation: PASS.
+Production-ready certification: NO / PARTIAL until full dependency-backed production build, broader integration tests and remaining PARTIAL enterprise requirements are closed.
+
+8) ENTERPRISE WORKSPACE INTEGRATION COMPILE CHECK
+-------------------------------------------------
+Target: src/components/v20/EnterpriseWebWorkspaceV20_2.tsx including V20.2.3 workspace integration.
+Method: isolated TypeScript/JSX compile with temporary external-package type stubs because project dependencies are not installed.
+Result: PASS
+
+9) UPGRADE / ROLLBACK SIMULATION
+--------------------------------
+Target baseline: clean V20.2.2 copy
+Modified baseline files: 8
+New V20.2.3 files in upgrade payload: 16 at simulation time
+Apply simulation: PASS — payload hashes matched V20.2.3 source.
+Rollback simulation: PASS — all 8 modified files restored to baseline SHA-256 and all new files removed.

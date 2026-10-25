@@ -1,0 +1,45 @@
+{
+  "release": "V20.2.9 Farm Windows Control Center R6",
+  "baseline": "V20.2.9 Farm Windows Control Center R5",
+  "windows_web_reference_platform": true,
+  "android_deferred": true,
+  "role_contracts": 15,
+  "r5_preserved_screen_destinations": 177,
+  "r6_critical_role_destinations": 24,
+  "governed_destinations_total": 201,
+  "automated_checks": {
+    "v20_2_9": "45/45",
+    "factory_15_section": "58/58",
+    "factory_full_ui": "24/24",
+    "factory_r3": "95/95",
+    "farm_r4_runtime": "67/67",
+    "farm_r4_integration": "20/20",
+    "farm_windows_r5": "30/30",
+    "farm_windows_r6": "41/41",
+    "total": "380/380"
+  },
+  "preservation": {
+    "r5_baseline_files": 473,
+    "missing": 0,
+    "unexpected_changes": 0,
+    "approved_additive_integration_changes": 7
+  },
+  "source_workflow_implementation_gate": "PASS",
+  "domain_typescript_compile": "PASS",
+  "current_environment_dependency_install": "TIMEOUT",
+  "production_vite_esbuild_bundle_certified": false,
+  "target_windows_install_certified": false,
+  "visible_end_to_end_role_acceptance_certified": false,
+  "farm_production_frozen": false,
+  "move_to_next_department": false,
+  "freeze_requires": [
+    "target Windows dependency installation",
+    "npm run verify:farm-windows-r6",
+    "npm run build",
+    "Windows start and health verification",
+    "visible role-by-role critical workflow acceptance",
+    "persistence after restart",
+    "permission/data visibility acceptance",
+    "printing/export acceptance"
+  ]
+}

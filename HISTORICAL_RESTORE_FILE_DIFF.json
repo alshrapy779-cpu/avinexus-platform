@@ -1,0 +1,10 @@
+{
+  "modified": [
+    "src/components/home/HomeDashboard.tsx"
+  ],
+  "missing": [],
+  "added": [
+    "HISTORICAL_RESTORE_FIRST_INCREMENT_AR.md",
+    "HISTORICAL_RESTORE_FILE_DIFF.json"
+  ]
+}

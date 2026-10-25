@@ -1,0 +1,13 @@
+V20.2.9 VALIDATION REPORT
+=========================
+Semantic checks: 45
+Semantic failures: 0
+Department gates: 25
+Departments below 90%: 0
+Global gate score: 99%
+Preservation baseline files: 406
+Missing baseline files: 0
+Unexpected changed baseline files: 0
+New/modified source syntax parse errors: 0
+Full dependency-backed Vite build: not certified in this execution environment because project node_modules are not installed.
+Android: deferred.

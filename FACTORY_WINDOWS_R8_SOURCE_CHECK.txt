@@ -1,0 +1,5 @@
+Factory Windows R8 source check
+1) Domain/module TypeScript compile
+PASS module TypeScript compile
+2) Component syntax parse via TypeScript noResolve
+PASS component has no TypeScript syntax diagnostics; unresolved external/local modules are expected because node_modules is absent in this environment.

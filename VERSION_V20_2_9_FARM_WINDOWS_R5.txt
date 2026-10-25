@@ -1,0 +1,10 @@
+Smart Poultry Platform
+Version: V20.2.9 Farm Windows Control Center R5
+Platform priority: Windows/Web control center
+Factory baseline: V20.2.9 Factory Production R3 (protected)
+Farm baseline: V20.2.9 Farm Operations Complete R4 (protected)
+Farm Windows screen destinations: 177 across 12 sections
+Development policy: additive preservation; no silent deletion or destructive replacement
+Android: deferred
+Source/regression gate: PASS
+Target Windows production build/installation acceptance: REQUIRED

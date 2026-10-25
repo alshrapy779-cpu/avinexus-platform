@@ -1,0 +1,160 @@
+V20.2.4 END-TO-END TEST REPORT
+Generated UTC: 2026-09-18T19:48:13Z
+
+--- scripts/v20.2.1/semantic-test.cjs ---
+{
+  "passed": true,
+  "scope_enforcement": true,
+  "primary_conflict_blocked": true,
+  "cross_territory_conflict_blocked": true,
+  "coverage_order": [
+    "primary",
+    "backup"
+  ],
+  "workload_rows": 2,
+  "handover_created": true,
+  "multitier_approval": true,
+  "delegated_approval": true,
+  "delegation_amount_limit_enforced": true,
+  "invalid_hash_rejected": true,
+  "document_registered": 1,
+  "master_data_entries": 12,
+  "default_language": "en",
+  "foundation_validation_issues": 0,
+  "auth_login": true,
+  "auth_token_verified": true,
+  "password_change_revokes_sessions": true,
+  "auth_logout_revocation": true,
+  "production_secret_guard": true
+}
+--- scripts/v20.2.2/semantic-test.cjs ---
+{
+  "passed": true,
+  "daily_closing": true,
+  "ai_triage": "critical",
+  "high_risk_escalation": true,
+  "veterinary_review": true,
+  "medical_case": "VCASE-YE-2026-60896682",
+  "consultation_routed": "consult-1",
+  "chain_of_custody_events": 8,
+  "restricted_antibiotic_gate": true,
+  "withdrawal_lock": {
+    "medication_order_id": "MED-1789760896684-5yqr6p",
+    "farm_id": "farm-a",
+    "flock_id": "flock-a",
+    "item_name": "Restricted antibiotic",
+    "safe_marketing_date": "2026-09-28",
+    "reason": "meat withdrawal period active"
+  },
+  "tomorrow_plan_tasks": 7,
+  "evidence_gate": true,
+  "execution_review": true,
+  "followup": true,
+  "case_closed": true,
+  "timeline_events": 15,
+  "queue_open_cases": 0,
+  "validation_issues": 0
+}
+--- scripts/v20.2.3/semantic-test.cjs ---
+{
+  "passed": true,
+  "business_units": 2,
+  "office_farm_links": 1,
+  "customers": 1,
+  "suppliers": 1,
+  "warehouses": 4,
+  "purchase_order": "PO-2026-760897998",
+  "received_bags": 492,
+  "receiving_variance": true,
+  "sales_invoice": "SINV-2026-760898001",
+  "credit_exception": true,
+  "customer_balance_sar": 600,
+  "supplier_balance_sar": 40920,
+  "transfer_received": 20,
+  "journal_entries": 5,
+  "financial_documents": 4,
+  "office_sales_sar": 1000,
+  "office_financial_summary": {
+    "business_unit": {
+      "code": "ADEN-OFFICE",
+      "name": "Aden Office",
+      "type": "office",
+      "address": "Aden",
+      "manager_user_id": "mgr-1",
+      "status": "active",
+      "currency_preferences": [
+        "SAR",
+        "USD",
+        "YER_OLD",
+        "YER_NEW"
+      ],
+      "id": "BU-1789760897997-7zna5n",
+      "cost_center_code": "BU:ADEN-OFFICE:OPS",
+      "created_at": "2026-09-18T19:48:17.997Z",
+      "contract_id": "BCTR-1789760897997-q9vk58",
+      "primary_warehouse_id": "WH-1789760897997-qxuw2t"
+    },
+    "revenue_sar": 1000,
+    "expense_sar": 850,
+    "profit_loss_sar": 150,
+    "assets_movement_sar": 41070,
+    "liabilities_movement_sar": 40920,
+    "journal_count": 5
+  },
+  "factory_foundation": {
+    "feed_types": 3,
+    "raw_material_definitions": 9
+  },
+  "platform": {
+    "active_business_units": 2,
+    "offices": 1,
+    "factories": 1
+  },
+  "validation_issues": 0
+}
+--- scripts/v20.2.4/semantic-test.cjs ---
+{
+  "passed": true,
+  "procurement": {
+    "requisition": "PR-2026-760899478",
+    "quote_awarded": true
+  },
+  "formula": {
+    "code": "FINISHER-A",
+    "version": 1,
+    "protein": 21.2,
+    "energy": 2867.5,
+    "calcium": 1.123
+  },
+  "manufacturing": {
+    "order": "MO-2026-760899479",
+    "input_kg": 1000,
+    "output_kg": 970,
+    "yield_pct": 97,
+    "loss_kg": 30,
+    "bags": 19,
+    "cost_per_kg_sar": 1.8763,
+    "cost_per_bag_sar": 93.81
+  },
+  "dispatch": {
+    "quantity_kg": 500,
+    "accepted_kg": 495,
+    "damaged_kg": 2,
+    "shortage_kg": 3,
+    "status": "partially_received"
+  },
+  "farm": {
+    "consumed_kg": 100,
+    "remaining_office_kg": 395
+  },
+  "finance": {
+    "journal_entries": 5,
+    "all_balanced": true
+  },
+  "dashboard": {
+    "production_kg": 970,
+    "finished_goods_kg": 470,
+    "open_exceptions": 2
+  },
+  "validation_issues": 0
+}

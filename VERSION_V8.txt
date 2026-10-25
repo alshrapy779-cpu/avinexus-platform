@@ -1,0 +1,2 @@
+V8 COMPLETE SOURCE - corrected replacement for V7
+Android build flow no longer relies on the incomplete Gradle wrapper that existed in V7.

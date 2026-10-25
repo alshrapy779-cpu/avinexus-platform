@@ -1,0 +1,13 @@
+V20.2.3 UPGRADE / ROLLBACK TEST
+================================
+Baseline: V20.2.2
+Upgrade: V20.2.3
+
+Preflight baseline SHA-256 check: PASS
+Upgrade payload application simulation: PASS
+Payload-to-V20.2.3 hash comparison: PASS
+Rollback simulation: PASS
+Restored modified-file baseline hashes: 8/8
+Residual V20.2.3 new files after rollback: 0
+
+The PowerShell scripts also perform runtime backup creation before applying files. The simulation validates the same file-set logic in the current Linux execution environment; PowerShell itself is intended for Windows use.

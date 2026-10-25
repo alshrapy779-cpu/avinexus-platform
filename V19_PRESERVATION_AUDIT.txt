@@ -1,0 +1,58 @@
+Smart Poultry Platform V19.1 Preservation Audit
+==============================================
+V18 base files: 169
+V19.1 total files: 199
+V18 files missing in V19.1: 0
+V18 files preserved unchanged: 158
+V18 files intentionally modified for integration/versioning: 11
+New V19.1 files: 30
+
+RESULT: PASS - no V18 file removed.
+
+Modified V18 paths:
+README.md
+android/app/build.gradle
+metadata.json
+package.json
+server.ts
+src/components/Header.tsx
+src/components/admin/AdminFinancialDashboard.tsx
+src/data/enterpriseV11Data.ts
+src/index.css
+src/services/apiService.ts
+src/types.ts
+
+New V19.1 paths:
+FILE_INVENTORY_V19.txt
+SHA256SUMS_V19.txt
+V19_FEATURE_AUDIT_AR.md
+V19_FULL_REBUILD_AUDIT.txt
+V19_PRESERVATION_AUDIT.txt
+V19_REQUIREMENTS_TRACEABILITY_AR.md
+V19_VALIDATION_REPORT.txt
+VERSION_V19.txt
+src/components/admin/SovereigntyOperationsV19Tab.tsx
+src/modules/admin/MasterControlCenter.tsx
+src/modules/ai/BioRadarEngine.ts
+src/modules/ai/CorporateInvestmentAdvisor.ts
+src/modules/ai/DigitalTwinSimulator.tsx
+src/modules/ai/DynamicPricingEngine.ts
+src/modules/ai/VoiceAgentHandler.ts
+src/modules/biosecurity/BiosecurityTransitEngine.ts
+src/modules/chat/AIChatCoordinator.tsx
+src/modules/chat/MediaDataParser.ts
+src/modules/escalation/EmergencyConsultationEngine.ts
+src/modules/executive/ExecutiveCommandEngine.ts
+src/modules/finance/EscrowPODSettlementEngine.ts
+src/modules/finance/FinancialPolicyEngine.ts
+src/modules/governance/RBACPermissions.ts
+src/modules/hatchery/HatcheryMarketplaceEngine.ts
+src/modules/hr/PoultryHRMarketplaceBridge.ts
+src/modules/logistics/AILogisticsRoutingEngine.ts
+src/modules/marketplace/HealthyPoultryLabel.tsx
+src/modules/offline/OfflineFieldPolicy.ts
+src/modules/quality/PublicQualityVerification.ts
+src/services/sovereigntyV19.ts
+
+Missing paths:
+(none)

@@ -1,0 +1,13 @@
+Smart Poultry Platform V19 - Full Integrated Rebuild
+versionName: 1.9.4
+Android versionCode: 193
+Release scope: Complete Operational, Veterinary, Marketplace & Supply Chain Sovereignty
+Base: V18 full project
+Preservation rule: no V18 file removed; V19 is additive/integrative.
+Correction: V19.1 replaces thin facade modules with operational domain modules and expanded APIs.
+
+Patch V19.2: mobile-first layout corrections, assistant timeout/fallback, responsive navigation, removal of nested phone frame on real mobile devices.
+
+Patch V19.3: customer responsive workspace (no simulated 4G/09:41 phone frame), always-open veterinary assistant with local fallback, dynamic governorate/market CRUD, and contract-gated warehouses.
+
+Patch V19.4: professional platform experience, unified navigation/buttons, welcome/settings, customer onboarding/admin approval, unified case/lot/approval/audit foundation.

@@ -1,0 +1,3 @@
+Smart Poultry Platform V9
+2026-09-15
+Focus: feature audit + master access control + new visual identity/logo + clearer catalog/necropsy media + disease/biosecurity atlas + internal outbreak clustering alert.

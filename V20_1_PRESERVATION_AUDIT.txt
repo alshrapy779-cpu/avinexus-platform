@@ -1,0 +1,26 @@
+V20.1 PRESERVATION AUDIT
+===========================
+Baseline: V19.7
+Baseline file count: 255
+Current file count: 273
+Preserved baseline files: 255/255
+Missing baseline files: 0
+Modified baseline files: 15
+New V20.1 files: 18
+Baseline API routes: 117
+Current API routes: 123
+Missing baseline routes: 0
+New API routes: 6
+Missing baseline exports: 0
+Preservation result: PASS
+
+Missing files:
+NONE
+
+New routes:
+GET /api/v20.1/flocks/:id/master
+GET /api/v20.1/state
+POST /api/v20.1/flocks/:id/close-day
+POST /api/v20.1/flocks/:id/reconciliation
+POST /api/v20.1/reconciliation/:id/decision
+POST /api/v20.1/reports/:kind/:flockId

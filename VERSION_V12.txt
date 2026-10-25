@@ -1,0 +1,4 @@
+Smart Poultry Platform V12
+AI Poultry Sales Advisor + Partner Contracts + Poultry Marketing + 60/40 Trade Finance + Supervision + Laboratory Contracts
+Built on V11 without removing prior source files.
+Date: 2026-09-15

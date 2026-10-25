@@ -1,0 +1,12 @@
+{
+  "name": "Remix المنصة الوطنية للسيادة البيطرية والداجنة الذكية",
+  "description": "منصة وطنية هجينة للسيادة البيطرية والداجنة وإدارة المزارع وسلاسل الإمداد والتسويق والمالية والتشخيص الذكي مع حوكمة بشرية مغلقة",
+  "requestFramePermissions": [
+    "camera",
+    "microphone",
+    "geolocation"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

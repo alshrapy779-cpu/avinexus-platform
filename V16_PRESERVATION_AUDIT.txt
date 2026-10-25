@@ -1,0 +1,12 @@
+V15 source files: 145
+V16 source/docs before audit artifacts: 148
+Missing V15 files in V16: 0
+New/changed additions represented as new paths: 3
+
+MISSING:
+NONE
+
+NEW PATHS:
+V16_FEATURE_AUDIT_AR.md
+VERSION_V16.txt
+src/components/admin/LeadershipCRMFieldV16Tab.tsx

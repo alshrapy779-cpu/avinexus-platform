@@ -1,0 +1,42 @@
+{
+  "product": "AviNexus Poultry Enterprise",
+  "release": "V20.2.9 Windows R8 Factory Completion & Closure",
+  "scope": "Existing Factory completion only; no new department",
+  "source_implementation": "PASS",
+  "preservation": {
+    "baseline": "Windows R7",
+    "baseline_files": 500,
+    "missing": 0,
+    "unexpected_changes": 0,
+    "allowed_integration_changes": 6
+  },
+  "factory": {
+    "sections": 15,
+    "registered_screens": 189,
+    "responsibility_roles": 16,
+    "critical_business_chains": 6,
+    "inventory_owner": "Section 7",
+    "accounting_owner": "Section 12",
+    "payroll_owner": "Section 11",
+    "report_execution_owner": "Section 14",
+    "governance_owner": "Section 15"
+  },
+  "automated_checks": {
+    "passed": 456,
+    "failed": 0
+  },
+  "source_check": "PASS",
+  "target_windows": {
+    "dependencies_installed": false,
+    "production_build": false,
+    "startup_verified": false,
+    "visible_role_acceptance": false,
+    "persistence_after_restart": false,
+    "documents_and_printing": false,
+    "current_environment_dependency_attempt": "TIMED_OUT_NO_NODE_MODULES",
+    "current_environment_build_attempt": "FAILED_VITE_NOT_FOUND_WITHOUT_DEPENDENCIES"
+  },
+  "production_frozen": false,
+  "next_department_allowed": false,
+  "reason": "Scope freeze remains active until target-Windows visible end-to-end acceptance completes."
+}

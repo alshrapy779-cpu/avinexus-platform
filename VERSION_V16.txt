@@ -1,0 +1,4 @@
+Smart Poultry Platform V16
+Version name: 1.6.0
+Android versionCode: 16
+Focus: Leadership War Room, Multi-tier Governance, CRM, Vendor Branch Mesh, GPS Field Force, WhatsApp Communication Hub.

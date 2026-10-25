@@ -1,0 +1,31 @@
+V20.2.3 END-TO-END TEST REPORT
+==============================
+Status: PASS
+
+Test path:
+Business Unit → Contract → Farm Link → Staff Assignment → Warehouse → Treasury → Customer → Supplier → Product → Purchase Order → Goods Receipt with variance → Purchase Invoice/AP → Inventory → Credit Sale → Credit Exception → Customer AR → Customer Receipt → Supplier Payment → Stock Transfer → Factory Business Unit → Factory Warehouses → Factory Profile → Raw Material / Feed Type Foundation → Financial Summary → Validation.
+
+Assertions passed:
+[PASS] Office Business Unit created with dedicated cost-center code.
+[PASS] Contract linked to office.
+[PASS] Existing farm linked without rebuilding farm data.
+[PASS] Office staff assignment created.
+[PASS] Multi-warehouse ownership works.
+[PASS] Purchase order generated.
+[PASS] Receiving tracks accepted/damaged/rejected/shortage.
+[PASS] Receiving variance creates exception.
+[PASS] Accepted goods increase physical stock.
+[PASS] Purchase receipt generates supplier payable and balanced journal.
+[PASS] Credit sale decreases stock and generates AR/revenue + COGS/inventory journals.
+[PASS] Credit-limit breach is visible as an exception.
+[PASS] Customer receipt reduces invoice/customer balance and increases treasury.
+[PASS] Supplier payment reduces AP and treasury.
+[PASS] Stock transfer requires dispatch then receiving before destination stock increases.
+[PASS] Feed Factory Business Unit/Profile created.
+[PASS] Raw-material and finished-goods warehouses supported.
+[PASS] Nine starting raw-material definitions present.
+[PASS] Starter/Grower/Finisher definitions present.
+[PASS] All scenario journals are balanced.
+[PASS] Final V20.2.3 validator returns 0 issues.
+
+This test intentionally does not claim formulation/manufacturing completion; those functions are assigned to V20.2.4.

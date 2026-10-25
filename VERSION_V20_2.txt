@@ -1,0 +1,5 @@
+V20.2
+Enterprise Web Platform Completion
+Baseline: V20.1 Architecture & Flock Ledger
+Package version: 2.0.2
+Preservation Contract: V8–V20.1 preserved; V20.1 is the immediate upgrade baseline.

@@ -1,0 +1,25 @@
+Smart Poultry Platform V14 Preservation Audit
+V13 files: 124
+V14 files before audit metadata: 128
+Missing V13 files: 0
+Added files: 4
+Modified existing files: 8
+
+Missing:
+NONE
+
+Added:
+V14_FEATURE_AUDIT_AR.md
+VERSION_V14.txt
+src/components/admin/ClinicalProductionV14Tab.tsx
+src/components/vet/FieldDoctorWorkspaceV14.tsx
+
+Modified:
+README.md
+server.ts
+src/App.tsx
+src/components/admin/AdminFinancialDashboard.tsx
+src/components/vet/VetDashboard.tsx
+src/data/enterpriseV11Data.ts
+src/services/apiService.ts
+src/types.ts
