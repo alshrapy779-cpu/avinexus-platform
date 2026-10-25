@@ -504,3 +504,16 @@ body {
   background-color: #f8fafc !important;
   color: #0f172a !important;
 }
+/* إجبار الوضع الفاتح على الهيدر والفوتر */
+header {
+  background-color: #ffffff !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  color: #0f172a !important;
+}
+footer, .mobile-bottom-nav {
+  background-color: #ffffff !important;
+  border-top: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+}
+header .text-white, header .text-slate-300, header .text-slate-400 { color: #0f172a !important; }
+footer .text-white, footer .text-slate-300, footer .text-slate-400 { color: #334155 !important; }
