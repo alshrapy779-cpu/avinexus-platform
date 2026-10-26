@@ -155,9 +155,9 @@ export default function App() {
   const [navHistory, setNavHistory] = useState<AppView[]>([initialUISettings.startView || 'home']);
   const [navIndex, setNavIndex] = useState(0);
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [registrationScreen, setRegistrationScreen] = useState<'register' | 'approvals' | null>(() => {
+  const [registrationScreen, setRegistrationScreen] = useState<'register' | 'approvals' | 'login' | null>(() => {
     if (typeof window === 'undefined') return null;
-    return window.location.hash === '#/register' ? 'register' : window.location.hash === '#/registration-approvals' ? 'approvals' : null;
+    return window.location.hash === '#/register' ? 'register' : window.location.hash === '#/registration-approvals' ? 'approvals' : window.location.hash === '#/login' ? 'login' : null;
   });
   const [roleLandingDone, setRoleLandingDone] = useState(false);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
@@ -246,14 +246,15 @@ export default function App() {
     }
   });
 
-  const openRegistration = (screen: 'register' | 'approvals' | null) => {
+  const openRegistration = (screen: 'register' | 'approvals' | 'login' | null) => {
     setRegistrationScreen(screen);
-    if (typeof window !== 'undefined') window.history.replaceState(null, '', screen ? `#/${screen === 'register' ? 'register' : 'registration-approvals'}` : `#/${activeView}`);
+    if (typeof window !== 'undefined') window.history.replaceState(null, '', screen ? `#/${screen === 'register' ? 'register' : screen === 'login' ? 'login' : 'registration-approvals'}` : `#/${activeView}`);
   };
   useEffect(() => {
     const onHash = () => {
       const hash = window.location.hash.replace(/^#\/?/, '');
       if (hash === 'register') setRegistrationScreen('register');
+      else if (hash === 'login') setRegistrationScreen('login');
       else if (hash === 'registration-approvals') openRegistration('approvals');
       else { setRegistrationScreen(null); if (['home','enterprise','farmer','vet','calculator','passport','srs','marketplace','workers','vaccines','admin','finance','communications','managed'].includes(hash)) setActiveView(hash as AppView); }
     };
@@ -262,6 +263,7 @@ export default function App() {
   }, []);
   const navigateTo = (view: AppView) => {
     if (view === 'register') { openRegistration('register'); return; }
+    if (view === 'login') { openRegistration('login'); return; }
     if (view === 'registration-approvals') {
       if (enterpriseAuth.session?.identity?.role_code === 'SYSTEM_OWNER') openRegistration('approvals');
       else setToastMessage('لوحة الموافقات مخصصة لمالك النظام.');
@@ -425,14 +427,14 @@ export default function App() {
     (async()=>{
       try{
         const status=await apiService.getAuthStatusV2027();
-        const required=['STAGING','PRODUCTION'].includes(String(status.environment||'').toUpperCase());
-        if(!required){if(!cancelled)setEnterpriseAuth({checked:true,required:false,authenticated:true,environment:status.environment,bootstrapConfigured:status.bootstrap_configured,session:apiService.getStoredAuthSessionV2027()});return;}
+        const required=true; // All environments require a verified server session; never enable anonymous enterprise access.
+        
         let session=apiService.getStoredAuthSessionV2027();
         if(session){try{await apiService.getAuthMeV2027();}catch{session=await apiService.refreshEnterpriseV2027();}}
         if(!cancelled)setEnterpriseAuth({checked:true,required:true,authenticated:Boolean(session),environment:status.environment,bootstrapConfigured:status.bootstrap_configured,session});
       }catch(err){
         const prodBuild=Boolean(import.meta.env.PROD);
-        if(!cancelled)setEnterpriseAuth({checked:true,required:prodBuild,authenticated:!prodBuild,environment:prodBuild?'PRODUCTION':'DEVELOPMENT',bootstrapConfigured:false,error:err instanceof Error?err.message:'auth_status_unavailable'});
+        if(!cancelled)setEnterpriseAuth({checked:true,required:true,authenticated:false,environment:prodBuild?'PRODUCTION':'DEVELOPMENT',bootstrapConfigured:false,error:err instanceof Error?err.message:'auth_status_unavailable'});
       }
     })();
     return()=>{cancelled=true;};
@@ -830,8 +832,8 @@ export default function App() {
   const pendingCasesCount = necropsyCases.filter((c) => c.vet_approval_status === 'pending').length;
 
   if(!enterpriseAuth.checked){return <div className="min-h-screen bg-slate-950 text-slate-300 flex items-center justify-center text-sm font-bold">تهيئة طبقة الأمان المؤسسية...</div>;}
-  if(registrationScreen === 'register') return <RegisterPage onGoToLogin={() => openRegistration(null)} />;
-  if(enterpriseAuth.required&&!enterpriseAuth.authenticated){return <div dir="rtl"><EnterpriseLoginV2027 environment={enterpriseAuth.environment} bootstrapConfigured={enterpriseAuth.bootstrapConfigured} initialError={enterpriseAuth.error} onAuthenticated={(session)=>setEnterpriseAuth(prev=>({...prev,authenticated:true,session,error:undefined}))}/><div className="fixed bottom-4 left-4"><button className="rounded-xl bg-emerald-700 px-5 py-3 text-white" onClick={() => openRegistration('register')}>تسجيل مستخدم جديد</button></div></div>;}
+  if(registrationScreen === 'register') return <RegisterPage onGoToLogin={() => openRegistration('login')} />;
+  if(registrationScreen === 'login' || !enterpriseAuth.authenticated || !enterpriseAuth.session?.access_token){return <div dir="rtl"><EnterpriseLoginV2027 environment={enterpriseAuth.environment} bootstrapConfigured={enterpriseAuth.bootstrapConfigured} initialError={enterpriseAuth.error} onAuthenticated={(session)=>{setEnterpriseAuth(prev=>({...prev,authenticated:true,session,error:undefined}));openRegistration(null);setRoleLandingDone(false);}}/><div className="fixed bottom-4 left-4"><button className="rounded-xl bg-emerald-700 px-5 py-3 text-white" onClick={() => openRegistration('register')}>تسجيل مستخدم جديد</button></div></div>;}
 
   if(registrationScreen === 'approvals') return enterpriseAuth.session?.identity?.role_code === 'SYSTEM_OWNER' ? <div dir="rtl"><button className="m-4 rounded-lg bg-slate-800 px-4 py-2 text-white" onClick={() => openRegistration(null)}>العودة للمنصة</button><AdminRegistrationDashboard accessToken={enterpriseAuth.session.access_token} onOpenIdentityManagement={() => { openRegistration(null); navigateTo('enterprise'); }} /></div> : <div dir="rtl">غير مصرح بالوصول <button onClick={() => openRegistration(null)}>عودة</button></div>;
 
