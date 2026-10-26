@@ -78,8 +78,7 @@ function passwordDigest(password:string,saltHex:string,iterations=PBKDF2_ITERATI
 export function createCredentialV2021(store:AuthStoreV2021,input:{user_id:string;username:string;role_code:string;permission_codes?:string[];password:string}):AuthStoreV2021{
   const username=input.username.trim().toLowerCase();
   if(username.length<3) throw new Error('username_too_short');
-  if(input.password.length<12) throw new Error('password_must_be_at_least_12_characters');
-  if(store.credentials.some(c=>c.username===username)) throw new Error('username_exists');
+  if(input.password.length<12) throw new Error('password_must_be_at_least_12_characters');  if(store.credentials.some(c=>c.username===username)) throw new Error('username_exists');
   const salt=crypto.randomBytes(16).toString('hex');
   const created=utc();
   const row:CredentialRecordV2021={id:`cred-${crypto.randomUUID()}`,user_id:input.user_id,username,role_code:input.role_code,permission_codes:input.permission_codes||[],password_salt:salt,password_hash:passwordDigest(input.password,salt),password_iterations:PBKDF2_ITERATIONS,password_digest:'sha512',disabled:false,auth_version:1,failed_attempts:0,created_at:created,password_changed_at:created};
