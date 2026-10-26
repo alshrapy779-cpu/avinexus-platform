@@ -67,6 +67,8 @@
     "verify:r8.1": "npm run test:v20.2.9 && npm run test:factory100 && npm run test:factory-full-ui && npm run test:factory-production-r3 && npm run test:farm-r4 && npm run test:farm-r4:integration && npm run test:farm-windows-r5 && npm run test:farm-windows-r6 && npm run test:customer-office-partner-r7 && npm run test:factory-windows-r8 && npm run preservation:r8.1 && npm run test:r8.1"
   },
   "dependencies": {
+    "@capacitor/android": "^8.5.2",
+    "@capacitor/core": "^8.5.2",
     "@google/genai": "^2.4.0",
     "@tailwindcss/vite": "^4.1.14",
     "@vitejs/plugin-react": "^5.0.4",
@@ -75,16 +77,16 @@
     "html2canvas": "^1.4.1",
     "jspdf": "^4.2.1",
     "lucide-react": "^0.546.0",
+    "mongoose": "^9.11.4",
     "motion": "^12.23.24",
     "qrcode": "^1.5.4",
     "react": "^19.0.1",
     "react-dom": "^19.0.1",
     "vite": "^6.2.3",
-    "@capacitor/core": "^8.5.2",
-    "@capacitor/android": "^8.5.2",
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@capacitor/cli": "^8.5.2",
     "@types/express": "^4.17.21",
     "@types/node": "^22.14.0",
     "@types/qrcode": "^1.5.6",
@@ -93,7 +95,6 @@
     "tailwindcss": "^4.1.14",
     "tsx": "^4.21.0",
     "typescript": "~5.8.2",
-    "vite": "^6.2.3",
-    "@capacitor/cli": "^8.5.2"
+    "vite": "^6.2.3"
   }
 }

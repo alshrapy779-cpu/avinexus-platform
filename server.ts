@@ -1,3 +1,6 @@
+import { connectDB } from "./src/server/db";
+import { randomUUID } from 'node:crypto';
+import { type UserRegistration } from './src/server/User';
 import 'dotenv/config';
 import {addOfficeR7, buildPartnerOfficeCustomerNetworkR7, renameOfficeR7, addGovernorateR7, registerMarketingCompanyR7, type PartnerOfficeCustomerNetworkR7State } from './src/modules/v20/PartnerOfficeCustomerNetworkR7';
 import { officeTreasuryReconciliationV2026 } from './src/modules/v20/OfficeTreasuryReconciliationRecovery';
@@ -276,6 +279,74 @@ let authStoreV2021 = loadAuthStoreV2021(authRuntimeV2021);
   authStoreV2021=bootstrap.store;
 }
 
+// Additive registration queue. The existing authentication store remains authoritative.
+const registrationFile = path.join(runtimeDataDir, 'user-registration-requests.json');
+let registrations: UserRegistration[] = [];
+try {
+  if (fs.existsSync(registrationFile)) {
+    const parsed: unknown = JSON.parse(fs.readFileSync(registrationFile, 'utf8'));
+    if (Array.isArray(parsed)) registrations = parsed as UserRegistration[];
+  }
+} catch (error) { throw new Error('registration_store_unreadable: ' + String(error)); }
+function saveRegistrations(): void {
+  fs.mkdirSync(runtimeDataDir, {recursive:true});
+  const temp = registrationFile + '.' + randomUUID() + '.tmp';
+  fs.writeFileSync(temp, JSON.stringify(registrations, null, 2), {encoding:'utf8',mode:0o600});
+  fs.renameSync(temp, registrationFile);
+}
+function registrationManager(req:Request,res:Response,next:NextFunction):void {
+  const token = String(req.headers.authorization || '').replace(/^Bearer\s+/i,'').trim();
+  const checked = token && verifyAccessTokenV2021(authRuntimeV2021,authStoreV2021,token);
+  if (!checked || !checked.ok || !checked.claims) {res.status(401).json({success:false,error:'authentication_required'});return;}
+  if (checked.claims.role_code !== 'SYSTEM_OWNER') {res.status(403).json({success:false,error:'system_owner_required'});return;}
+  res.locals.registrationManager = checked.claims.sub;
+  next();
+}
+// Public endpoint, but only creates a disabled credential; it grants no access.
+app.post('/api/registration/request', (req:Request,res:Response) => {
+  const username = String(req.body?.username || '').trim().toLowerCase();
+  const email = String(req.body?.email || '').trim().toLowerCase();
+  const display_name = String(req.body?.display_name || '').trim();
+  const password = String(req.body?.password || '');
+  if (!/^[a-z0-9._-]{3,64}$/.test(username) || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || display_name.length<2 || display_name.length>150 || password.length<12 || password.length>256) {
+    res.status(400).json({success:false,error:'invalid_registration_fields'});return;
+  }
+  if (registrations.some(r=>r.email===email) || authStoreV2021.credentials.some(c=>c.username===username)) {
+    res.status(409).json({success:false,error:'registration_already_exists'});return;
+  }
+  const user_id = 'usr-' + randomUUID();
+  try {
+    const created = createCredentialV2021(authStoreV2021,{user_id,username,password,role_code:'REGISTRATION_PENDING',permission_codes:[]});
+    authStoreV2021 = setCredentialDisabledV2021(created,user_id,true);
+    saveAuthStoreV2021(authRuntimeV2021,authStoreV2021);
+    const row:UserRegistration={id:'reg-'+randomUUID(),user_id,username,email,display_name,requested_department:String(req.body?.requested_department||'').slice(0,100),requested_organization:String(req.body?.requested_organization||'').slice(0,150),status:'PENDING',created_at:new Date().toISOString()};
+    registrations.push(row);saveRegistrations();
+    res.status(202).json({success:true,id:row.id,status:row.status});
+  } catch(error) {res.status(500).json({success:false,error:'registration_failed'});}
+});
+app.get('/api/registration/requests',registrationManager,(_req:Request,res:Response)=>{
+  res.setHeader('Cache-Control','no-store');res.json({success:true,requests:registrations});
+});
+app.post('/api/registration/requests/:id/decision',registrationManager,(req:Request,res:Response)=>{
+  const row=registrations.find(r=>r.id===req.params.id);
+  if(!row){res.status(404).json({success:false,error:'request_not_found'});return;}
+  if(row.status!=='PENDING'){res.status(409).json({success:false,error:'already_reviewed'});return;}
+  const decision=String(req.body?.decision||'').toUpperCase();
+  if(!['APPROVED','REJECTED'].includes(decision)){res.status(400).json({success:false,error:'invalid_decision'});return;}
+  const credential=authStoreV2021.credentials.find(c=>c.user_id===row.user_id);
+  if(!credential){res.status(409).json({success:false,error:'credential_missing'});return;}
+  if(decision==='APPROVED') {
+    // An owner must first provision an active, scoped identity using the existing identity API.
+    const identity=enterpriseV11.enterprise_foundation_v20_2_1.identities.find(i=>i.user_id===row.user_id && i.active && i.role_code!=='SYSTEM_OWNER' && i.role_code!=='REGISTRATION_PENDING');
+    if(!identity || !identity.scope_ids?.length){res.status(409).json({success:false,error:'active_scoped_identity_required_before_approval'});return;}
+    authStoreV2021={...authStoreV2021,credentials:authStoreV2021.credentials.map(c=>c.user_id===row.user_id?{...c,role_code:identity.role_code,permission_codes:[],disabled:false,auth_version:c.auth_version+1}:c)};
+  }
+  row.status=decision as 'APPROVED'|'REJECTED';row.reviewed_at=new Date().toISOString();row.reviewed_by=String(res.locals.registrationManager);
+  if(decision==='REJECTED'){row.rejection_reason=String(req.body?.reason||'').slice(0,500);}
+  saveAuthStoreV2021(authRuntimeV2021,authStoreV2021);saveRegistrations();
+  res.json({success:true,request:row});
+});
+
 function requireAuthV2021(permission?:string){
   return (req:Request,res:Response,next:NextFunction)=>{
     const header=String(req.headers.authorization||'');
@@ -351,7 +422,7 @@ function businessOr403V2023(res:Response,businessUnitId?:string,mode:'read'|'ope
 app.use('/api', (req:Request,res:Response,next:NextFunction)=>{
   if(!['STAGING','PRODUCTION'].includes(RUNTIME_ENVIRONMENT)){next();return;}
   const fullPath=String(req.originalUrl||req.url).split('?')[0];
-  const publicExact=new Set(['/api/health','/api/v20.2.1/auth/status','/api/v20.2.1/auth/login','/api/v20.2.7/auth/refresh']);
+  const publicExact=new Set(['/api/health','/api/v20.2.1/auth/status','/api/v20.2.1/auth/login','/api/v20.2.7/auth/refresh','/api/registration/request']);
   const publicPrefix=['/api/v19/quality/'];
   if(publicExact.has(fullPath)||publicPrefix.some(p=>fullPath.startsWith(p))){next();return;}
   const sensitiveRead=req.method==='GET'&&(fullPath.startsWith('/api/v11/')||fullPath.startsWith('/api/v20.')||fullPath.startsWith('/api/v12/')||fullPath.startsWith('/api/v14/')||fullPath.startsWith('/api/v15/')||fullPath.startsWith('/api/v16/')||fullPath.startsWith('/api/v17/')||fullPath.startsWith('/api/v19/'));
@@ -3407,3 +3478,4 @@ async function startServer() {
 }
 
 startServer();
+connectDB();
