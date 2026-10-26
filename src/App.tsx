@@ -1046,7 +1046,7 @@ export default function App() {
         )}
 
         {activeView === 'finance' && (
-          <FinancialCommandCenterV196 state={enterpriseCoreV196} core195={platformCore} onChange={updateEnterpriseCoreV196} managedOperations={managedOperationsV197} />
+          <FinancialCommandCenterV196 accessToken={enterpriseAuth.session?.access_token} state={enterpriseCoreV196} core195={platformCore} onChange={updateEnterpriseCoreV196} managedOperations={managedOperationsV197} />
         )}
 
         {activeView === 'admin' && (

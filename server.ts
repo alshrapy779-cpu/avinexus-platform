@@ -1726,7 +1726,7 @@ app.post('/api/v20.2.1/auth/credentials', requireAuthV2021('security.credentials
 });
 
 app.get('/api/v20.2.1/foundation', requireAuthV2021('foundation.read'), (req:Request,res:Response)=>{
-  res.json({version:'20.2.1',foundation:enterpriseV11.enterprise_foundation_v20_2_1,validation:validateEnterpriseFoundationV2021(enterpriseV11.enterprise_foundation_v20_2_1,enterpriseV11.enterprise_web_v20_2)});
+  res.json({version:'20.2.1',foundation:enterpriseV11.enterprise_foundation_v20_2_1,roles:enterpriseV11.enterprise_web_v20_2.roles,departments:enterpriseV11.enterprise_web_v20_2.departments,validation:validateEnterpriseFoundationV2021(enterpriseV11.enterprise_foundation_v20_2_1,enterpriseV11.enterprise_web_v20_2)});
 });
 
 app.post('/api/v20.2.1/organization/departments', requireAuthV2021('organization.manage'), (req:Request,res:Response)=>{

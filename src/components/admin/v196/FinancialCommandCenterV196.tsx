@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { Banknote, Landmark, ReceiptText, ArrowLeftRight, FileText, WalletCards, Scale, ClipboardCheck, Plus, CircleDollarSign, TrendingUp, BadgeDollarSign } from 'lucide-react';
 import type { PlatformCoreStateV195, CurrencyV195 } from '../../../modules/platform/PlatformCoreV19_5';
 import { createDebtV196, createFinancialDocumentV196, EnterpriseCoreStateV196, financialSummaryV196, transferFundsV196 } from '../../../modules/enterprise/EnterpriseCoreV19_6';
@@ -10,8 +10,19 @@ const money=(n:number)=>new Intl.NumberFormat('en-US',{maximumFractionDigits:2})
 const currencyLabel:Record<CurrencyV195,string>={SAR:'ر.س',YER_OLD:'ر.ي قديم',YER_NEW:'ر.ي جديد'};
 
 type Tab='overview'|'treasury'|'documents'|'debts'|'ledger'|'contracts'|'farms';
-export const FinancialCommandCenterV196:React.FC<{state:EnterpriseCoreStateV196; core195:PlatformCoreStateV195; onChange:(s:EnterpriseCoreStateV196)=>void; managedOperations?:ManagedOperationsStateV197}> = ({state,core195,onChange,managedOperations}) => {
+export const FinancialCommandCenterV196:React.FC<{state:EnterpriseCoreStateV196; core195:PlatformCoreStateV195; onChange:(s:EnterpriseCoreStateV196)=>void; managedOperations?:ManagedOperationsStateV197; accessToken?:string}> = ({state,core195,onChange,managedOperations,accessToken}) => {
   const [tab,setTab]=useState<Tab>('overview');
+  const [serverFinance,setServerFinance]=useState<any>(null);
+  const [serverError,setServerError]=useState('');
+  const [serverLoading,setServerLoading]=useState(false);
+  const refreshServerFinance=async()=>{
+    if(!accessToken)return;
+    setServerLoading(true);setServerError('');
+    try{const r=await fetch('/api/v20.2.6/finance-control',{headers:{Authorization:`Bearer ${accessToken}`},cache:'no-store'});const d=await r.json();if(!r.ok)throw new Error(d.error||`HTTP ${r.status}`);setServerFinance(d);}
+    catch(e){setServerError(e instanceof Error?e.message:'تعذر جلب البيانات المالية');setServerFinance(null);}
+    finally{setServerLoading(false);}
+  };
+  useEffect(()=>{void refreshServerFinance();},[accessToken]);
   const [type,setType]=useState<'sales_invoice'|'purchase_invoice'|'receipt'|'payment'>('sales_invoice');
   const [party,setParty]=useState('عميل / مورد'); const [amount,setAmount]=useState(1000); const [currency,setCurrency]=useState<CurrencyV195>('SAR');
   const [accountId,setAccountId]=useState('fa-cash-sar'); const [note,setNote]=useState('');
@@ -26,6 +37,11 @@ export const FinancialCommandCenterV196:React.FC<{state:EnterpriseCoreStateV196;
     <div className="rounded-3xl border border-emerald-500/20 bg-gradient-to-l from-slate-950 via-emerald-950/30 to-slate-950 p-5 shadow-2xl">
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4"><div><div className="text-[11px] font-black text-emerald-300">FINANCIAL COMMAND CENTER • {APP_RELEASE_LABEL}</div><h3 className="text-2xl font-black text-white mt-1">المركز المالي والمحاسبي المستقل</h3><p className="text-xs text-slate-400 mt-2 max-w-3xl">العقود، القبض، الصرف، الفواتير، النقد، الائتمان، المبيعات، التحويلات، الديون، القيود والتسويات في مركز واحد مع فصل المسؤوليات.</p></div><div className="grid grid-cols-2 gap-2 text-center"><div className="rounded-2xl bg-slate-900/70 border border-slate-800 p-3"><div className="text-[10px] text-slate-400">الهامش الإجمالي SAR</div><b className="text-emerald-300">{money(summary.gross_margin)}</b></div><div className="rounded-2xl bg-slate-900/70 border border-slate-800 p-3"><div className="text-[10px] text-slate-400">عقود فعالة</div><b className="text-amber-300">{summary.contracts_active}</b></div></div></div>
     </div>
+    {accessToken&&<section className="rounded-2xl border border-emerald-600/30 bg-slate-950/80 p-4 text-white" dir="rtl">
+      <div className="flex justify-between items-center gap-2"><b>البيانات المالية المباشرة من الخادم (V20.2.6)</b><button className="spp-button spp-button-secondary" onClick={()=>void refreshServerFinance()} disabled={serverLoading}>تحديث</button></div>
+      {serverError?<p role="alert" className="text-rose-300">فشل جلب البيانات: {serverError}</p>:serverLoading?<p>جارٍ تحميل البيانات...</p>:serverFinance?<div className="grid sm:grid-cols-3 gap-3 mt-3"><div>النقدية SAR: {money(Number(serverFinance.cash_position_sar||0))}</div><div>حسابات الخزينة: {serverFinance.treasury_accounts?.length||0}</div><div>الذمم المدينة SAR: {money(Number(serverFinance.receivables?.totals?.total||0))}</div><div>الذمم الدائنة SAR: {money(Number(serverFinance.payables?.totals?.total||0))}</div></div>:<p>لم تُحمّل بيانات مالية بعد.</p>}
+      <p className="text-xs text-slate-400 mt-2">الأرقام أعلاه من API مباشرة؛ الجداول التاريخية أدناه تستخدم حالة V19.6 المحلية، ولا تُعد بديلًا عن دفتر الأستاذ المركزي.</p>
+    </section>}
     <div className="flex gap-2 overflow-x-auto pb-1">{nav.map(([id,l,ic])=><button key={id} onClick={()=>setTab(id)} className={`shrink-0 rounded-xl px-3 py-2 text-xs font-black border flex items-center gap-2 ${tab===id?'bg-emerald-500 text-slate-950 border-emerald-400':'bg-slate-950 text-slate-300 border-slate-800'}`}>{React.cloneElement(ic as any,{className:'w-4 h-4'})}{l}</button>)}</div>
     {tab==='overview'&&<div className="grid md:grid-cols-2 xl:grid-cols-4 gap-3">{[
       ['المبيعات SAR',summary.sales,<CircleDollarSign/>,'text-emerald-300'],['المشتريات SAR',summary.purchases,<BadgeDollarSign/>,'text-amber-300'],['المقبوضات SAR',summary.receipts,<Banknote/>,'text-cyan-300'],['المدفوعات SAR',summary.payments,<ArrowLeftRight/>,'text-rose-300']
