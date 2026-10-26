@@ -11,27 +11,99 @@ export default function AdminRegistrationDashboard({accessToken,apiBaseUrl='',on
   const [role,setRole]=useState('');
   const [department,setDepartment]=useState('');
   const [scopeIds,setScopeIds]=useState<string[]>([]);
+  const [scopeMode,setScopeMode]=useState<'existing'|'global'|'branches'>('existing');
+  const [branchIds,setBranchIds]=useState<string[]>([]);
+  const [creatingScope,setCreatingScope]=useState(false);
   const [savingIdentity,setSavingIdentity]=useState(false);
   const [identityId,setIdentityId]=useState('');
   async function openIdentity(r:Registration){
-    setError('');setSelected(r);setRole('');setDepartment(r.requested_department||'');setScopeIds([]);setIdentityId('');
+    setError('');setSelected(r);setRole('');setDepartment(r.requested_department||'');setScopeIds([]);setBranchIds([]);setScopeMode('existing');setIdentityId('');
     try{
       const response=await fetch(`${apiBaseUrl}/api/v20.2.1/foundation`,{headers:{Authorization:`Bearer ${accessToken}`},cache:'no-store'});
       const data=await response.json();if(!response.ok)throw new Error(data.error||'تعذر تحميل الأدوار والنطاقات.');
-      setFoundation({...data.foundation,roles:data.roles||[],departments:data.departments||[]});
+      setFoundation({...data.foundation,roles:data.roles||[],departments:data.departments||[],branches:data.branches||[]});
+      console.info('[AviNexus identity] loaded foundation metadata', {
+        roles:(data.roles||[]).length, departments:(data.departments||[]).length,
+        scopes:(data.foundation?.scopes||[]).length
+      });
       const existing=data.foundation?.identities?.find((x:any)=>x.user_id===r.user_id);
       if(existing){setIdentityId(existing.id);setRole(existing.role_code);setDepartment(existing.department_code);setScopeIds(existing.scope_ids||[]);}
     }catch(e){setError(e instanceof Error?e.message:'فشل تحميل الهوية');setSelected(null);}
   }
+  async function readApi(response:Response){
+    const raw=await response.text();
+    let data:any={};
+    try{data=raw?JSON.parse(raw):{};}catch{throw new Error(`استجابة غير صالحة من الخادم (${response.status}): ${raw.slice(0,200)}`);}
+    if(!response.ok||data.success===false)throw new Error(
+      `HTTP ${response.status}: ${String(data.error||data.message||'فشل الطلب')}`);
+    return data;
+  }
   async function saveIdentity(){
-    if(!selected||!role||!department||!scopeIds.length){setError('حدد الدور والقسم ونطاق وصول واحدًا على الأقل.');return;}
-    setSavingIdentity(true);setError('');
+    if(!selected)return;
+    if(!role||!department){
+      const message='اختر الدور المؤسسي والقسم أولًا.';
+      setError(message);window.alert(message);return;
+    }
+    if(scopeMode==='existing'&&!scopeIds.length){
+      const message='اختر نطاق وصول واحدًا على الأقل، أو أنشئ نطاقًا مناسبًا.';
+      setError(message);window.alert(message);return;
+    }
+    if(scopeMode==='branches'&&!branchIds.length){
+      const message='اختر فرعًا واحدًا على الأقل قبل إنشاء نطاق الفروع.';
+      setError(message);window.alert(message);return;
+    }
+    if(scopeMode==='global'&&!window.confirm('تنبيه أمني: النطاق الشامل يتيح الوصول إلى جميع الجهات التي يسمح بها الدور. هل تؤكد منحه لهذا المستخدم؟'))return;
+    setSavingIdentity(true);setError('');setNotice('');
     try{
-      const response=await fetch(`${apiBaseUrl}/api/v20.2.1/identities`,{method:'POST',headers:{Authorization:`Bearer ${accessToken}`,'Content-Type':'application/json'},body:JSON.stringify({...(identityId?{id:identityId}:{}),user_id:selected.user_id,display_name:selected.display_name,role_code:role,department_code:department,scope_ids:scopeIds,branch_ids:[],permission_allow:[],permission_deny:[],active:true,locale:'ar',timezone:'Asia/Aden'})});
-      const data=await response.json();if(!response.ok)throw new Error(data.error||'فشل حفظ الهوية المؤسسية.');
-      setSelected(null);setNotice('تم حفظ الهوية والصلاحيات. يمكنك الآن الموافقة على الطلب.');
-    }catch(e){setError(e instanceof Error?e.message:'فشل الحفظ');}
-    finally{setSavingIdentity(false);}
+      let resolvedScopeIds=[...scopeIds];
+      if(scopeMode!=='existing'){
+        setCreatingScope(true);
+        const scopePayload={
+          code:`REG_${scopeMode.toUpperCase()}_${selected.user_id.replace(/[^a-zA-Z0-9_-]/g,'_')}`,
+          name:scopeMode==='global'?`نطاق شامل للمستخدم ${selected.display_name}`:`فروع المستخدم ${selected.display_name}`,
+          type:scopeMode==='global'?'global':'branch',
+          branch_ids:scopeMode==='branches'?branchIds:[],
+          farm_ids:[],flock_ids:[],inherits_scope_ids:[],active:true
+        };
+        console.info('[AviNexus identity] scope creation request',scopePayload);
+        const scopeResponse=await fetch(`${apiBaseUrl}/api/v20.2.1/scopes`,{
+          method:'POST',headers:{Authorization:`Bearer ${accessToken}`,'Content-Type':'application/json'},
+          credentials:'same-origin',body:JSON.stringify(scopePayload)
+        });
+        const scopeData=await readApi(scopeResponse);
+        const scope=scopeData.scope;
+        if(!scope?.id)throw new Error('الخادم لم يُرجع معرف نطاق الوصول بعد إنشائه.');
+        resolvedScopeIds=[scope.id];
+        setScopeIds(resolvedScopeIds);
+        setCreatingScope(false);
+      }
+      const payload={
+        ...(identityId?{id:identityId}:{}),
+        user_id:selected.user_id,display_name:selected.display_name,
+        role_code:role,department_code:department,scope_ids:resolvedScopeIds,
+        branch_ids:scopeMode==='branches'?branchIds:[],
+        permission_allow:[],permission_deny:[],active:true,
+        locale:'ar',timezone:'Asia/Aden'
+      };
+      console.info('[AviNexus identity] saving role, department and scope IDs',{
+        user_id:payload.user_id,role_code:role,department_code:department,
+        scope_ids:resolvedScopeIds,branch_ids:payload.branch_ids
+      });
+      const response=await fetch(`${apiBaseUrl}/api/v20.2.1/identities`,{
+        method:'POST',headers:{Authorization:`Bearer ${accessToken}`,'Content-Type':'application/json'},
+        credentials:'same-origin',body:JSON.stringify(payload)
+      });
+      const data=await readApi(response);
+      if(!data.identity?.id)throw new Error('لم يُرجع الخادم تأكيد الهوية المحفوظة.');
+      setSelected(null);
+      setNotice('تم حفظ الهوية المؤسسية والصلاحيات. يمكنك الآن الموافقة على الطلب.');
+      console.info('[AviNexus identity] saved successfully',data.identity.id);
+    }catch(e){
+      const message=e instanceof Error?e.message:'فشل حفظ الهوية المؤسسية.';
+      console.error('[AviNexus identity] save failed',e);
+      setError(message);
+      window.alert(`تعذر حفظ الهوية والصلاحيات:\n${message}`);
+    }finally{setSavingIdentity(false);setCreatingScope(false);}
   }
   const [loading,setLoading]=useState(true);
   const [busyId,setBusyId]=useState('');
@@ -83,12 +155,30 @@ export default function AdminRegistrationDashboard({accessToken,apiBaseUrl='',on
           <h2>هوية وصلاحيات: {selected.display_name}</h2>
           <p>تُحفظ الهوية أولًا، ثم تُعتمد الموافقة من قائمة الطلبات.</p>
           <label style={{display:'block',marginTop:12}}>الدور المؤسسي</label>
-          <select style={{width:'100%',padding:10}} value={role} onChange={e=>setRole(e.target.value)}><option value="">اختر الدور</option>{(foundation?.roles||[]).filter((x:any)=>x.active&&x.code!=='SYSTEM_OWNER').map((x:any)=><option key={x.id} value={x.code}>{x.name} ({x.code})</option>)}</select>
+          <select style={{width:'100%',padding:10}} value={role} onChange={e=>{const next=e.target.value;setRole(next);const matching=(foundation?.roles||[]).find((x:any)=>x.code===next);if(matching?.department_code)setDepartment(matching.department_code);}}><option value="">اختر الدور</option>{(foundation?.roles||[]).filter((x:any)=>x.active!==false&&x.code!=='SYSTEM_OWNER').map((x:any)=><option key={x.id} value={x.code}>{x.name} ({x.code})</option>)}</select>
           <label style={{display:'block',marginTop:12}}>القسم</label>
-          <select style={{width:'100%',padding:10}} value={department} onChange={e=>setDepartment(e.target.value)}><option value="">اختر القسم</option>{(foundation?.departments||[]).filter((x:any)=>x.active).map((x:any)=><option key={x.id} value={x.code}>{x.name}</option>)}</select>
-          <label style={{display:'block',marginTop:12}}>نطاق الوصول (اختر الجهات المسموحة فقط)</label>
-          <div style={{maxHeight:180,overflowY:'auto',border:'1px solid #cbd5e1',padding:10}}>{(foundation?.scopes||[]).filter((x:any)=>x.active).map((x:any)=><label key={x.id} style={{display:'block',padding:5}}><input type="checkbox" checked={scopeIds.includes(x.id)} onChange={e=>setScopeIds(old=>e.target.checked?[...old,x.id]:old.filter(v=>v!==x.id))}/> {x.name} ({x.type})</label>)}</div>
-          <div style={{display:'flex',gap:10,marginTop:18}}><button style={{...button,background:'#166534',color:'white'}} disabled={savingIdentity||!foundation} onClick={()=>void saveIdentity()}>{savingIdentity?'جارٍ الحفظ':'حفظ الهوية والصلاحيات'}</button><button style={button} onClick={()=>setSelected(null)}>إلغاء</button></div>
+          <select style={{width:'100%',padding:10}} value={department} onChange={e=>setDepartment(e.target.value)}><option value="">اختر القسم</option>{(foundation?.departments||[]).filter((x:any)=>x.active!==false).map((x:any)=><option key={x.id} value={x.code}>{x.name}</option>)}</select>
+          <label style={{display:'block',marginTop:12}}>نطاق الوصول</label>
+          <select aria-label="طريقة تحديد نطاق الوصول" style={{width:'100%',padding:10}} value={scopeMode} onChange={e=>setScopeMode(e.target.value as typeof scopeMode)}>
+            <option value="existing">اختيار نطاق موجود</option>
+            <option value="branches">إنشاء نطاق لفروع محددة</option>
+            <option value="global">إنشاء نطاق شامل (صلاحية واسعة)</option>
+          </select>
+          {scopeMode==='existing'&&<div style={{maxHeight:180,overflowY:'auto',border:'1px solid #cbd5e1',padding:10}}>
+            {(foundation?.scopes||[]).filter((x:any)=>x.active!==false).map((x:any)=><label key={x.id} style={{display:'block',padding:5}}>
+              <input type="checkbox" checked={scopeIds.includes(x.id)} onChange={e=>setScopeIds(old=>e.target.checked?[...old,x.id]:old.filter(v=>v!==x.id))}/> {x.name} ({x.type})
+            </label>)}
+            {!(foundation?.scopes||[]).some((x:any)=>x.active!==false)&&<p>لا توجد نطاقات محفوظة. اختر إنشاء نطاق فروع أو نطاق شامل عند الضرورة.</p>}
+          </div>}
+          {scopeMode==='branches'&&<div style={{maxHeight:180,overflowY:'auto',border:'1px solid #cbd5e1',padding:10}}>
+            {(foundation?.branches||[]).filter((x:any)=>x.active!==false).map((x:any)=><label key={x.id} style={{display:'block',padding:5}}>
+              <input type="checkbox" checked={branchIds.includes(x.id)} onChange={e=>setBranchIds(old=>e.target.checked?[...old,x.id]:old.filter(v=>v!==x.id))}/> {x.name} ({x.code})
+            </label>)}
+            {!(foundation?.branches||[]).length&&<p>لا توجد فروع متاحة في بيانات المؤسسة. يجب إنشاء الفروع أولًا.</p>}
+          </div>}
+          {scopeMode==='global'&&<p style={{color:'#9a3412'}}>تنبيه: هذا النطاق يشمل جميع المواقع، ويجب منحه فقط للأدوار المخولة بذلك.</p>}
+          {error&&<p role="alert" style={{color:'#b91c1c',whiteSpace:'pre-wrap'}}>{error}</p>}
+          <div style={{display:'flex',gap:10,marginTop:18}}><button style={{...button,background:'#166534',color:'white'}} disabled={savingIdentity||!foundation} onClick={()=>void saveIdentity()}>{savingIdentity?(creatingScope?'جارٍ إنشاء النطاق':'جارٍ حفظ الهوية'):'حفظ الهوية والصلاحيات'}</button><button style={button} onClick={()=>setSelected(null)}>إلغاء</button></div>
         </div>
       </div>}
     </div>
