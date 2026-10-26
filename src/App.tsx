@@ -155,7 +155,7 @@ export default function App() {
   const [navHistory, setNavHistory] = useState<AppView[]>([initialUISettings.startView || 'home']);
   const [navIndex, setNavIndex] = useState(0);
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [registrationScreen, setRegistrationScreen] = useState<'register' | 'approvals' | null>(null);
+  const [registrationScreen, setRegistrationScreen] = useState<any>('register');
   const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [onboardingMode, setOnboardingMode] = useState<'self' | 'admin'>('self');
   const [toastMessage, setToastMessage] = useState('');
