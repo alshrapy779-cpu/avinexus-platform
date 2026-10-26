@@ -67,7 +67,13 @@ const primaryNav: Array<{ id: AppView; ar: string; en:string; icon: React.ReactN
   { id: 'home', ar: 'الرئيسية', en:'Home', icon: <Home className="w-4 h-4"/> },
   { id: 'enterprise', ar: 'مساحة العمل', en:'Workspace', icon: <BriefcaseBusiness className="w-4 h-4"/> },
   { id: 'marketplace', ar: 'السوق والتوريدات', en:'Market & Supply', icon: <ShoppingBag className="w-4 h-4"/> },
-  { id: 'communications', ar: 'التواصل', en:'Communication', icon: <MessageCircleMore className="w-4 h-4"/> }
+  { id: 'communications', ar: 'التواصل', en:'Communication', icon: <MessageCircleMore className="w-4 h-4"/> },
+  { id: 'farmer', ar: 'المزارع', en:'Farms', icon: <Home className="w-4 h-4"/> },
+  { id: 'vet', ar: 'الطبيب', en:'Veterinary', icon: <Stethoscope className="w-4 h-4"/> },
+  { id: 'finance', ar: 'المالية', en:'Finance', icon: <DollarSign className="w-4 h-4"/> },
+  { id: 'workers', ar: 'العمال', en:'Workers', icon: <Users className="w-4 h-4"/> },
+  { id: 'managed', ar: 'إدارة المزارع', en:'Managed Farms', icon: <ClipboardList className="w-4 h-4"/> },
+  { id: 'admin', ar: 'الإدارة', en:'Admin', icon: <Settings2 className="w-4 h-4"/> }
 ];
 const labelFor = (language: 'ar'|'en'|'bilingual', ar: string, en: string) =>
   language === 'ar' ? ar : language === 'en' ? en : `${ar} | ${en}`;
@@ -135,7 +141,7 @@ export const Header: React.FC<HeaderProps> = ({
         </div>
       </header>
 
-      <div className="md:hidden fixed bottom-[5.8rem] right-3 z-[76] flex gap-1">{onRegisterUser && <button className="spp-top-action" onClick={onRegisterUser}>تسجيل جديد</button>}{onOpenRegistrationApprovals && <button className="spp-top-action" onClick={onOpenRegistrationApprovals}>الموافقات</button>}</div>
+      <div className="md:hidden fixed bottom-[5.8rem] right-3 z-[76] flex gap-1">{onOpenLogin && <button className="spp-top-action" onClick={onOpenLogin}>الدخول</button>}{onRegisterUser && <button className="spp-top-action" onClick={onRegisterUser}>تسجيل جديد</button>}{onOpenRegistrationApprovals && <button className="spp-top-action" onClick={onOpenRegistrationApprovals}>الموافقات</button>}</div>
       {mobileMoreOpen && <div className="md:hidden fixed inset-0 z-[70] bg-slate-950/70" onClick={()=>setMobileMoreOpen(false)}><div dir={uiLanguage==='en'?'ltr':'rtl'} className="absolute bottom-[5.3rem] left-3 right-3 rounded-3xl border border-slate-700 bg-[#081b20] p-3 shadow-2xl" onClick={e=>e.stopPropagation()}><div className="flex items-center justify-between mb-3"><strong className="text-xs text-white">{labelFor(uiLanguage,'الوصول السريع','Quick access')}</strong><button onClick={()=>setMobileMoreOpen(false)} className="spp-icon-button"><X className="w-4 h-4"/></button></div><div className="grid grid-cols-3 gap-2">{[
         ['managed',labelFor(uiLanguage,'إدارة المزارع','Farm Operations'),<ClipboardList className="w-4 h-4"/>],['finance',labelFor(uiLanguage,'المالية','Finance'),<DollarSign className="w-4 h-4"/>],['communications',labelFor(uiLanguage,'التواصل','Communication'),<MessageCircleMore className="w-4 h-4"/>],['workers',labelFor(uiLanguage,'القوى العاملة','Workforce'),<Users className="w-4 h-4"/>],['vaccines',labelFor(uiLanguage,'التحصين','Vaccination'),<Syringe className="w-4 h-4"/>],['marketplace',labelFor(uiLanguage,'السوق والتوريدات','Market & Supply'),<ShoppingBag className="w-4 h-4"/>],['admin',labelFor(uiLanguage,'الإدارة','Administration'),<Settings2 className="w-4 h-4"/>]
       ].filter(([id]) => !allowedViews || allowedViews.includes(id as AppView)).map(([id,label,icon])=><MobileMoreButton key={String(id)} label={String(label)} icon={icon as React.ReactNode} onClick={()=>{onViewChange(id as AppView);setMobileMoreOpen(false);}}/>)}</div></div></div>}
@@ -144,7 +150,7 @@ export const Header: React.FC<HeaderProps> = ({
         <div className="grid grid-cols-5 gap-1.5 max-w-md mx-auto">
           <MobileNav active={activeView==='home'} label={labelFor(uiLanguage,'الرئيسية','Home')} icon={<Home/>} onClick={()=>onViewChange('home')}/>
           <MobileNav active={activeView==='enterprise'} label={labelFor(uiLanguage,'العمل','Work')} icon={<BriefcaseBusiness/>} onClick={()=>onViewChange('enterprise')}/>
-          <MobileNav active={activeView==='vet'} label={labelFor(uiLanguage,'الطبيب','Vet')} icon={<Stethoscope/>} onClick={()=>onViewChange('vet')}/>
+          {(!allowedViews || allowedViews.includes('vet')) ? <MobileNav active={activeView==='vet'} label={labelFor(uiLanguage,'الطبيب','Vet')} icon={<Stethoscope/>} onClick={()=>onViewChange('vet')}/> : <MobileNav active={activeView==='farmer'} label={labelFor(uiLanguage,'المزرعة','Farm')} icon={<Home/>} onClick={()=>onViewChange('farmer')}/>}
           {aiShortcutEnabled ? <MobileNav active={false} label={labelFor(uiLanguage,'الذكاء','AI')} icon={<Bot/>} accent onClick={onOpenAIGuidance}/> : <MobileNav active={activeView==='marketplace'} label={labelFor(uiLanguage,'السوق','Market')} icon={<ShoppingBag/>} onClick={()=>onViewChange('marketplace')}/>} 
           <MobileNav active={mobileMoreOpen} label={labelFor(uiLanguage,'المزيد','More')} icon={<Menu/>} onClick={()=>setMobileMoreOpen(v=>!v)}/>
         </div>

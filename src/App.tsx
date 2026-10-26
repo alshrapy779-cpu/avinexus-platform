@@ -155,7 +155,11 @@ export default function App() {
   const [navHistory, setNavHistory] = useState<AppView[]>([initialUISettings.startView || 'home']);
   const [navIndex, setNavIndex] = useState(0);
   const [settingsOpen, setSettingsOpen] = useState(false);
-  const [registrationScreen, setRegistrationScreen] = useState<any>('register');
+  const [registrationScreen, setRegistrationScreen] = useState<'register' | 'approvals' | null>(() => {
+    if (typeof window === 'undefined') return null;
+    return window.location.hash === '#/register' ? 'register' : window.location.hash === '#/registration-approvals' ? 'approvals' : null;
+  });
+  const [roleLandingDone, setRoleLandingDone] = useState(false);
   const [onboardingOpen, setOnboardingOpen] = useState(false);
   const [onboardingMode, setOnboardingMode] = useState<'self' | 'admin'>('self');
   const [toastMessage, setToastMessage] = useState('');
@@ -242,14 +246,28 @@ export default function App() {
     }
   });
 
+  const openRegistration = (screen: 'register' | 'approvals' | null) => {
+    setRegistrationScreen(screen);
+    if (typeof window !== 'undefined') window.history.replaceState(null, '', screen ? `#/${screen === 'register' ? 'register' : 'registration-approvals'}` : `#/${activeView}`);
+  };
+  useEffect(() => {
+    const onHash = () => {
+      const hash = window.location.hash.replace(/^#\/?/, '');
+      if (hash === 'register') setRegistrationScreen('register');
+      else if (hash === 'registration-approvals') openRegistration('approvals');
+      else { setRegistrationScreen(null); if (['home','enterprise','farmer','vet','calculator','passport','srs','marketplace','workers','vaccines','admin','finance','communications','managed'].includes(hash)) setActiveView(hash as AppView); }
+    };
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
   const navigateTo = (view: AppView) => {
-    if (view === 'register') { setRegistrationScreen('register'); return; }
+    if (view === 'register') { openRegistration('register'); return; }
     if (view === 'registration-approvals') {
-      if (enterpriseAuth.session?.identity?.role_code === 'SYSTEM_OWNER') setRegistrationScreen('approvals');
+      if (enterpriseAuth.session?.identity?.role_code === 'SYSTEM_OWNER') openRegistration('approvals');
       else setToastMessage('لوحة الموافقات مخصصة لمالك النظام.');
       return;
     }
-    setRegistrationScreen(null);
+    openRegistration(null);
     const core = smartOperations?.enterprise?.platform_core_v19_5;
     const user = core?.users?.find((u) => u.id === core.active_user_id);
     if (user && !allowedViewsForRoleV195(user.role).includes(view)) {
@@ -265,6 +283,7 @@ export default function App() {
       return next;
     });
     setActiveView(view);
+    if (typeof window !== 'undefined') window.history.replaceState(null, '', `#/${view}`);
   };
 
   const navigateBack = () => {
@@ -797,14 +816,24 @@ export default function App() {
     if (selected && !allowedViewsForRoleV195(selected.role).includes(activeView)) navigateTo('home');
   };
 
+  useEffect(() => {
+    if (!enterpriseAuth.checked || (enterpriseAuth.required && !enterpriseAuth.authenticated) || roleLandingDone) return;
+    const role = String(enterpriseAuth.session?.identity?.role_code || activePlatformUser?.role || '').toUpperCase();
+    const preferred: AppView = /VET|DOCTOR|LAB/.test(role) ? 'vet' : /ACCOUNT|FINANC|TREASUR/.test(role) ? 'finance' : /FARM_OWNER|FARMER|CUSTOMER|CLIENT/.test(role) ? 'farmer' : /WORKER|STAFF/.test(role) ? 'workers' : /FACTORY|OFFICE|MANAGER/.test(role) ? 'enterprise' : /SYSTEM_OWNER|ADMIN|EXECUTIVE/.test(role) ? 'admin' : 'home';
+    const allowed = activePlatformUser ? allowedViewsForRoleV195(activePlatformUser.role) as AppView[] : undefined;
+    const destination = allowed && !allowed.includes(preferred) ? 'home' : preferred;
+    if (!window.location.hash || window.location.hash === '#/home') { setActiveView(destination); window.history.replaceState(null, '', `#/${destination}`); }
+    setRoleLandingDone(true);
+  }, [enterpriseAuth.checked, enterpriseAuth.required, enterpriseAuth.authenticated, enterpriseAuth.session, activePlatformUser?.role, roleLandingDone]);
+
   const primaryCustomerDisplayName = /أحمد صالح العنسي/.test(farms[0]?.owner_name || '') ? '' : (farms[0]?.owner_name || '');
   const pendingCasesCount = necropsyCases.filter((c) => c.vet_approval_status === 'pending').length;
 
   if(!enterpriseAuth.checked){return <div className="min-h-screen bg-slate-950 text-slate-300 flex items-center justify-center text-sm font-bold">تهيئة طبقة الأمان المؤسسية...</div>;}
-  if(registrationScreen === 'register') return <RegisterPage onGoToLogin={() => setRegistrationScreen(null)} />;
-  if(enterpriseAuth.required&&!enterpriseAuth.authenticated){return <div dir="rtl"><EnterpriseLoginV2027 environment={enterpriseAuth.environment} bootstrapConfigured={enterpriseAuth.bootstrapConfigured} initialError={enterpriseAuth.error} onAuthenticated={(session)=>setEnterpriseAuth(prev=>({...prev,authenticated:true,session,error:undefined}))}/><div className="fixed bottom-4 left-4"><button className="rounded-xl bg-emerald-700 px-5 py-3 text-white" onClick={() => setRegistrationScreen('register')}>تسجيل مستخدم جديد</button></div></div>;}
+  if(registrationScreen === 'register') return <RegisterPage onGoToLogin={() => openRegistration(null)} />;
+  if(enterpriseAuth.required&&!enterpriseAuth.authenticated){return <div dir="rtl"><EnterpriseLoginV2027 environment={enterpriseAuth.environment} bootstrapConfigured={enterpriseAuth.bootstrapConfigured} initialError={enterpriseAuth.error} onAuthenticated={(session)=>setEnterpriseAuth(prev=>({...prev,authenticated:true,session,error:undefined}))}/><div className="fixed bottom-4 left-4"><button className="rounded-xl bg-emerald-700 px-5 py-3 text-white" onClick={() => openRegistration('register')}>تسجيل مستخدم جديد</button></div></div>;}
 
-  if(registrationScreen === 'approvals') return enterpriseAuth.session?.identity?.role_code === 'SYSTEM_OWNER' ? <div dir="rtl"><button className="m-4 rounded-lg bg-slate-800 px-4 py-2 text-white" onClick={() => setRegistrationScreen(null)}>العودة للمنصة</button><AdminRegistrationDashboard accessToken={enterpriseAuth.session.access_token} onOpenIdentityManagement={() => { setRegistrationScreen(null); navigateTo('enterprise'); }} /></div> : <div dir="rtl">غير مصرح بالوصول <button onClick={() => setRegistrationScreen(null)}>عودة</button></div>;
+  if(registrationScreen === 'approvals') return enterpriseAuth.session?.identity?.role_code === 'SYSTEM_OWNER' ? <div dir="rtl"><button className="m-4 rounded-lg bg-slate-800 px-4 py-2 text-white" onClick={() => openRegistration(null)}>العودة للمنصة</button><AdminRegistrationDashboard accessToken={enterpriseAuth.session.access_token} onOpenIdentityManagement={() => { openRegistration(null); navigateTo('enterprise'); }} /></div> : <div dir="rtl">غير مصرح بالوصول <button onClick={() => openRegistration(null)}>عودة</button></div>;
 
   return (
     <div className="app-shell min-h-screen text-slate-100 flex flex-col selection:bg-cyan-500/30 selection:text-cyan-200 font-sans">
@@ -825,8 +854,8 @@ export default function App() {
         onOpenAccount={() => setAccountSwitcherOpen(true)}
         allowedViews={activePlatformUser ? allowedViewsForRoleV195(activePlatformUser.role) as AppView[] : undefined}
         language={uiSettings.language}
-        onRegisterUser={() => setRegistrationScreen('register')}
-        onOpenRegistrationApprovals={enterpriseAuth.session?.identity?.role_code === 'SYSTEM_OWNER' ? () => setRegistrationScreen('approvals') : undefined}
+        onRegisterUser={() => openRegistration('register')}
+        onOpenRegistrationApprovals={enterpriseAuth.session?.identity?.role_code === 'SYSTEM_OWNER' ? () => openRegistration('approvals') : undefined}
         onOpenLogin={() => setAccountSwitcherOpen(true)}
       />
 
@@ -855,8 +884,8 @@ export default function App() {
             onRegisterCustomer={() => openOnboarding('self')}
             multiBusiness={multiBusinessV2023}
             onOpenSettings={() => setSettingsOpen(true)}
-            onRegisterUser={() => setRegistrationScreen('register')}
-            onOpenRegistrationApprovals={enterpriseAuth.session?.identity?.role_code === 'SYSTEM_OWNER' ? () => setRegistrationScreen('approvals') : undefined}
+            onRegisterUser={() => openRegistration('register')}
+            onOpenRegistrationApprovals={enterpriseAuth.session?.identity?.role_code === 'SYSTEM_OWNER' ? () => openRegistration('approvals') : undefined}
           />
         )}
         {activeView === 'enterprise' && activePlatformUser && (
@@ -872,8 +901,8 @@ export default function App() {
             farmDivision={farmDivisionV2029}
             operationalReadiness={operationalReadinessR81}
             language={uiSettings.language}
-        onRegisterUser={() => setRegistrationScreen('register')}
-        onOpenRegistrationApprovals={enterpriseAuth.session?.identity?.role_code === 'SYSTEM_OWNER' ? () => setRegistrationScreen('approvals') : undefined}
+        onRegisterUser={() => openRegistration('register')}
+        onOpenRegistrationApprovals={enterpriseAuth.session?.identity?.role_code === 'SYSTEM_OWNER' ? () => openRegistration('approvals') : undefined}
         onOpenLogin={() => setAccountSwitcherOpen(true)}
             v20={v20Core}
             managed={managedOperationsV197}
