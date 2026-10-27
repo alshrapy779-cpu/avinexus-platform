@@ -1,4 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+const defaultBranches = [{ id: 'BR-01', name: 'الفرع الرئيسي' }];
+const defaultScopes = [{ id: 'SC-01', name: 'النطاق الشامل' }];
+
 
 type Status='PENDING'|'APPROVED'|'REJECTED';
 type Registration={id:string;user_id:string;username:string;display_name:string;email:string;requested_department:string;requested_organization:string;status:Status;created_at:string;reviewed_at?:string;reviewed_by?:string;rejection_reason?:string};
