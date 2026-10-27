@@ -3479,7 +3479,7 @@ app.use(
         return;
       }
       const method = req.method.toUpperCase();
-      const action = method === 'GET' ? 'read' : 'write';
+      const action = method === 'GET' ? 'read' : 'operate';
       if (!businessOr403V2023(res, officeId, action)) return;
       next();
     },
@@ -3502,7 +3502,7 @@ app.use(
       const officeId = String(req.params.officeId || '');
       const office = enterpriseV11.multi_business_v20_2_3.business_units.find(unit => unit.id === officeId && unit.type === 'office' && unit.status === 'active');
       if (!office) { res.status(404).json({ success: false, error: 'office_not_found' }); return; }
-      const mode = req.method.toUpperCase() === 'GET' ? 'read' : 'write';
+      const mode = req.method.toUpperCase() === 'GET' ? 'read' : 'operate';
       if (!businessOr403V2023(res, officeId, mode)) return;
       next();
     },
@@ -3531,7 +3531,9 @@ const authorizeOfficeOperations: express.RequestHandler =
 
     const mode = req.method.toUpperCase() === 'GET'
       ? 'read'
-      : 'write';
+      : req.baseUrl.endsWith('/treasury')
+        ? 'finance'
+        : 'operate';
 
     if (!businessOr403V2023(res, officeId, mode)) return;
 

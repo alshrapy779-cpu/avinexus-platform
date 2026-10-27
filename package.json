@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "tsx server.ts",
-    "build": "vite build && esbuild server.ts --bundle --platform=node --format=cjs --packages=external --sourcemap --outfile=dist/server.cjs",
+    "build": "vite build && npm run build:server",
     "start": "node dist/server.cjs",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
@@ -64,7 +64,8 @@
     "verify:factory-windows-r8": "npm run test:v20.2.9 && npm run test:factory100 && npm run test:factory-full-ui && npm run test:factory-production-r3 && npm run test:farm-r4 && npm run test:farm-r4:integration && npm run test:farm-windows-r5 && npm run test:farm-windows-r6 && npm run test:customer-office-partner-r7 && npm run preservation:factory-windows-r8 && npm run test:factory-windows-r8",
     "test:r8.1": "node scripts/v20.2.9-r8.1/semantic-test.cjs",
     "preservation:r8.1": "node scripts/v20.2.9-r8.1/preservation-check.cjs",
-    "verify:r8.1": "npm run test:v20.2.9 && npm run test:factory100 && npm run test:factory-full-ui && npm run test:factory-production-r3 && npm run test:farm-r4 && npm run test:farm-r4:integration && npm run test:farm-windows-r5 && npm run test:farm-windows-r6 && npm run test:customer-office-partner-r7 && npm run test:factory-windows-r8 && npm run preservation:r8.1 && npm run test:r8.1"
+    "verify:r8.1": "npm run test:v20.2.9 && npm run test:factory100 && npm run test:factory-full-ui && npm run test:factory-production-r3 && npm run test:farm-r4 && npm run test:farm-r4:integration && npm run test:farm-windows-r5 && npm run test:farm-windows-r6 && npm run test:customer-office-partner-r7 && npm run test:factory-windows-r8 && npm run preservation:r8.1 && npm run test:r8.1",
+    "build:server": "node scripts/build-server.cjs"
   },
   "dependencies": {
     "@capacitor/android": "^8.5.2",
