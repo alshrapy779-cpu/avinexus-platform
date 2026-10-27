@@ -48,101 +48,16 @@ export const CustomerOfficePartnerNetworkR7:React.FC<Props>=({business,managed,p
  const reconcile=()=>{let changed=0;const contracts=managed.managed_contracts.map(c=>{if(c.office_id)return c;const matches=net.offices.filter(o=>o.name.trim()===c.office_name.trim());if(matches.length!==1)return c;changed++;return {...c,office_id:matches[0].id};});onManagedChange({...managed,managed_contracts:contracts});show(changed?`تم ربط ${changed} عقد إدارة بـ office_id canonical.`:'لا توجد عقود يمكن ربطها تلقائيًا؛ راجع الاسم/المكتب.');};
  return <div className="r7-shell" dir="rtl">{toast&&<div className="r7-toast" onClick={()=>setToast('')}>{toast}</div>}
   <header className="r7-hero"><div><div className="r7-kicker">AVINEXUS · WINDOWS CUSTOMER / OFFICE / PARTNER NETWORK · R7</div><h1>{net.brand_name_ar}</h1><p>شبكة موحدة للعملاء والمكاتب والشركات والفروع والعقود والأسواق والمختبرات والتوريد. لا تنشئ دفتر مخزون أو محاسبة موازياً: Section 7 للمخزون وSection 12 للمحاسبة.</p></div><div className="r7-owner"><span>هوية المنتج</span><b>{net.brand_name}</b><small>Product Owner · {net.product_owner_name}</small></div></header>
-  <div className="r7-panel" role="status"><button onClick={()=>void refreshIdentity()} disabled={identityBusy}>تحديث بيانات الهوية من الخادم</button> <span>{identityLoaded?'تم تحميل الهوية من الخادم':'بيانات الهوية المحلية غير مؤكدة الحفظ بالخادم'}</span>{identityError&&<strong role="alert">خطأ: {identityError}</strong>}</div>
-  <nav className="r7-quick-nav" aria-label="الانتقال المباشر إلى أقسام الشبكة">
-    <label htmlFor="r7-direct-section">الانتقال المباشر إلى القسم</label>
-    <select id="r7-direct-section" value={tab} onChange={e=>setTab(e.target.value as Tab)}>
-      {tabGroups.map(group=><optgroup key={group.name} label={group.name}>{group.items.map(id=><option key={id} value={id}>{tabLabel(id)}</option>)}</optgroup>)}
-    </select>
-    <span role="status">القسم الحالي: {tabLabel(tab)}</span>
-  </nav>
-  <div className="r7-nav" aria-label="أقسام الشبكة">{tabGroups.map(group=><div className="r7-nav-group" key={group.name}><strong>{group.name}</strong><div className="r7-nav-group-items">{group.items.map(id=>{const item=tabs.find(([key])=>key===id);if(!item)return null;const [,l,ic]=item;return <button type="button" key={id} aria-current={tab===id?'page':undefined} className={tab===id?'active':''} onClick={()=>setTab(id)}>{React.cloneElement(ic as React.ReactElement,{className:'r7-ico'})}{l}</button>;})}</div></div>)}</div>
-  {tab==='overview'&&<Overview net={net} managed={managed} platform={platform} issues={issues} managedUnlinked={managedUnlinked.length} reconcile={reconcile}/>} 
-  {tab==='office360'&&<Office360ErrorBoundary><Office360 net={net} managed={managed} business={business} currentUser={currentUser}/></Office360ErrorBoundary> }
-  {tab==='customers'&&<Customers net={net} q={q} setQ={setQ} update={update}/>} 
-  {tab==='offices'&&<Offices net={net} update={update} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 
-  {tab==='partners'&&<Partners net={net} q={q} setQ={setQ} update={update} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 
-  {tab==='branches'&&<Branches net={net} update={update} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 
-  {tab==='contracts'&&<Contracts net={net} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 
-  {tab==='catalog'&&<Catalog net={net} q={q} setQ={setQ} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 
-  {tab==='markets'&&<Markets net={net} managed={managed} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 
-  {tab==='labs'&&<Labs net={net}/>} 
-  {tab==='route'&&<Routing net={net} update={update} user={currentUser.name}/>} 
-  {tab==='procurement'&&<Procurement business={business} managed={managed}/>} 
-  {tab==='communication'&&<Communication managed={managed} platform={platform}/>} 
-  {tab==='about'&&<About net={net}/>} 
-  <footer className="r7-footer"><span>Factory R3 preserved</span><span>Farm R4/R5/R6 preserved</span><span>Android deferred</span><span>Windows/Web reference platform</span></footer>
- </div>;
-};
-const K:React.FC<{l:string;v:React.ReactNode;w?:boolean}>=({l,v,w})=><div className={w?'r7-kpi warn':'r7-kpi'}><span>{l}</span><b>{v}</b></div>;
-const Panel:React.FC<{title:string;children:React.ReactNode;actions?:React.ReactNode}>=({title,children,actions})=><section className="r7-panel"><header><h3>{title}</h3>{actions}</header><div className="r7-body">{children}</div></section>;
-const Table:React.FC<{h:string[];r:React.ReactNode[][]}>=({h,r})=><div className="r7-table-wrap"><table><thead><tr>{h.map(x=><th key={x}>{x}</th>)}</tr></thead><tbody>{r.length?r.map((x,i)=><tr key={i}>{x.map((v,j)=><td key={j}>{v}</td>)}</tr>):<tr><td colSpan={h.length}>لا توجد بيانات.</td></tr>}</tbody></table></div>;
-const Overview=({net,managed,platform,issues,managedUnlinked,reconcile}:any)=><div className="r7-grid"><Panel title="ملخص الشبكة"><div className="r7-kpis"><K l="المحافظات المرجعية" v={net.governorates.length}/><K l="العملاء/العلاقات" v={net.customers.length}/><K l="المكاتب" v={net.offices.length}/><K l="الشركات/الشركاء" v={net.organizations.length}/><K l="الفروع" v={net.branches.length}/><K l="العقود" v={net.contracts.length}/><K l="العروض/الأسعار" v={net.offers.length}/><K l="الأسواق" v={net.regional_markets.length}/><K l="أسعار مختبر" v={net.lab_prices.length}/><K l="عقود مزارع غير مربوطة" v={managedUnlinked} w={managedUnlinked>0}/><K l="مشاكل التكامل" v={issues.length} w={issues.length>0}/><K l="كتالوج مؤسسي" v={platform.catalog.length}/><K l="مزارع مُدارة" v={managed.farms.length}/></div></Panel><Panel title="سلسلة القبول النهائية"><div className="r7-flow">{['Customer / Farm Owner','Canonical Office ID','Company / Feed Mill / Lab / Hatchery','Contract + Historical Pricing','Branch + Governorate + Availability','Nearest Branch','Purchase / Order','Receipt / Section 7','Invoice / Section 12','Reports / Printing / History'].map((x,i)=><div key={x}><span>{i+1}</span><b>{x}</b></div>)}</div>{managedUnlinked>0&&<button className="r7-primary" onClick={reconcile}>ربط العقود القديمة تلقائيًا بالمكتب canonical</button>}</Panel><Panel title="قواعد عدم التكرار"><ul className="r7-list"><li>Customer identity واحد، وعلاقات متعددة حسب الرحلة.</li><li>office_id هو المرجع التشغيلي للعقد؛ office_name يبقى للعرض والتوافق.</li><li>Section 7 وحده يملك حركات المخزون.</li><li>Section 12 وحده يملك GL/AP/AR/Treasury.</li><li>التاريخ السعري والعقود Append-only/versioned.</li><li>الطبيب يملك القرار الطبي النهائي؛ AI استشاري.</li></ul></Panel><Panel title="التكامل/المشاكل">{issues.length?<ul className="r7-list danger">{issues.map((x:string)=><li key={x}>{x}</li>)}</ul>:<div className="r7-ok">PASS — لا توجد علاقات orphan في شبكة R7.</div>}</Panel></div>;
-const Office360=(_props:any)=>{
- const safeRows=(value:unknown):any[]=>Array.isArray(value)?value:[];
- const [offices,setOffices]=useState<Array<{id:string;name:string;code:string}>>([]);
- const [listLoading,setListLoading]=useState(true);
- const [officeId,setOfficeId]=useState('');
- const [workspace,setWorkspace]=useState<any>(null);
- const [treasury,setTreasury]=useState<any>(null);
- const [error,setError]=useState('');
- const [loading,setLoading]=useState(false);
- useEffect(()=>{
-  const controller=new AbortController();setListLoading(true);setOffices([]);setWorkspace(null);setTreasury(null);
-  apiService.getAuthorizedContractedOfficesV2026(controller.signal)
-   .then(items=>{if(!controller.signal.aborted)setOffices(Array.isArray(items)?items.filter((x:any)=>x&&typeof x.id==='string'):[]);})
-   .catch(e=>{if(!controller.signal.aborted)setError(String(e.message||e));})
-   .finally(()=>{if(!controller.signal.aborted)setListLoading(false);});
-  return ()=>controller.abort();
- },[]);
- const selectedId=offices.some(o=>o.id===officeId)?officeId:(offices[0]?.id||'');
- useEffect(()=>{
-  setWorkspace(null);setTreasury(null);
-  if(!selectedId)return;
-  setError('');
-  const controller=new AbortController();setLoading(true);
-  Promise.all([apiService.getContractedOfficeWorkspaceV2026(selectedId,controller.signal),apiService.getContractedOfficeTreasuryV2026(selectedId,controller.signal)])
-   .then(([w,t])=>{if(!controller.signal.aborted){setWorkspace(w&&typeof w==='object'?w:null);setTreasury(t&&typeof t==='object'?t:null);}})
-   .catch((e:any)=>{if(!controller.signal.aborted)setError(String(e.message||e));})
-   .finally(()=>{if(!controller.signal.aborted)setLoading(false);});
-  return ()=>controller.abort();
- },[selectedId]);
- return <div className="r7-grid one"><Panel title="Office 360 — بيانات المكتب المصرح بها من الخادم">
-  <p>تعرض هذه المساحة فقط البيانات التي يجيزها الخادم. لا تعرض بيانات مالية محلية عند فشل المصادقة أو الاتصال.</p>
-  <div className="r7-form"><select aria-label="المكتب المتعاقد" value={selectedId} onChange={e=>setOfficeId(e.target.value)}>{offices.map((o:any)=><option key={o.id} value={o.id}>{o.name}</option>)}</select></div>
-  {listLoading&&<p role="status">جارٍ تحميل المكاتب المصرح بها…</p>}
-  {!listLoading&&!offices.length&&!error&&<p>لا توجد مكاتب متعاقدة مصرح بها لحسابك.</p>}
-  {loading&&<p role="status">جارٍ تحميل بيانات المكتب والتحقق من الصلاحيات…</p>}
-  {error&&<p role="alert">{error} — لم تُعرض أي بيانات مالية بديلة.</p>}
-  {workspace&&!loading&&!error&&<><div className="r7-kpis"><K l="العقود النشطة" v={safeRows(workspace.contracts).length}/><K l="المزارع المرتبطة" v={safeRows(workspace.farm_ids).length}/><K l="الموظفون" v={safeRows(workspace.staff).length}/><K l="المستندات" v={safeRows(workspace.financial_documents).length}/></div>
-   <Table h={['رقم العقد','المزرعة/المزارع','الحالة']} r={safeRows(workspace.contracts).map((c:any)=>[c?.contract_number||c?.id,safeRows(c?.linked_farm_ids).join('، '),c?.status])}/>
-   <Table h={['الموظف','الدور','المزارع']} r={safeRows(workspace.staff).map((x:any)=>[x?.user_id,x?.role,safeRows(x?.farm_ids).join('، ')])}/>
-   <Table h={['المستند','النوع','العملة','المبلغ']} r={safeRows(workspace.financial_documents).map((d:any)=>[d?.document_number||d?.id,d?.document_type,d?.currency,d?.original_amount])}/>
-   <Table h={['الحساب','العملة','البنك']} r={safeRows(workspace.treasury_accounts).map((a:any)=>[a?.name,a?.currency,a?.bank_name||'—'])}/>
-   {treasury&&<p>تم تحميل مطابقة الخزينة من الخادم. لا تُجمع أرصدة العملات المختلفة في إجمالي واحد.</p>}
-   <p>جميع العمليات المحاسبية تتبع Section 12، وحركات المخزون Section 7. هذا العرض للقراءة فقط.</p>
-  </>}
- </Panel></div>;
-};
-const Customers = ({ net, q, setQ, update }: any) => {
-  const customers = Array.isArray(net?.customers) ? net.customers : [];
-  const filtered = customers.filter((customer: any) => {
-    const search = String(q || '').toLowerCase();
-    return [customer?.name, customer?.phone, customer?.email, customer?.id].some(value => String(value || '').toLowerCase().includes(search));
-  });
-  return (
-    <div className="r7-grid one">
-      <Panel title="العملاء | Customer 360">
-        <div className="r7-form">
-          <input type="search" placeholder="البحث عن عميل" value={q || ''} onChange={e => setQ(e.target.value)} />
-        </div>
-        <Table h={['الاسم', 'الهاتف', 'البريد الإلكتروني', 'المعرف']} r={filtered.map((customer: any) => [customer.name || '—', customer.phone || '—', customer.email || '—', customer.id || '—'])} />
-      </Panel>
-    </div>
-  );
-};
-
-const Offices=({net,update,commitIdentity,identityLoaded,identityBusy}:any)=>{const [name,setName]=useState(''),[gov,setGov]=useState('صنعاء'),[phone,setPhone]=useState(''),[manager,setManager]=useState(''),[renameId,setRenameId]=useState(''),[renameName,setRenameName]=useState('');const add=()=>{if(!name.trim()||!identityLoaded)return;void commitIdentity(async()=>{await apiService.createR7Office({code:`OFF-${Date.now()}`,name:name.trim(),office_type:'mixed',governorate:gov,district:'',address:'',phone,manager_name:manager,responsible_roles:['manager','veterinarian','accountant','procurement','inventory'],warehouse_ids:[],status:'active'});setName('')})};return <div className="r7-grid"><Panel title="إنشاء مكتب"><div className="r7-form"><input placeholder="اسم المكتب" value={name} onChange={e=>setName(e.target.value)}/><input placeholder="المحافظة" value={gov} onChange={e=>setGov(e.target.value)}/><input placeholder="الهاتف" value={phone} onChange={e=>setPhone(e.target.value)}/><input placeholder="المدير" value={manager} onChange={e=>setManager(e.target.value)}/><button className="r7-primary" onClick={add} disabled={!identityLoaded||identityBusy||!name.trim()}><PlusCircle/>حفظ المكتب بالخادم</button></div></Panel><Panel title="تعديل اسم مكتب محفوظ بالخادم"><div className="r7-form"><select value={renameId} onChange={e=>{setRenameId(e.target.value);setRenameName(net.offices.find((o:any)=>o.id===e.target.value)?.name||'')}}><option value="">اختر المكتب</option>{net.offices.map((o:any)=><option key={o.id} value={o.id}>{o.name}</option>)}</select><input value={renameName} onChange={e=>setRenameName(e.target.value)} placeholder="الاسم الجديد"/><button disabled={!identityLoaded||identityBusy||!renameId||!renameName.trim()} onClick={()=>void commitIdentity(()=>apiService.renameR7Office(renameId,renameName.trim()))}>حفظ الاسم بالخادم</button></div></Panel><Panel title="Office 360"><Table h={['الكود','المكتب','النوع','المحافظة','الهاتف','المدير','المسؤوليات']} r={net.offices.map((o:any)=>[o.code,o.name,o.office_type,o.governorate,o.phone,o.manager_name,o.responsible_roles.join('، ')])}/></Panel></div>};
+  <div className="r7-panel" role="status"><button
+              type="button"
+              className="r7-primary"
+              onClick={() => void add()}
+              disabled={identityBusy || !name.trim() || !gov.trim()}
+            >
+              <PlusCircle />
+              {identityBusy ? 'جارٍ الحفظ...' : 'حفظ المكتب بالخادم'}
+            </button>
+            {saveError && <p role="alert" style={{ color: '#f87171' }}>{saveError}</p>}</div></Panel><Panel title="تعديل اسم مكتب محفوظ بالخادم"><div className="r7-form"><select value={renameId} onChange={e=>{setRenameId(e.target.value);setRenameName(net.offices.find((o:any)=>o.id===e.target.value)?.name||'')}}><option value="">اختر المكتب</option>{net.offices.map((o:any)=><option key={o.id} value={o.id}>{o.name}</option>)}</select><input value={renameName} onChange={e=>setRenameName(e.target.value)} placeholder="الاسم الجديد"/><button disabled={!identityLoaded||identityBusy||!renameId||!renameName.trim()} onClick={()=>void commitIdentity(()=>apiService.renameR7Office(renameId,renameName.trim()))}>حفظ الاسم بالخادم</button></div></Panel><Panel title="Office 360"><Table h={['الكود','المكتب','النوع','المحافظة','الهاتف','المدير','المسؤوليات']} r={net.offices.map((o:any)=>[o.code,o.name,o.office_type,o.governorate,o.phone,o.manager_name,o.responsible_roles.join('، ')])}/></Panel></div>};
 const Partners=({net,q,setQ,update,commitIdentity,identityLoaded,identityBusy}:any)=>{const [name,setName]=useState(''),[phone,setPhone]=useState(''),[kind,setKind]=useState('company'),[gov,setGov]=useState('صنعاء');const add=()=>{if(!name)return;if(kind==='marketing_company'){
   if(!identityLoaded)return;
   void commitIdentity(()=>apiService.createR7MarketingCompany({code:`MKT-${Date.now()}`,name:name.trim(),phone,governorates_served:[gov],preferred_currency:'SAR',credit_days:0,contact_name:'',payment_terms:'حسب العقد'}));setName('');return;
