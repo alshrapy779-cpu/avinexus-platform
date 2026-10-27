@@ -3563,7 +3563,6 @@ app.use(
 );
 
 async function startServer() {
-async function startServer() {
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
       server: { middlewareMode: true },

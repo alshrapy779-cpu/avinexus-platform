@@ -1,4 +1,3 @@
-cat > src/server/models/ChickBatch.ts << 'EOF'
 import mongoose, { Schema } from 'mongoose';
 
 export type Currency = 'SAR' | 'USD' | 'YER_NEW' | 'YER_OLD';
@@ -88,4 +87,3 @@ export function validateChickBatch(
     ) throw new Error(`invalid_${field}`);
   }
 }
-EOF
