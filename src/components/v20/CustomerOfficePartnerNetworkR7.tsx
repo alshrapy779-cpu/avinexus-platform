@@ -8,17 +8,58 @@ import './CustomerOfficePartnerNetworkR7.css';
 import {apiService} from '../../services/apiService';
 import {Office360ErrorBoundary} from '../office/Office360ErrorBoundary';
 import ItemsPage from '../office/ItemsPage';
+import ChicksPage from '../office/ChicksPage';
+import FeedPage from '../office/FeedPage';
+import TreasuryPage from '../office/TreasuryPage';
+
 
 type Props={business:MultiBusinessEnterpriseStateV2023;managed:ManagedOperationsStateV197;platform:PlatformCoreStateV195;currentUser:{id:string;name:string;role:PlatformRoleV195};onBusinessChange:(n:MultiBusinessEnterpriseStateV2023)=>void;onManagedChange:(n:ManagedOperationsStateV197)=>void};
-type Tab='overview'|'office360'|'customers'|'offices'|'partners'|'branches'|'contracts'|'catalog'|'markets'|'labs'|'route'|'procurement'|'communication'|'items'|'about';
+type Tab =
+  | 'overview'
+  | 'office360'
+  | 'items'
+  | 'chicks'
+  | 'feed'
+  | 'treasury'
+  | 'customers'
+  | 'offices'
+  | 'partners'
+  | 'branches'
+  | 'contracts'
+  | 'catalog'
+  | 'markets'
+  | 'labs'
+  | 'route'
+  | 'procurement'
+  | 'communication'
+  | 'about';
 const journeyName:Record<R7CustomerJourney,string>={retail:'عميل متجر/Marketplace',guest:'ضيف/Guest',managed_farm:'عميل إدارة مزرعة',farm_owner_seller:'مالك مزرعة/بائع قطيع',marketing_partner:'شريك/مكتب تسويق'};
-const tabs:Array<[Tab,string,React.ReactNode]>= [['overview','القيادة',<Landmark/>],['office360','مساحة المكتب المتعاقد',<Building2/>],['items','الأدوية والمعدات',<Boxes/>],['customers','العملاء · Customer 360',<Users/>],['offices','المكاتب',<Building2/>],['partners','الشركات والشركاء',<Store/>],['branches','الفروع والمحافظات',<MapPin/>],['contracts','العقود والأسعار',<FileText/>],['catalog','الكتالوج والتوفر',<Boxes/>],['markets','الأسواق والتسويق',<ShoppingCart/>],['labs','المختبرات والفقاسات',<FlaskConical/>],['route','أقرب فرع',<Route/>],['procurement','المشتريات والتسوية',<ShieldCheck/>],['communication','AI والتواصل',<MessagesSquare/>],['about','هوية النظام',<Info/>]];
-const tabGroups:Array<{name:string;items:Tab[]}>= [
- {name:'المنصة والعمليات',items:['overview','customers','procurement','communication']},
- {name:'المكاتب المتعاقدة',items:['office360','items','offices','contracts']},
- {name:'شركات التسويق والأسواق',items:['partners','markets']},
- {name:'الفروع والمنتجات والخدمات',items:['branches','catalog','labs','route']},
- {name:'الإعدادات',items:['about']}
+const tabs: Array<[Tab, string, React.ReactNode]> = [
+  ['overview', 'القيادة', <Landmark />],
+  ['office360', 'مساحة المكتب المتعاقد', <Building2 />],
+  ['items', 'الأدوية والمعدات', <Boxes />],
+  ['chicks', 'الكتاكيت والدفعات', <Boxes />],
+  ['feed', 'الأعلاف', <Boxes />],
+  ['treasury', 'الخزينة والسندات', <Landmark />],
+  ['customers', 'العملاء · Customer 360', <Users />],
+  ['offices', 'المكاتب', <Building2 />],
+  ['partners', 'الشركات والشركاء', <Store />],
+  ['branches', 'الفروع والمحافظات', <MapPin />],
+  ['contracts', 'العقود والأسعار', <FileText />],
+  ['catalog', 'الكتالوج والتوفر', <Boxes />],
+  ['markets', 'الأسواق والتسويق', <ShoppingCart />],
+  ['labs', 'المختبرات والفقاسات', <FlaskConical />],
+  ['route', 'أقرب فرع', <Route />],
+  ['procurement', 'المشتريات والتسوية', <ShieldCheck />],
+  ['communication', 'AI والتواصل', <MessagesSquare />],
+  ['about', 'هوية النظام', <Info />]
+];
+const tabGroups: Array<{ name: string; items: Tab[] }> = [
+  { name: 'المنصة والعمليات', items: ['overview', 'customers', 'procurement', 'communication'] },
+  { name: 'المكاتب المتعاقدة', items: ['office360', 'items', 'chicks', 'feed', 'treasury', 'offices', 'contracts'] },
+  { name: 'شركات التسويق والأسواق', items: ['partners', 'markets'] },
+  { name: 'الفروع والمنتجات والخدمات', items: ['branches', 'catalog', 'labs', 'route'] },
+  { name: 'الإعدادات', items: ['about'] }
 ];
 const tabLabel=(id:Tab)=>tabs.find(([key])=>key===id)?.[1]||id;
 const fmt=(n:number)=>new Intl.NumberFormat('en-US',{maximumFractionDigits:2}).format(n||0);
@@ -62,6 +103,10 @@ export const CustomerOfficePartnerNetworkR7:React.FC<Props>=({business,managed,p
   {tab==='overview'&&<Overview net={net} managed={managed} platform={platform} issues={issues} managedUnlinked={managedUnlinked.length} reconcile={reconcile}/>} 
   {tab==='office360'&&<Office360ErrorBoundary><Office360 net={net} managed={managed} business={business} currentUser={currentUser}/></Office360ErrorBoundary> }
   {tab==='items'&&<Office360ErrorBoundary><OfficeItemsWorkspace/></Office360ErrorBoundary>}
+      {tab === 'chicks' && (<Office360ErrorBoundary><OfficeOperationsWorkspace section="chicks" /></Office360ErrorBoundary>)}
+      {tab === 'feed' && (<Office360ErrorBoundary><OfficeOperationsWorkspace section="feed" /></Office360ErrorBoundary>)}
+      {tab === 'treasury' && (<Office360ErrorBoundary><OfficeOperationsWorkspace section="treasury" /></Office360ErrorBoundary>)}
+
   {tab==='customers'&&<Customers net={net} q={q} setQ={setQ} update={update}/>} 
   {tab==='offices'&&<Offices net={net} update={update} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 
   {tab==='partners'&&<Partners net={net} q={q} setQ={setQ} update={update} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 
@@ -320,3 +365,52 @@ const Procurement=({business,managed}:any)=><div className="r7-grid"><Panel titl
 const Communication=({managed,platform}:any)=><div className="r7-grid"><Panel title="التواصل والـ Handoffs"><Table h={['المجموعة','الفئة','المزرعة','السياسة','الحالة']} r={managed.chat_groups.map((x:any)=>[x.title,x.category,managed.farms.find((f:any)=>f.id===x.farm_id)?.name||'—',x.posting_policy,x.status])}/></Panel><Panel title="AI Governance"><ul className="r7-list"><li>AI: تحليل التشغيل والمخاطر والمقارنة والتوصية.</li><li>Supervisor: بوابة مراجعة قبل تحرير التقرير للتحليل.</li><li>Veterinarian: القرار النهائي للعلاج/اللقاح.</li><li>Consultant: رأي استشاري للحالات المصعدة.</li><li>LabReviewer: اعتماد النتائج المخبرية وفق الصلاحية.</li><li>Chat/voice/media remain linked to farm/flock/case context.</li></ul></Panel><Panel title="شبكة الموردين الحالية"><Table h={['المورد','الفئات','الهاتف','العقد','الحالة']} r={platform.suppliers.map((x:any)=>[x.name,x.categories.join('، '),x.phone,x.contract_number,x.status])}/></Panel></div>;
 const About=({net}:any)=><div className="r7-grid"><Panel title="System Identity"><div className="r7-brand"><div className="r7-logo">AN</div><div><h2>{net.brand_name}</h2><p>{net.brand_name_ar}</p><b>Product Owner: {net.product_owner_name}</b><small>V20.2.9 · Windows/Web Control Center · R7 Consolidation</small></div></div></Panel><Panel title="سياسة التطوير"><ul className="r7-list"><li>لا حذف صامت للأقسام أو البيانات التاريخية.</li><li>كل إصدار جديد cumulative/additive.</li><li>إزالة التكرار تعني توحيد source of truth مع إبقاء سجل الترحيل.</li><li>Windows/Web هو المرجع الحالي؛ Android مؤجل.</li><li>الانتقال للقسم التالي بعد قبول مرئي End-to-End.</li></ul></Panel></div>;
 const SearchBox=({q,setQ}:any)=><label className="r7-search"><Search/><input value={q} onChange={e=>setQ(e.target.value)} placeholder="بحث..."/></label>;
+
+
+const OfficeOperationsWorkspace: React.FC<{ section: 'chicks' | 'feed' | 'treasury'; }> = ({ section }) => {
+  const [offices, setOffices] = useState<Array<{ id: string; code: string; name: string }>>([]);
+  const [officeId, setOfficeId] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  useEffect(() => {
+    const controller = new AbortController();
+    setLoading(true); setError(''); setOffices([]); setOfficeId('');
+    apiService.getAuthorizedContractedOfficesV2026(controller.signal).then(result => {
+      if (controller.signal.aborted) return;
+      setOffices(Array.isArray(result) ? result.filter(office => office && typeof office.id === 'string' && office.id.length > 0) : []);
+    }).catch(cause => {
+      if (!controller.signal.aborted) setError(cause instanceof Error ? cause.message : 'تعذر تحميل المكاتب');
+    }).finally(() => {
+      if (!controller.signal.aborted) setLoading(false);
+    });
+    return () => controller.abort();
+  }, []);
+  const selectedOfficeId = offices.some(office => office.id === officeId) ? officeId : (offices[0]?.id || '');
+  const title = section === 'chicks' ? 'الكتاكيت والدفعات' : section === 'feed' ? 'الأعلاف' : 'الخزينة والسندات';
+  return (
+    <div className="r7-grid one">
+      <section className="r7-panel">
+        <header><h3>{title}</h3></header>
+        <div className="r7-body">
+          <p>اختر المكتب المتعاقد الذي تريد إدارة بياناته.</p>
+          {loading && <p role="status">جارٍ تحميل المكاتب المصرح بها...</p>}
+          {error && <p role="alert">{error}</p>}
+          {!loading && !error && offices.length === 0 && <p>لا توجد مكاتب مصرح بها لهذا الحساب.</p>}
+          {!loading && !error && offices.length > 0 && (
+            <>
+              <div className="r7-form">
+                <label htmlFor={`office-${section}`}>المكتب المتعاقد</label>
+                <select id={`office-${section}`} value={selectedOfficeId} onChange={event => setOfficeId(event.target.value)}>
+                  {offices.map(office => (<option key={office.id} value={office.id}>{office.name} ({office.code})</option>))}
+                </select>
+              </div>
+              {selectedOfficeId && section === 'chicks' && <ChicksPage key={`chicks-${selectedOfficeId}`} officeId={selectedOfficeId} />}
+              {selectedOfficeId && section === 'feed' && <FeedPage key={`feed-${selectedOfficeId}`} officeId={selectedOfficeId} />}
+              {selectedOfficeId && section === 'treasury' && <TreasuryPage key={`treasury-${selectedOfficeId}`} officeId={selectedOfficeId} />}
+            </>
+          )}
+        </div>
+      </section>
+    </div>
+  );
+};

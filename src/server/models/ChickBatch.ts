@@ -1,0 +1,91 @@
+cat > src/server/models/ChickBatch.ts << 'EOF'
+import mongoose, { Schema } from 'mongoose';
+
+export type Currency = 'SAR' | 'USD' | 'YER_NEW' | 'YER_OLD';
+export type ChickStatus = 'DRAFT' | 'PENDING_INVENTORY';
+
+export interface ChickBatch {
+  id: string;
+  officeId: string;
+  batchNumber: string;
+  supplier: string;
+  receivedDate: string;
+  quantityReceived: number;
+  mortality: number;
+  transportCost: string;
+  wagesCost: string;
+  purchasePrice: string;
+  currency: Currency;
+  paymentStatus: 'CASH' | 'CREDIT';
+  invoiceId: string;
+  status: ChickStatus;
+  version: number;
+}
+
+const schema = new Schema<ChickBatch>({
+  id: { type: String, required: true, unique: true },
+  officeId: { type: String, required: true, index: true },
+  batchNumber: { type: String, required: true, trim: true },
+  supplier: { type: String, required: true, trim: true },
+  receivedDate: { type: String, required: true },
+  quantityReceived: { type: Number, required: true, min: 1 },
+  mortality: { type: Number, required: true, min: 0, default: 0 },
+  transportCost: { type: String, required: true },
+  wagesCost: { type: String, required: true },
+  purchasePrice: { type: String, required: true },
+  currency: {
+    type: String,
+    enum: ['SAR', 'USD', 'YER_NEW', 'YER_OLD'],
+    required: true
+  },
+  paymentStatus: {
+    type: String,
+    enum: ['CASH', 'CREDIT'],
+    required: true
+  },
+  invoiceId: { type: String, default: '' },
+  status: {
+    type: String,
+    enum: ['DRAFT', 'PENDING_INVENTORY'],
+    default: 'DRAFT'
+  },
+  version: { type: Number, required: true, default: 1 }
+}, {
+  timestamps: true,
+  collection: 'office_chick_batches',
+  versionKey: false
+});
+
+schema.index(
+  { officeId: 1, batchNumber: 1 },
+  { unique: true }
+);
+
+export const ChickBatchModel =
+  (mongoose.models.OfficeChickBatch as mongoose.Model<ChickBatch>) ||
+  mongoose.model<ChickBatch>('OfficeChickBatch', schema);
+
+export function validateChickBatch(
+  value: Record<string, unknown>
+): void {
+  if (
+    !Number.isSafeInteger(value.quantityReceived) ||
+    Number(value.quantityReceived) <= 0
+  ) throw new Error('invalid_quantity');
+
+  if (
+    !Number.isSafeInteger(value.mortality) ||
+    Number(value.mortality) < 0 ||
+    Number(value.mortality) > Number(value.quantityReceived)
+  ) throw new Error('invalid_mortality');
+
+  for (const field of [
+    'transportCost', 'wagesCost', 'purchasePrice'
+  ]) {
+    if (
+      typeof value[field] !== 'string' ||
+      !/^(0|[1-9]\d*)(\.\d+)?$/.test(value[field] as string)
+    ) throw new Error(`invalid_${field}`);
+  }
+}
+EOF

@@ -1,3 +1,6 @@
+import { createOfficeChicksRouter } from './src/server/routes/chicksApi';
+import { createOfficeFeedRouter } from './src/server/routes/feedApi';
+import { createOfficeTreasuryRouter } from './src/server/routes/treasuryApi';
 import { createOfficeItemsRouter } from './src/server/routes/itemsApi';
 import { mongoItemsRepository } from './src/server/repositories/mongoItemsRepository';
 import { createOfficeContactsRouter } from './src/server/routes/contactsApi';
@@ -3506,7 +3509,60 @@ app.use(
     repository: mongoItemsRepository
   })
 );
+const authorizeOfficeOperations: express.RequestHandler =
+  (req, res, next) => {
+    const officeId = String(req.params.officeId || '');
 
+    const office =
+      enterpriseV11.multi_business_v20_2_3.business_units.find(
+        unit =>
+          unit.id === officeId &&
+          unit.type === 'office' &&
+          unit.status === 'active'
+      );
+
+    if (!office) {
+      res.status(404).json({
+        success: false,
+        error: 'office_not_found'
+      });
+      return;
+    }
+
+    const mode = req.method.toUpperCase() === 'GET'
+      ? 'read'
+      : 'write';
+
+    if (!businessOr403V2023(res, officeId, mode)) return;
+
+    next();
+  };
+
+app.use(
+  '/api/office/:officeId/chicks',
+  createOfficeChicksRouter({
+    authenticate: requireAuthV2021(),
+    authorizeOffice: authorizeOfficeOperations
+  })
+);
+
+app.use(
+  '/api/office/:officeId/feed',
+  createOfficeFeedRouter({
+    authenticate: requireAuthV2021(),
+    authorizeOffice: authorizeOfficeOperations
+  })
+);
+
+app.use(
+  '/api/office/:officeId/treasury',
+  createOfficeTreasuryRouter({
+    authenticate: requireAuthV2021(),
+    authorizeOffice: authorizeOfficeOperations
+  })
+);
+
+async function startServer() {
 async function startServer() {
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
