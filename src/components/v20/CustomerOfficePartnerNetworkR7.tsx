@@ -1,13 +1,13 @@
 import React,{useEffect,useMemo,useState} from 'react';
-import {Building2,Users,MapPin,FileText,Boxes,FlaskConical,Store,Route,ShoppingCart,MessagesSquare,BrainCircuit,Printer,Search,ShieldCheck,PlusCircle,Phone,Landmark,Info} from 'lucide-react';
+import { Boxes, Building2,Users,MapPin,FileText,Boxes,FlaskConical,Store,Route,ShoppingCart,MessagesSquare,BrainCircuit,Printer,Search,ShieldCheck,PlusCircle,Phone,Landmark,Info} from 'lucide-react';
 import type {MultiBusinessEnterpriseStateV2023} from '../../modules/v20/MultiBusinessEnterpriseV20_2_3';
 import type {ManagedOperationsStateV197} from '../../modules/managed/ManagedPoultryOperationsV19_7';
 import type {PlatformCoreStateV195,PlatformRoleV195} from '../../modules/platform/PlatformCoreV19_5';
-import {addCustomerR7,addOfficeR7,addPartnerR7,addRouteRequestR7,nearestEligibleBranchesR7,validatePartnerOfficeCustomerNetworkR7,type R7Offer,type R7CustomerJourney} from '../../modules/v20/PartnerOfficeCustomerNetworkR7';
+import { Boxes, addCustomerR7,addOfficeR7,addPartnerR7,addRouteRequestR7,nearestEligibleBranchesR7,validatePartnerOfficeCustomerNetworkR7,type R7Offer,type R7CustomerJourney} from '../../modules/v20/PartnerOfficeCustomerNetworkR7';
 import './CustomerOfficePartnerNetworkR7.css';
-import {apiService} from '../../services/apiService';
+import { Boxes, apiService} from '../../services/apiService';
 import ItemsPage from '../office/ItemsPage';
-import {Office360ErrorBoundary} from '../office/Office360ErrorBoundary';
+import { Boxes, Office360ErrorBoundary} from '../office/Office360ErrorBoundary';
 
 type Props={business:MultiBusinessEnterpriseStateV2023;managed:ManagedOperationsStateV197;platform:PlatformCoreStateV195;currentUser:{id:string;name:string;role:PlatformRoleV195};onBusinessChange:(n:MultiBusinessEnterpriseStateV2023)=>void;onManagedChange:(n:ManagedOperationsStateV197)=>void};
 type Tab='overview'|'office360'|'customers', 'items'|'offices'|'partners'|'branches'|'contracts'|'catalog'|'markets'|'labs'|'route'|'procurement'|'communication'|'about';
