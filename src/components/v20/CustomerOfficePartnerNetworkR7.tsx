@@ -36,6 +36,7 @@ export const CustomerOfficePartnerNetworkR7:React.FC<Props>=({business,managed,p
    }catch(e){setIdentityLoaded(false);setIdentityError(e instanceof Error?e.message:String(e));}
    finally{setIdentityBusy(false);}
  };
+ useEffect(()=>{void refreshIdentity();},[]);
  const commitIdentity=async(operation:()=>Promise<void>)=>{
    setIdentityBusy(true);
    try{await operation();await refreshIdentity();show('تم الحفظ في الخادم وتحديث البيانات');}
@@ -142,7 +143,48 @@ const Customers = ({ net, q, setQ, update }: any) => {
   );
 };
 
-const Offices=({net,update,commitIdentity,identityLoaded,identityBusy}:any)=>{const [name,setName]=useState(''),[gov,setGov]=useState('صنعاء'),[phone,setPhone]=useState(''),[manager,setManager]=useState(''),[renameId,setRenameId]=useState(''),[renameName,setRenameName]=useState('');const add=()=>{if(!name.trim()||!identityLoaded)return;void commitIdentity(async()=>{await apiService.createR7Office({code:`OFF-${Date.now()}`,name:name.trim(),office_type:'mixed',governorate:gov,district:'',address:'',phone,manager_name:manager,responsible_roles:['manager','veterinarian','accountant','procurement','inventory'],warehouse_ids:[],status:'active'});setName('')})};return <div className="r7-grid"><Panel title="إنشاء مكتب"><div className="r7-form"><input placeholder="اسم المكتب" value={name} onChange={e=>setName(e.target.value)}/><input placeholder="المحافظة" value={gov} onChange={e=>setGov(e.target.value)}/><input placeholder="الهاتف" value={phone} onChange={e=>setPhone(e.target.value)}/><input placeholder="المدير" value={manager} onChange={e=>setManager(e.target.value)}/><button className="r7-primary" onClick={add} disabled={!identityLoaded||identityBusy||!name.trim()}><PlusCircle/>حفظ المكتب بالخادم</button></div></Panel><Panel title="تعديل اسم مكتب محفوظ بالخادم"><div className="r7-form"><select value={renameId} onChange={e=>{setRenameId(e.target.value);setRenameName(net.offices.find((o:any)=>o.id===e.target.value)?.name||'')}}><option value="">اختر المكتب</option>{net.offices.map((o:any)=><option key={o.id} value={o.id}>{o.name}</option>)}</select><input value={renameName} onChange={e=>setRenameName(e.target.value)} placeholder="الاسم الجديد"/><button disabled={!identityLoaded||identityBusy||!renameId||!renameName.trim()} onClick={()=>void commitIdentity(()=>apiService.renameR7Office(renameId,renameName.trim()))}>حفظ الاسم بالخادم</button></div></Panel><Panel title="Office 360"><Table h={['الكود','المكتب','النوع','المحافظة','الهاتف','المدير','المسؤوليات']} r={net.offices.map((o:any)=>[o.code,o.name,o.office_type,o.governorate,o.phone,o.manager_name,o.responsible_roles.join('، ')])}/></Panel></div>};
+const Offices=({net,commitIdentity,identityLoaded,identityBusy}:any)=>{
+ const [name,setName]=useState('');
+ const [gov,setGov]=useState('صنعاء');
+ const [phone,setPhone]=useState('');
+ const [manager,setManager]=useState('');
+ const [renameId,setRenameId]=useState('');
+ const [renameName,setRenameName]=useState('');
+ const [saveError,setSaveError]=useState('');
+ const add=async()=>{
+  setSaveError('');
+  if(!name.trim()){setSaveError('يجب إدخال اسم المكتب.');return;}
+  if(!gov.trim()){setSaveError('يجب إدخال المحافظة.');return;}
+  if(identityBusy){setSaveError('توجد عملية أخرى قيد التنفيذ.');return;}
+  if(!identityLoaded){setSaveError('لم يتم تحميل الهوية من الخادم. يرجى إعادة المحاولة.');return;}
+  try{
+   await commitIdentity(async()=>{
+    await apiService.createR7Office({code:`OFF-${Date.now()}`,name:name.trim(),office_type:'mixed',governorate:gov.trim(),district:'',address:'',phone:phone.trim(),manager_name:manager.trim(),responsible_roles:['manager','veterinarian','accountant','procurement','inventory'],warehouse_ids:[],status:'active'});
+    setName('');
+   });
+  }catch(error){
+   const message=error instanceof Error?error.message:'فشل حفظ المكتب';
+   console.error('[Office360] Save office failed:',error);
+   setSaveError(message);
+  }
+ };
+ return <div className="r7-grid">
+  <Panel title="إنشاء مكتب"><div className="r7-form">
+   <input placeholder="اسم المكتب" value={name} onChange={e=>setName(e.target.value)}/>
+   <input placeholder="المحافظة" value={gov} onChange={e=>setGov(e.target.value)}/>
+   <input placeholder="الهاتف" value={phone} onChange={e=>setPhone(e.target.value)}/>
+   <input placeholder="المدير" value={manager} onChange={e=>setManager(e.target.value)}/>
+   <button type="button" className="r7-primary" onClick={()=>void add()} disabled={identityBusy||!identityLoaded||!name.trim()||!gov.trim()}><PlusCircle/>{identityBusy?'جارٍ الحفظ...':'حفظ المكتب بالخادم'}</button>
+   {saveError&&<p role="alert" style={{color:'#f87171'}}>{saveError}</p>}
+  </div></Panel>
+  <Panel title="تعديل اسم مكتب محفوظ بالخادم"><div className="r7-form">
+   <select value={renameId} onChange={e=>{setRenameId(e.target.value);setRenameName(net.offices.find((o:any)=>o.id===e.target.value)?.name||'')}}><option value="">اختر المكتب</option>{net.offices.map((o:any)=><option key={o.id} value={o.id}>{o.name}</option>)}</select>
+   <input value={renameName} onChange={e=>setRenameName(e.target.value)} placeholder="الاسم الجديد"/>
+   <button disabled={!identityLoaded||identityBusy||!renameId||!renameName.trim()} onClick={()=>void commitIdentity(()=>apiService.renameR7Office(renameId,renameName.trim()))}>حفظ الاسم بالخادم</button>
+  </div></Panel>
+  <Panel title="Office 360"><Table h={['الكود','المكتب','النوع','المحافظة','الهاتف','المدير','المسؤوليات']} r={net.offices.map((o:any)=>[o.code,o.name,o.office_type,o.governorate,o.phone,o.manager_name,Array.isArray(o.responsible_roles)?o.responsible_roles.join('، '):'—'])}/></Panel>
+ </div>;
+};
 const Partners=({net,q,setQ,update,commitIdentity,identityLoaded,identityBusy}:any)=>{const [name,setName]=useState(''),[phone,setPhone]=useState(''),[kind,setKind]=useState('company'),[gov,setGov]=useState('صنعاء');const add=()=>{if(!name)return;if(kind==='marketing_company'){
   if(!identityLoaded)return;
   void commitIdentity(()=>apiService.createR7MarketingCompany({code:`MKT-${Date.now()}`,name:name.trim(),phone,governorates_served:[gov],preferred_currency:'SAR',credit_days:0,contact_name:'',payment_terms:'حسب العقد'}));setName('');return;
