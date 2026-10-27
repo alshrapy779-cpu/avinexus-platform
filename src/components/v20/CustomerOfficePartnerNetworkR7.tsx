@@ -6,6 +6,7 @@ import type {PlatformCoreStateV195,PlatformRoleV195} from '../../modules/platfor
 import {addCustomerR7,addOfficeR7,addPartnerR7,addRouteRequestR7,nearestEligibleBranchesR7,validatePartnerOfficeCustomerNetworkR7,type R7Offer,type R7CustomerJourney} from '../../modules/v20/PartnerOfficeCustomerNetworkR7';
 import './CustomerOfficePartnerNetworkR7.css';
 import {apiService} from '../../services/apiService';
+import {Office360ErrorBoundary} from '../office/Office360ErrorBoundary';
 
 type Props={business:MultiBusinessEnterpriseStateV2023;managed:ManagedOperationsStateV197;platform:PlatformCoreStateV195;currentUser:{id:string;name:string;role:PlatformRoleV195};onBusinessChange:(n:MultiBusinessEnterpriseStateV2023)=>void;onManagedChange:(n:ManagedOperationsStateV197)=>void};
 type Tab='overview'|'office360'|'customers'|'offices'|'partners'|'branches'|'contracts'|'catalog'|'markets'|'labs'|'route'|'procurement'|'communication'|'about';
@@ -57,7 +58,7 @@ export const CustomerOfficePartnerNetworkR7:React.FC<Props>=({business,managed,p
   </nav>
   <div className="r7-nav" aria-label="أقسام الشبكة">{tabGroups.map(group=><div className="r7-nav-group" key={group.name}><strong>{group.name}</strong><div className="r7-nav-group-items">{group.items.map(id=>{const item=tabs.find(([key])=>key===id);if(!item)return null;const [,l,ic]=item;return <button type="button" key={id} aria-current={tab===id?'page':undefined} className={tab===id?'active':''} onClick={()=>setTab(id)}>{React.cloneElement(ic as React.ReactElement,{className:'r7-ico'})}{l}</button>;})}</div></div>)}</div>
   {tab==='overview'&&<Overview net={net} managed={managed} platform={platform} issues={issues} managedUnlinked={managedUnlinked.length} reconcile={reconcile}/>} 
-  {tab==='office360'&&<Office360 net={net} managed={managed} business={business} currentUser={currentUser}/> }
+  {tab==='office360'&&<Office360ErrorBoundary><Office360 net={net} managed={managed} business={business} currentUser={currentUser}/></Office360ErrorBoundary> }
   {tab==='customers'&&<Customers net={net} q={q} setQ={setQ} update={update}/>} 
   {tab==='offices'&&<Offices net={net} update={update} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 
   {tab==='partners'&&<Partners net={net} q={q} setQ={setQ} update={update} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 
@@ -77,7 +78,8 @@ const K:React.FC<{l:string;v:React.ReactNode;w?:boolean}>=({l,v,w})=><div classN
 const Panel:React.FC<{title:string;children:React.ReactNode;actions?:React.ReactNode}>=({title,children,actions})=><section className="r7-panel"><header><h3>{title}</h3>{actions}</header><div className="r7-body">{children}</div></section>;
 const Table:React.FC<{h:string[];r:React.ReactNode[][]}>=({h,r})=><div className="r7-table-wrap"><table><thead><tr>{h.map(x=><th key={x}>{x}</th>)}</tr></thead><tbody>{r.length?r.map((x,i)=><tr key={i}>{x.map((v,j)=><td key={j}>{v}</td>)}</tr>):<tr><td colSpan={h.length}>لا توجد بيانات.</td></tr>}</tbody></table></div>;
 const Overview=({net,managed,platform,issues,managedUnlinked,reconcile}:any)=><div className="r7-grid"><Panel title="ملخص الشبكة"><div className="r7-kpis"><K l="المحافظات المرجعية" v={net.governorates.length}/><K l="العملاء/العلاقات" v={net.customers.length}/><K l="المكاتب" v={net.offices.length}/><K l="الشركات/الشركاء" v={net.organizations.length}/><K l="الفروع" v={net.branches.length}/><K l="العقود" v={net.contracts.length}/><K l="العروض/الأسعار" v={net.offers.length}/><K l="الأسواق" v={net.regional_markets.length}/><K l="أسعار مختبر" v={net.lab_prices.length}/><K l="عقود مزارع غير مربوطة" v={managedUnlinked} w={managedUnlinked>0}/><K l="مشاكل التكامل" v={issues.length} w={issues.length>0}/><K l="كتالوج مؤسسي" v={platform.catalog.length}/><K l="مزارع مُدارة" v={managed.farms.length}/></div></Panel><Panel title="سلسلة القبول النهائية"><div className="r7-flow">{['Customer / Farm Owner','Canonical Office ID','Company / Feed Mill / Lab / Hatchery','Contract + Historical Pricing','Branch + Governorate + Availability','Nearest Branch','Purchase / Order','Receipt / Section 7','Invoice / Section 12','Reports / Printing / History'].map((x,i)=><div key={x}><span>{i+1}</span><b>{x}</b></div>)}</div>{managedUnlinked>0&&<button className="r7-primary" onClick={reconcile}>ربط العقود القديمة تلقائيًا بالمكتب canonical</button>}</Panel><Panel title="قواعد عدم التكرار"><ul className="r7-list"><li>Customer identity واحد، وعلاقات متعددة حسب الرحلة.</li><li>office_id هو المرجع التشغيلي للعقد؛ office_name يبقى للعرض والتوافق.</li><li>Section 7 وحده يملك حركات المخزون.</li><li>Section 12 وحده يملك GL/AP/AR/Treasury.</li><li>التاريخ السعري والعقود Append-only/versioned.</li><li>الطبيب يملك القرار الطبي النهائي؛ AI استشاري.</li></ul></Panel><Panel title="التكامل/المشاكل">{issues.length?<ul className="r7-list danger">{issues.map((x:string)=><li key={x}>{x}</li>)}</ul>:<div className="r7-ok">PASS — لا توجد علاقات orphan في شبكة R7.</div>}</Panel></div>;
-const Office360=({business}:any)=>{
+const Office360=(_props:any)=>{
+ const safeRows=(value:unknown):any[]=>Array.isArray(value)?value:[];
  const [offices,setOffices]=useState<Array<{id:string;name:string;code:string}>>([]);
  const [listLoading,setListLoading]=useState(true);
  const [officeId,setOfficeId]=useState('');
@@ -88,7 +90,7 @@ const Office360=({business}:any)=>{
  useEffect(()=>{
   const controller=new AbortController();setListLoading(true);setOffices([]);setWorkspace(null);setTreasury(null);
   apiService.getAuthorizedContractedOfficesV2026(controller.signal)
-   .then(items=>{if(!controller.signal.aborted)setOffices(items);})
+   .then(items=>{if(!controller.signal.aborted)setOffices(Array.isArray(items)?items.filter((x:any)=>x&&typeof x.id==='string'):[]);})
    .catch(e=>{if(!controller.signal.aborted)setError(String(e.message||e));})
    .finally(()=>{if(!controller.signal.aborted)setListLoading(false);});
   return ()=>controller.abort();
@@ -100,7 +102,7 @@ const Office360=({business}:any)=>{
   setError('');
   const controller=new AbortController();setLoading(true);
   Promise.all([apiService.getContractedOfficeWorkspaceV2026(selectedId,controller.signal),apiService.getContractedOfficeTreasuryV2026(selectedId,controller.signal)])
-   .then(([w,t])=>{if(!controller.signal.aborted){setWorkspace(w);setTreasury(t);}})
+   .then(([w,t])=>{if(!controller.signal.aborted){setWorkspace(w&&typeof w==='object'?w:null);setTreasury(t&&typeof t==='object'?t:null);}})
    .catch((e:any)=>{if(!controller.signal.aborted)setError(String(e.message||e));})
    .finally(()=>{if(!controller.signal.aborted)setLoading(false);});
   return ()=>controller.abort();
@@ -112,11 +114,11 @@ const Office360=({business}:any)=>{
   {!listLoading&&!offices.length&&!error&&<p>لا توجد مكاتب متعاقدة مصرح بها لحسابك.</p>}
   {loading&&<p role="status">جارٍ تحميل بيانات المكتب والتحقق من الصلاحيات…</p>}
   {error&&<p role="alert">{error} — لم تُعرض أي بيانات مالية بديلة.</p>}
-  {workspace&&!loading&&!error&&<><div className="r7-kpis"><K l="العقود النشطة" v={workspace.contracts?.length||0}/><K l="المزارع المرتبطة" v={workspace.farm_ids?.length||0}/><K l="الموظفون" v={workspace.staff?.length||0}/><K l="المستندات" v={workspace.financial_documents?.length||0}/></div>
-   <Table h={['رقم العقد','المزرعة/المزارع','الحالة']} r={(workspace.contracts||[]).map((c:any)=>[c.contract_number||c.id,(c.linked_farm_ids||[]).join('، '),c.status])}/>
-   <Table h={['الموظف','الدور','المزارع']} r={(workspace.staff||[]).map((x:any)=>[x.user_id,x.role,(x.farm_ids||[]).join('، ')])}/>
-   <Table h={['المستند','النوع','العملة','المبلغ']} r={(workspace.financial_documents||[]).map((d:any)=>[d.document_number||d.id,d.document_type,d.currency,d.original_amount])}/>
-   <Table h={['الحساب','العملة','البنك']} r={(workspace.treasury_accounts||[]).map((a:any)=>[a.name,a.currency,a.bank_name||'—'])}/>
+  {workspace&&!loading&&!error&&<><div className="r7-kpis"><K l="العقود النشطة" v={safeRows(workspace.contracts).length}/><K l="المزارع المرتبطة" v={safeRows(workspace.farm_ids).length}/><K l="الموظفون" v={safeRows(workspace.staff).length}/><K l="المستندات" v={safeRows(workspace.financial_documents).length}/></div>
+   <Table h={['رقم العقد','المزرعة/المزارع','الحالة']} r={safeRows(workspace.contracts).map((c:any)=>[c?.contract_number||c?.id,safeRows(c?.linked_farm_ids).join('، '),c?.status])}/>
+   <Table h={['الموظف','الدور','المزارع']} r={safeRows(workspace.staff).map((x:any)=>[x?.user_id,x?.role,safeRows(x?.farm_ids).join('، ')])}/>
+   <Table h={['المستند','النوع','العملة','المبلغ']} r={safeRows(workspace.financial_documents).map((d:any)=>[d?.document_number||d?.id,d?.document_type,d?.currency,d?.original_amount])}/>
+   <Table h={['الحساب','العملة','البنك']} r={safeRows(workspace.treasury_accounts).map((a:any)=>[a?.name,a?.currency,a?.bank_name||'—'])}/>
    {treasury&&<p>تم تحميل مطابقة الخزينة من الخادم. لا تُجمع أرصدة العملات المختلفة في إجمالي واحد.</p>}
    <p>جميع العمليات المحاسبية تتبع Section 12، وحركات المخزون Section 7. هذا العرض للقراءة فقط.</p>
   </>}
