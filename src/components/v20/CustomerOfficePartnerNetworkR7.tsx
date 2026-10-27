@@ -7,14 +7,15 @@ import {addCustomerR7,addOfficeR7,addPartnerR7,addRouteRequestR7,nearestEligible
 import './CustomerOfficePartnerNetworkR7.css';
 import {apiService} from '../../services/apiService';
 import {Office360ErrorBoundary} from '../office/Office360ErrorBoundary';
+import ItemsPage from '../office/ItemsPage';
 
 type Props={business:MultiBusinessEnterpriseStateV2023;managed:ManagedOperationsStateV197;platform:PlatformCoreStateV195;currentUser:{id:string;name:string;role:PlatformRoleV195};onBusinessChange:(n:MultiBusinessEnterpriseStateV2023)=>void;onManagedChange:(n:ManagedOperationsStateV197)=>void};
-type Tab='overview'|'office360'|'customers'|'offices'|'partners'|'branches'|'contracts'|'catalog'|'markets'|'labs'|'route'|'procurement'|'communication'|'about'|'items';
+type Tab='overview'|'office360'|'customers'|'offices'|'partners'|'branches'|'contracts'|'catalog'|'markets'|'labs'|'route'|'procurement'|'communication'|'items'|'about';
 const journeyName:Record<R7CustomerJourney,string>={retail:'عميل متجر/Marketplace',guest:'ضيف/Guest',managed_farm:'عميل إدارة مزرعة',farm_owner_seller:'مالك مزرعة/بائع قطيع',marketing_partner:'شريك/مكتب تسويق'};
-const tabs:Array<[Tab,string,React.ReactNode]>= [['overview','القيادة',<Landmark/>],['office360','مساحة المكتب المتعاقد',<Building2/>],['customers','العملاء · Customer 360',<Users/>],['items','الأدوية والمعدات',<Boxes/>],['offices','المكاتب',<Building2/>],['partners','الشركات والشركاء',<Store/>],['branches','الفروع والمحافظات',<MapPin/>],['contracts','العقود والأسعار',<FileText/>],['catalog','الكتالوج والتوفر',<Boxes/>],['markets','الأسواق والتسويق',<ShoppingCart/>],['labs','المختبرات والفقاسات',<FlaskConical/>],['route','أقرب فرع',<Route/>],['procurement','المشتريات والتسوية',<ShieldCheck/>],['communication','AI والتواصل',<MessagesSquare/>],['about','هوية النظام',<Info/>]];
+const tabs:Array<[Tab,string,React.ReactNode]>= [['overview','القيادة',<Landmark/>],['office360','مساحة المكتب المتعاقد',<Building2/>],['items','الأدوية والمعدات',<Boxes/>],['customers','العملاء · Customer 360',<Users/>],['offices','المكاتب',<Building2/>],['partners','الشركات والشركاء',<Store/>],['branches','الفروع والمحافظات',<MapPin/>],['contracts','العقود والأسعار',<FileText/>],['catalog','الكتالوج والتوفر',<Boxes/>],['markets','الأسواق والتسويق',<ShoppingCart/>],['labs','المختبرات والفقاسات',<FlaskConical/>],['route','أقرب فرع',<Route/>],['procurement','المشتريات والتسوية',<ShieldCheck/>],['communication','AI والتواصل',<MessagesSquare/>],['about','هوية النظام',<Info/>]];
 const tabGroups:Array<{name:string;items:Tab[]}>= [
- {name:'المنصة والعمليات',items:['overview','customers','items','procurement','communication']},
- {name:'المكاتب المتعاقدة',items:['office360','offices','contracts']},
+ {name:'المنصة والعمليات',items:['overview','customers','procurement','communication']},
+ {name:'المكاتب المتعاقدة',items:['office360','items','offices','contracts']},
  {name:'شركات التسويق والأسواق',items:['partners','markets']},
  {name:'الفروع والمنتجات والخدمات',items:['branches','catalog','labs','route']},
  {name:'الإعدادات',items:['about']}
@@ -36,6 +37,7 @@ export const CustomerOfficePartnerNetworkR7:React.FC<Props>=({business,managed,p
    }catch(e){setIdentityLoaded(false);setIdentityError(e instanceof Error?e.message:String(e));}
    finally{setIdentityBusy(false);}
  };
+ useEffect(()=>{void refreshIdentity();},[]);
  const commitIdentity=async(operation:()=>Promise<void>)=>{
    setIdentityBusy(true);
    try{await operation();await refreshIdentity();show('تم الحفظ في الخادم وتحديث البيانات');}
@@ -59,6 +61,7 @@ export const CustomerOfficePartnerNetworkR7:React.FC<Props>=({business,managed,p
   <div className="r7-nav" aria-label="أقسام الشبكة">{tabGroups.map(group=><div className="r7-nav-group" key={group.name}><strong>{group.name}</strong><div className="r7-nav-group-items">{group.items.map(id=>{const item=tabs.find(([key])=>key===id);if(!item)return null;const [,l,ic]=item;return <button type="button" key={id} aria-current={tab===id?'page':undefined} className={tab===id?'active':''} onClick={()=>setTab(id)}>{React.cloneElement(ic as React.ReactElement,{className:'r7-ico'})}{l}</button>;})}</div></div>)}</div>
   {tab==='overview'&&<Overview net={net} managed={managed} platform={platform} issues={issues} managedUnlinked={managedUnlinked.length} reconcile={reconcile}/>} 
   {tab==='office360'&&<Office360ErrorBoundary><Office360 net={net} managed={managed} business={business} currentUser={currentUser}/></Office360ErrorBoundary> }
+  {tab==='items'&&<Office360ErrorBoundary><OfficeItemsWorkspace/></Office360ErrorBoundary>}
   {tab==='customers'&&<Customers net={net} q={q} setQ={setQ} update={update}/>} 
   {tab==='offices'&&<Offices net={net} update={update} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 
   {tab==='partners'&&<Partners net={net} q={q} setQ={setQ} update={update} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 
@@ -78,6 +81,32 @@ const K:React.FC<{l:string;v:React.ReactNode;w?:boolean}>=({l,v,w})=><div classN
 const Panel:React.FC<{title:string;children:React.ReactNode;actions?:React.ReactNode}>=({title,children,actions})=><section className="r7-panel"><header><h3>{title}</h3>{actions}</header><div className="r7-body">{children}</div></section>;
 const Table:React.FC<{h:string[];r:React.ReactNode[][]}>=({h,r})=><div className="r7-table-wrap"><table><thead><tr>{h.map(x=><th key={x}>{x}</th>)}</tr></thead><tbody>{r.length?r.map((x,i)=><tr key={i}>{x.map((v,j)=><td key={j}>{v}</td>)}</tr>):<tr><td colSpan={h.length}>لا توجد بيانات.</td></tr>}</tbody></table></div>;
 const Overview=({net,managed,platform,issues,managedUnlinked,reconcile}:any)=><div className="r7-grid"><Panel title="ملخص الشبكة"><div className="r7-kpis"><K l="المحافظات المرجعية" v={net.governorates.length}/><K l="العملاء/العلاقات" v={net.customers.length}/><K l="المكاتب" v={net.offices.length}/><K l="الشركات/الشركاء" v={net.organizations.length}/><K l="الفروع" v={net.branches.length}/><K l="العقود" v={net.contracts.length}/><K l="العروض/الأسعار" v={net.offers.length}/><K l="الأسواق" v={net.regional_markets.length}/><K l="أسعار مختبر" v={net.lab_prices.length}/><K l="عقود مزارع غير مربوطة" v={managedUnlinked} w={managedUnlinked>0}/><K l="مشاكل التكامل" v={issues.length} w={issues.length>0}/><K l="كتالوج مؤسسي" v={platform.catalog.length}/><K l="مزارع مُدارة" v={managed.farms.length}/></div></Panel><Panel title="سلسلة القبول النهائية"><div className="r7-flow">{['Customer / Farm Owner','Canonical Office ID','Company / Feed Mill / Lab / Hatchery','Contract + Historical Pricing','Branch + Governorate + Availability','Nearest Branch','Purchase / Order','Receipt / Section 7','Invoice / Section 12','Reports / Printing / History'].map((x,i)=><div key={x}><span>{i+1}</span><b>{x}</b></div>)}</div>{managedUnlinked>0&&<button className="r7-primary" onClick={reconcile}>ربط العقود القديمة تلقائيًا بالمكتب canonical</button>}</Panel><Panel title="قواعد عدم التكرار"><ul className="r7-list"><li>Customer identity واحد، وعلاقات متعددة حسب الرحلة.</li><li>office_id هو المرجع التشغيلي للعقد؛ office_name يبقى للعرض والتوافق.</li><li>Section 7 وحده يملك حركات المخزون.</li><li>Section 12 وحده يملك GL/AP/AR/Treasury.</li><li>التاريخ السعري والعقود Append-only/versioned.</li><li>الطبيب يملك القرار الطبي النهائي؛ AI استشاري.</li></ul></Panel><Panel title="التكامل/المشاكل">{issues.length?<ul className="r7-list danger">{issues.map((x:string)=><li key={x}>{x}</li>)}</ul>:<div className="r7-ok">PASS — لا توجد علاقات orphan في شبكة R7.</div>}</Panel></div>;
+const OfficeItemsWorkspace:React.FC=()=>{
+ const [offices,setOffices]=useState<Array<{id:string;name:string;code:string}>>([]);
+ const [officeId,setOfficeId]=useState('');
+ const [loading,setLoading]=useState(true);
+ const [error,setError]=useState('');
+ useEffect(()=>{
+  const controller=new AbortController();
+  setLoading(true);setError('');setOffices([]);setOfficeId('');
+  apiService.getAuthorizedContractedOfficesV2026(controller.signal)
+   .then(result=>{if(!controller.signal.aborted)setOffices(Array.isArray(result)?result.filter(office=>office&&typeof office.id==='string'&&office.id.length>0):[]);})
+   .catch(cause=>{if(!controller.signal.aborted)setError(cause instanceof Error?cause.message:String(cause));})
+   .finally(()=>{if(!controller.signal.aborted)setLoading(false);});
+  return ()=>controller.abort();
+ },[]);
+ const selectedOfficeId=offices.some(office=>office.id===officeId)?officeId:(offices[0]?.id||'');
+ return <div className="r7-grid one"><Panel title="الأدوية والمعدات — دليل أصناف المكتب">
+  <p>اختر مكتبًا من المكاتب المصرح بها. يخضع الوصول إلى الأصناف والدفعات للتحقق من الصلاحيات على الخادم.</p>
+  {loading&&<p role="status">جارٍ تحميل المكاتب المصرح بها…</p>}
+  {error&&<p role="alert">تعذر تحميل المكاتب: {error}</p>}
+  {!loading&&!error&&offices.length===0&&<p>لا توجد مكاتب مصرح بها لحسابك.</p>}
+  {!loading&&!error&&offices.length>0&&<>
+   <div className="r7-form"><label htmlFor="r7-items-office">المكتب المتعاقد</label><select id="r7-items-office" value={selectedOfficeId} onChange={event=>setOfficeId(event.target.value)}>{offices.map(office=><option key={office.id} value={office.id}>{office.name} ({office.code})</option>)}</select></div>
+   {selectedOfficeId&&<ItemsPage key={selectedOfficeId} officeId={selectedOfficeId}/>}
+  </>}
+ </Panel></div>;
+};
 const Office360=(_props:any)=>{
  const safeRows=(value:unknown):any[]=>Array.isArray(value)?value:[];
  const [offices,setOffices]=useState<Array<{id:string;name:string;code:string}>>([]);
@@ -142,7 +171,48 @@ const Customers = ({ net, q, setQ, update }: any) => {
   );
 };
 
-const Offices=({net,update,commitIdentity,identityLoaded,identityBusy}:any)=>{const [name,setName]=useState(''),[gov,setGov]=useState('صنعاء'),[phone,setPhone]=useState(''),[manager,setManager]=useState(''),[renameId,setRenameId]=useState(''),[renameName,setRenameName]=useState('');const add=()=>{if(!name.trim()||!identityLoaded)return;void commitIdentity(async()=>{await apiService.createR7Office({code:`OFF-${Date.now()}`,name:name.trim(),office_type:'mixed',governorate:gov,district:'',address:'',phone,manager_name:manager,responsible_roles:['manager','veterinarian','accountant','procurement','inventory'],warehouse_ids:[],status:'active'});setName('')})};return <div className="r7-grid"><Panel title="إنشاء مكتب"><div className="r7-form"><input placeholder="اسم المكتب" value={name} onChange={e=>setName(e.target.value)}/><input placeholder="المحافظة" value={gov} onChange={e=>setGov(e.target.value)}/><input placeholder="الهاتف" value={phone} onChange={e=>setPhone(e.target.value)}/><input placeholder="المدير" value={manager} onChange={e=>setManager(e.target.value)}/><button className="r7-primary" onClick={add} disabled={!identityLoaded||identityBusy||!name.trim()}><PlusCircle/>حفظ المكتب بالخادم</button></div></Panel><Panel title="تعديل اسم مكتب محفوظ بالخادم"><div className="r7-form"><select value={renameId} onChange={e=>{setRenameId(e.target.value);setRenameName(net.offices.find((o:any)=>o.id===e.target.value)?.name||'')}}><option value="">اختر المكتب</option>{net.offices.map((o:any)=><option key={o.id} value={o.id}>{o.name}</option>)}</select><input value={renameName} onChange={e=>setRenameName(e.target.value)} placeholder="الاسم الجديد"/><button disabled={!identityLoaded||identityBusy||!renameId||!renameName.trim()} onClick={()=>void commitIdentity(()=>apiService.renameR7Office(renameId,renameName.trim()))}>حفظ الاسم بالخادم</button></div></Panel><Panel title="Office 360"><Table h={['الكود','المكتب','النوع','المحافظة','الهاتف','المدير','المسؤوليات']} r={net.offices.map((o:any)=>[o.code,o.name,o.office_type,o.governorate,o.phone,o.manager_name,o.responsible_roles.join('، ')])}/></Panel></div>};
+const Offices=({net,commitIdentity,identityLoaded,identityBusy}:any)=>{
+ const [name,setName]=useState('');
+ const [gov,setGov]=useState('صنعاء');
+ const [phone,setPhone]=useState('');
+ const [manager,setManager]=useState('');
+ const [renameId,setRenameId]=useState('');
+ const [renameName,setRenameName]=useState('');
+ const [saveError,setSaveError]=useState('');
+ const add=async()=>{
+  setSaveError('');
+  if(!name.trim()){setSaveError('يجب إدخال اسم المكتب.');return;}
+  if(!gov.trim()){setSaveError('يجب إدخال المحافظة.');return;}
+  if(identityBusy){setSaveError('توجد عملية أخرى قيد التنفيذ.');return;}
+  if(!identityLoaded){setSaveError('لم يتم تحميل الهوية من الخادم. يرجى إعادة المحاولة.');return;}
+  try{
+   await commitIdentity(async()=>{
+    await apiService.createR7Office({code:`OFF-${Date.now()}`,name:name.trim(),office_type:'mixed',governorate:gov.trim(),district:'',address:'',phone:phone.trim(),manager_name:manager.trim(),responsible_roles:['manager','veterinarian','accountant','procurement','inventory'],warehouse_ids:[],status:'active'});
+    setName('');
+   });
+  }catch(error){
+   const message=error instanceof Error?error.message:'فشل حفظ المكتب';
+   console.error('[Office360] Save office failed:',error);
+   setSaveError(message);
+  }
+ };
+ return <div className="r7-grid">
+  <Panel title="إنشاء مكتب"><div className="r7-form">
+   <input placeholder="اسم المكتب" value={name} onChange={e=>setName(e.target.value)}/>
+   <input placeholder="المحافظة" value={gov} onChange={e=>setGov(e.target.value)}/>
+   <input placeholder="الهاتف" value={phone} onChange={e=>setPhone(e.target.value)}/>
+   <input placeholder="المدير" value={manager} onChange={e=>setManager(e.target.value)}/>
+   <button type="button" className="r7-primary" onClick={()=>void add()} disabled={identityBusy||!identityLoaded||!name.trim()||!gov.trim()}><PlusCircle/>{identityBusy?'جارٍ الحفظ...':'حفظ المكتب بالخادم'}</button>
+   {saveError&&<p role="alert" style={{color:'#f87171'}}>{saveError}</p>}
+  </div></Panel>
+  <Panel title="تعديل اسم مكتب محفوظ بالخادم"><div className="r7-form">
+   <select value={renameId} onChange={e=>{setRenameId(e.target.value);setRenameName(net.offices.find((o:any)=>o.id===e.target.value)?.name||'')}}><option value="">اختر المكتب</option>{net.offices.map((o:any)=><option key={o.id} value={o.id}>{o.name}</option>)}</select>
+   <input value={renameName} onChange={e=>setRenameName(e.target.value)} placeholder="الاسم الجديد"/>
+   <button disabled={!identityLoaded||identityBusy||!renameId||!renameName.trim()} onClick={()=>void commitIdentity(()=>apiService.renameR7Office(renameId,renameName.trim()))}>حفظ الاسم بالخادم</button>
+  </div></Panel>
+  <Panel title="Office 360"><Table h={['الكود','المكتب','النوع','المحافظة','الهاتف','المدير','المسؤوليات']} r={net.offices.map((o:any)=>[o.code,o.name,o.office_type,o.governorate,o.phone,o.manager_name,Array.isArray(o.responsible_roles)?o.responsible_roles.join('، '):'—'])}/></Panel>
+ </div>;
+};
 const Partners=({net,q,setQ,update,commitIdentity,identityLoaded,identityBusy}:any)=>{const [name,setName]=useState(''),[phone,setPhone]=useState(''),[kind,setKind]=useState('company'),[gov,setGov]=useState('صنعاء');const add=()=>{if(!name)return;if(kind==='marketing_company'){
   if(!identityLoaded)return;
   void commitIdentity(()=>apiService.createR7MarketingCompany({code:`MKT-${Date.now()}`,name:name.trim(),phone,governorates_served:[gov],preferred_currency:'SAR',credit_days:0,contact_name:'',payment_terms:'حسب العقد'}));setName('');return;
