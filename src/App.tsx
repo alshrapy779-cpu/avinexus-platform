@@ -1,3 +1,4 @@
+import ContactsPage from './components/office/ContactsPage';
 import React, { useState, useEffect } from 'react';
 import { Header, AppView } from './components/Header';
 import RegisterPage from './components/auth/RegisterPage';
@@ -1162,7 +1163,11 @@ export default function App() {
           </div>
 
 <div className="text-[11px] text-cyan-300/80">منصة تشغيلية رقمية لإدارة صحة وإنتاج الدواجن</div>
-        </div>
+        </div>{window.location.hash === '#/office/contacts' && (
+  <div className="p-4">
+    <ContactsPage officeId="default-office" accessToken="mock-token" canManage={true} />
+  </div>
+)}
       </footer>
     </div>
   );
