@@ -78,6 +78,23 @@ async function apiFetch(path: string, init?: RequestInit, timeoutMs = 20000, all
 
 
 export const apiService = {
+
+  async officeItemsRequest<T>(path: string, options: RequestInit = {}): Promise<T> {
+    const response = await apiFetch(path, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...options.headers
+      }
+    });
+    const data: unknown = await response.json();
+    if (!response.ok) {
+      const message = typeof data === 'object' && data !== null && 'error' in data ? String((data as { error: unknown }).error) : `HTTP ${response.status}`;
+      throw new Error(message);
+    }
+    return data as T;
+  },
+
   async getR7MasterIdentity():Promise<{offices:any[];organizations:any[];branches:any[];governorates:string[];contracts:any[];offers:any[];regional_markets:any[];market_prices:any[];price_change_history:any[]}> {
     const res=await apiFetch('/api/r7/master/identity');
     if(!res.ok)throw new Error(`r7_identity_http_${res.status}`);

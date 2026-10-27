@@ -6,14 +6,15 @@ import type {PlatformCoreStateV195,PlatformRoleV195} from '../../modules/platfor
 import {addCustomerR7,addOfficeR7,addPartnerR7,addRouteRequestR7,nearestEligibleBranchesR7,validatePartnerOfficeCustomerNetworkR7,type R7Offer,type R7CustomerJourney} from '../../modules/v20/PartnerOfficeCustomerNetworkR7';
 import './CustomerOfficePartnerNetworkR7.css';
 import {apiService} from '../../services/apiService';
+import ItemsPage from '../office/ItemsPage';
 import {Office360ErrorBoundary} from '../office/Office360ErrorBoundary';
 
 type Props={business:MultiBusinessEnterpriseStateV2023;managed:ManagedOperationsStateV197;platform:PlatformCoreStateV195;currentUser:{id:string;name:string;role:PlatformRoleV195};onBusinessChange:(n:MultiBusinessEnterpriseStateV2023)=>void;onManagedChange:(n:ManagedOperationsStateV197)=>void};
-type Tab='overview'|'office360'|'customers'|'offices'|'partners'|'branches'|'contracts'|'catalog'|'markets'|'labs'|'route'|'procurement'|'communication'|'about';
+type Tab='overview'|'office360'|'customers', 'items'|'offices'|'partners'|'branches'|'contracts'|'catalog'|'markets'|'labs'|'route'|'procurement'|'communication'|'about';
 const journeyName:Record<R7CustomerJourney,string>={retail:'عميل متجر/Marketplace',guest:'ضيف/Guest',managed_farm:'عميل إدارة مزرعة',farm_owner_seller:'مالك مزرعة/بائع قطيع',marketing_partner:'شريك/مكتب تسويق'};
-const tabs:Array<[Tab,string,React.ReactNode]>= [['overview','القيادة',<Landmark/>],['office360','مساحة المكتب المتعاقد',<Building2/>],['customers','العملاء · Customer 360',<Users/>],['offices','المكاتب',<Building2/>],['partners','الشركات والشركاء',<Store/>],['branches','الفروع والمحافظات',<MapPin/>],['contracts','العقود والأسعار',<FileText/>],['catalog','الكتالوج والتوفر',<Boxes/>],['markets','الأسواق والتسويق',<ShoppingCart/>],['labs','المختبرات والفقاسات',<FlaskConical/>],['route','أقرب فرع',<Route/>],['procurement','المشتريات والتسوية',<ShieldCheck/>],['communication','AI والتواصل',<MessagesSquare/>],['about','هوية النظام',<Info/>]];
+const tabs:Array<[Tab,string,React.ReactNode]>= [['overview','القيادة',<Landmark/>],['office360','مساحة المكتب المتعاقد',<Building2/>],['customers', 'items','العملاء · Customer 360',<Users/>],['offices','المكاتب',<Building2/>],['partners','الشركات والشركاء',<Store/>],['branches','الفروع والمحافظات',<MapPin/>],['contracts','العقود والأسعار',<FileText/>],['catalog','الكتالوج والتوفر',<Boxes/>],['markets','الأسواق والتسويق',<ShoppingCart/>],['labs','المختبرات والفقاسات',<FlaskConical/>],['route','أقرب فرع',<Route/>],['procurement','المشتريات والتسوية',<ShieldCheck/>],['communication','AI والتواصل',<MessagesSquare/>],['about','هوية النظام',<Info/>]];
 const tabGroups:Array<{name:string;items:Tab[]}>= [
- {name:'المنصة والعمليات',items:['overview','customers','procurement','communication']},
+ {name:'المنصة والعمليات',items:['overview','customers', 'items','procurement','communication']},
  {name:'المكاتب المتعاقدة',items:['office360','offices','contracts']},
  {name:'شركات التسويق والأسواق',items:['partners','markets']},
  {name:'الفروع والمنتجات والخدمات',items:['branches','catalog','labs','route']},
@@ -60,7 +61,7 @@ export const CustomerOfficePartnerNetworkR7:React.FC<Props>=({business,managed,p
   <div className="r7-nav" aria-label="أقسام الشبكة">{tabGroups.map(group=><div className="r7-nav-group" key={group.name}><strong>{group.name}</strong><div className="r7-nav-group-items">{group.items.map(id=>{const item=tabs.find(([key])=>key===id);if(!item)return null;const [,l,ic]=item;return <button type="button" key={id} aria-current={tab===id?'page':undefined} className={tab===id?'active':''} onClick={()=>setTab(id)}>{React.cloneElement(ic as React.ReactElement,{className:'r7-ico'})}{l}</button>;})}</div></div>)}</div>
   {tab==='overview'&&<Overview net={net} managed={managed} platform={platform} issues={issues} managedUnlinked={managedUnlinked.length} reconcile={reconcile}/>} 
   {tab==='office360'&&<Office360ErrorBoundary><Office360 net={net} managed={managed} business={business} currentUser={currentUser}/></Office360ErrorBoundary> }
-  {tab==='customers'&&<Customers net={net} q={q} setQ={setQ} update={update}/>} 
+  {tab==='customers', 'items'&&<Customers net={net} q={q} setQ={setQ} update={update}/>} 
   {tab==='offices'&&<Offices net={net} update={update} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 
   {tab==='partners'&&<Partners net={net} q={q} setQ={setQ} update={update} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 
   {tab==='branches'&&<Branches net={net} update={update} commitIdentity={commitIdentity} identityLoaded={identityLoaded} identityBusy={identityBusy}/>} 

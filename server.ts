@@ -1,3 +1,5 @@
+import { createOfficeItemsRouter } from './src/server/routes/itemsApi';
+import { mongoItemsRepository } from './src/server/repositories/mongoItemsRepository';
 import { createOfficeContactsRouter } from './src/server/routes/contactsApi';
 import { mongoContactsRepository } from './src/server/repositories/mongoContactsRepository';
 import { connectDB } from "./src/server/db";
@@ -3485,6 +3487,23 @@ app.use(
         actor: authClaimsV2021(event.request.res!).sub, timestamp: new Date().toISOString()
       });
     }
+  })
+);
+
+
+app.use(
+  '/api/office/:officeId/items',
+  createOfficeItemsRouter({
+    authenticate: requireAuthV2021(),
+    authorizeOffice: (req, res, next) => {
+      const officeId = String(req.params.officeId || '');
+      const office = enterpriseV11.multi_business_v20_2_3.business_units.find(unit => unit.id === officeId && unit.type === 'office' && unit.status === 'active');
+      if (!office) { res.status(404).json({ success: false, error: 'office_not_found' }); return; }
+      const mode = req.method.toUpperCase() === 'GET' ? 'read' : 'write';
+      if (!businessOr403V2023(res, officeId, mode)) return;
+      next();
+    },
+    repository: mongoItemsRepository
   })
 );
 
