@@ -124,6 +124,24 @@ const Office360=(_props:any)=>{
   </>}
  </Panel></div>;
 };
+const Customers = ({ net, q, setQ, update }: any) => {
+  const customers = Array.isArray(net?.customers) ? net.customers : [];
+  const filtered = customers.filter((customer: any) => {
+    const search = String(q || '').toLowerCase();
+    return [customer?.name, customer?.phone, customer?.email, customer?.id].some(value => String(value || '').toLowerCase().includes(search));
+  });
+  return (
+    <div className="r7-grid one">
+      <Panel title="العملاء | Customer 360">
+        <div className="r7-form">
+          <input type="search" placeholder="البحث عن عميل" value={q || ''} onChange={e => setQ(e.target.value)} />
+        </div>
+        <Table h={['الاسم', 'الهاتف', 'البريد الإلكتروني', 'المعرف']} r={filtered.map((customer: any) => [customer.name || '—', customer.phone || '—', customer.email || '—', customer.id || '—'])} />
+      </Panel>
+    </div>
+  );
+};
+
 const Offices=({net,update,commitIdentity,identityLoaded,identityBusy}:any)=>{const [name,setName]=useState(''),[gov,setGov]=useState('صنعاء'),[phone,setPhone]=useState(''),[manager,setManager]=useState(''),[renameId,setRenameId]=useState(''),[renameName,setRenameName]=useState('');const add=()=>{if(!name.trim()||!identityLoaded)return;void commitIdentity(async()=>{await apiService.createR7Office({code:`OFF-${Date.now()}`,name:name.trim(),office_type:'mixed',governorate:gov,district:'',address:'',phone,manager_name:manager,responsible_roles:['manager','veterinarian','accountant','procurement','inventory'],warehouse_ids:[],status:'active'});setName('')})};return <div className="r7-grid"><Panel title="إنشاء مكتب"><div className="r7-form"><input placeholder="اسم المكتب" value={name} onChange={e=>setName(e.target.value)}/><input placeholder="المحافظة" value={gov} onChange={e=>setGov(e.target.value)}/><input placeholder="الهاتف" value={phone} onChange={e=>setPhone(e.target.value)}/><input placeholder="المدير" value={manager} onChange={e=>setManager(e.target.value)}/><button className="r7-primary" onClick={add} disabled={!identityLoaded||identityBusy||!name.trim()}><PlusCircle/>حفظ المكتب بالخادم</button></div></Panel><Panel title="تعديل اسم مكتب محفوظ بالخادم"><div className="r7-form"><select value={renameId} onChange={e=>{setRenameId(e.target.value);setRenameName(net.offices.find((o:any)=>o.id===e.target.value)?.name||'')}}><option value="">اختر المكتب</option>{net.offices.map((o:any)=><option key={o.id} value={o.id}>{o.name}</option>)}</select><input value={renameName} onChange={e=>setRenameName(e.target.value)} placeholder="الاسم الجديد"/><button disabled={!identityLoaded||identityBusy||!renameId||!renameName.trim()} onClick={()=>void commitIdentity(()=>apiService.renameR7Office(renameId,renameName.trim()))}>حفظ الاسم بالخادم</button></div></Panel><Panel title="Office 360"><Table h={['الكود','المكتب','النوع','المحافظة','الهاتف','المدير','المسؤوليات']} r={net.offices.map((o:any)=>[o.code,o.name,o.office_type,o.governorate,o.phone,o.manager_name,o.responsible_roles.join('، ')])}/></Panel></div>};
 const Partners=({net,q,setQ,update,commitIdentity,identityLoaded,identityBusy}:any)=>{const [name,setName]=useState(''),[phone,setPhone]=useState(''),[kind,setKind]=useState('company'),[gov,setGov]=useState('صنعاء');const add=()=>{if(!name)return;if(kind==='marketing_company'){
   if(!identityLoaded)return;
