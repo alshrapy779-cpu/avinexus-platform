@@ -1,3 +1,5 @@
+import { createOfficeContactsRouter } from './src/server/routes/contactsApi';
+import { mongoContactsRepository } from './src/server/repositories/mongoContactsRepository';
 import { connectDB } from "./src/server/db";
 import { randomUUID } from 'node:crypto';
 import { type UserRegistration } from './src/server/User';
@@ -3457,6 +3459,35 @@ app.get('/api/v20.2.9/role-workspace/tasks.csv',requireAuthV2021(),(_req:Request
 // ----------------------------------------------------
 // Vite Middleware / Static Files
 // ----------------------------------------------------
+
+app.use(
+  '/api/office/:officeId/contacts',
+  createOfficeContactsRouter({
+    authenticate: requireAuthV2021(),
+    authorizeOffice: (req, res, next) => {
+      const officeId = String(req.params.officeId || '');
+      const office = enterpriseV11.multi_business_v20_2_3.business_units.find(
+        unit => unit.id === officeId && unit.type === 'office' && unit.status === 'active'
+      );
+      if (!office) {
+        res.status(404).json({ success: false, error: 'office_not_found' });
+        return;
+      }
+      const method = req.method.toUpperCase();
+      const action = method === 'GET' ? 'read' : 'write';
+      if (!businessOr403V2023(res, officeId, action)) return;
+      next();
+    },
+    repository: mongoContactsRepository,
+    audit: async event => {
+      console.info('[Office360 Contact Audit]', {
+        action: event.action, officeId: event.officeId, contactId: event.contactId,
+        actor: authClaimsV2021(event.request.res!).sub, timestamp: new Date().toISOString()
+      });
+    }
+  })
+);
+
 async function startServer() {
   if (process.env.NODE_ENV !== 'production') {
     const vite = await createViteServer({
