@@ -2800,14 +2800,7 @@ app.post('/api/v17/lease-listings/:id/approve', (req: Request, res: Response) =>
 app.post('/api/ai/necropsy', async (req: Request, res: Response) => {
   try {
     const { observations, bird_age_days, flock_context, breed } = req.body;
-    const language = /[\u0600-\u06ff]/.test(text) ? 'ar' : 'en';
-    const deterministicSizing = answerPoultrySizingQuestionR81(text, language);
     const ai = getGeminiClient();
-
-    if (!ai && deterministicSizing) {
-      res.json({ reply: deterministicSizing.reply, requires_vet_escalation: false, intent: 'poultry_advice', suggested_actions: ['Register/confirm the house equipment type and actual capacities.', 'Use the approved breed/region feed curve for exact daily feed and water.', 'Record indoor temperature/humidity and local weather for brooding validation.'], deterministic_calculation: deterministicSizing.result, provenance: ['Poultry Equations PDF pp. 12–13, 17', 'AviNexus R8.1 deterministic calculator'] });
-      return;
-    }
 
     if (!ai) {
       // Fallback mock diagnostics if key is not configured
@@ -3115,6 +3108,8 @@ app.post('/api/ai/advisor', async (req: Request, res: Response) => {
       return;
     }
 
+    const language = /[\u0600-\u06ff]/.test(text) ? 'ar' : 'en';
+    const deterministicSizing = answerPoultrySizingQuestionR81(text, language);
     const lower = text.toLowerCase();
     const clinicalSignal = /نافق|نفوق|يموت|مرض|اسهال|إسهال|تنفس|شخر|عطس|كوكس|نيوكاسل|جمبورو|بكتير|مضاد|علاج/.test(lower);
     const purchaseSignal = /شراء|سعر|خصم|علف|لقاح|معدات|كتاكيت|اشراف|إشراف|نزول|تسويق/.test(lower);
@@ -3123,6 +3118,11 @@ app.post('/api/ai/advisor', async (req: Request, res: Response) => {
     const activeLabs = enterpriseV11.laboratory_partner_contracts_v12.filter(l => l.status === 'active' && l.customer_visible);
     const activeLabTests = enterpriseV11.laboratory_test_prices_v12.filter(t => t.active);
     const ai = getGeminiClient();
+
+    if (!ai && deterministicSizing) {
+      res.json({ reply: deterministicSizing.reply, requires_vet_escalation: false, intent: 'poultry_advice', suggested_actions: ['Verify house equipment type and actual capacity.', 'Use approved breed/region standards.', 'Record current environmental readings.'], deterministic_calculation: deterministicSizing.result, provenance: ['AviNexus R8.1 deterministic calculator'] });
+      return;
+    }
 
     if (!ai) {
       let reply = 'أنا مستشار متخصص بالدواجن: أساعدك في التحضين، العلف والماء، التهوية، الأمان الحيوي، التحصينات، التسويق واختيار الخدمة أو الصنف المناسب. ';
@@ -3531,9 +3531,7 @@ const authorizeOfficeOperations: express.RequestHandler =
 
     const mode = req.method.toUpperCase() === 'GET'
       ? 'read'
-      : req.baseUrl.endsWith('/treasury')
-        ? 'finance'
-        : 'operate';
+      : req.baseUrl.endsWith('/treasury') ? 'finance' : 'operate';
 
     if (!businessOr403V2023(res, officeId, mode)) return;
 
