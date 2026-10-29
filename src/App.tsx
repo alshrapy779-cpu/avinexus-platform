@@ -1,3 +1,4 @@
+import Office360DashboardPage from './components/office/Office360DashboardPage';
 import ContactsPage from './components/office/ContactsPage';
 import React, { useState, useEffect } from 'react';
 import { Header, AppView } from './components/Header';
@@ -153,6 +154,7 @@ export default function App() {
   const initialUISettings = loadUISettingsV194();
   const [uiSettings, setUISettings] = useState<AppUISettingsV194>(initialUISettings);
   const [activeView, setActiveView] = useState<AppView>(initialUISettings.startView || 'home');
+  const [office360Open, setOffice360Open] = useState(false);
   const [navHistory, setNavHistory] = useState<AppView[]>([initialUISettings.startView || 'home']);
   const [navIndex, setNavIndex] = useState(0);
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -862,6 +864,16 @@ export default function App() {
         onOpenLogin={() => setAccountSwitcherOpen(true)}
       />
 
+
+      <div className="px-4 py-2 bg-slate-950">
+        <button
+          type="button"
+          onClick={() => setOffice360Open(true)}
+          className="rounded-lg bg-cyan-800 px-4 py-2 text-white"
+        >
+          إدارة المكاتب — Office 360
+        </button>
+      </div>
       <NavigationTrail
         activeView={activeView}
         canBack={navIndex > 0}
@@ -871,6 +883,16 @@ export default function App() {
         onHome={() => navigateTo('home')}
         onSettings={() => setSettingsOpen(true)}
       />
+
+
+      {office360Open && (
+        <div className="fixed inset-0 z-[100] overflow-y-auto bg-slate-950">
+          <Office360DashboardPage
+            accessToken={enterpriseAuth.session.access_token}
+            onClose={() => setOffice360Open(false)}
+          />
+        </div>
+      )}
 
       {/* Main View Area */}
       <main className="flex-1 pb-12">
@@ -1163,11 +1185,7 @@ export default function App() {
           </div>
 
 <div className="text-[11px] text-cyan-300/80">منصة تشغيلية رقمية لإدارة صحة وإنتاج الدواجن</div>
-        </div>{window.location.hash === '#/office/contacts' && (
-  <div className="p-4">
-    <ContactsPage officeId="default-office" accessToken="mock-token" canManage={true} />
-  </div>
-)}
+        </div>
       </footer>
     </div>
   );
